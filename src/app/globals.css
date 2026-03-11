@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ===== THEME CSS CUSTOM PROPERTIES ===== */
+
+/* Morning Light — Default */
+:root,
+[data-theme="morning-light"] {
+  --color-primary: #4A7C59;
+  --color-primary-light: #6FA884;
+  --color-secondary: #C97B4B;
+  --color-accent: #F2C46D;
+  --color-neutral-light: #F7F3EE;
+  --color-neutral-mid: #E8E0D5;
+  --color-neutral-dark: #2E3830;
+  --color-surface: #FDFAF7;
+  --color-sage-bubble: #EEF5F1;
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-plus-jakarta-sans);
+
+  --radius-card: 16px;
+  --radius-bubble: 18px;
+  --radius-bubble-tail: 4px;
+  --radius-button: 12px;
+  --radius-input: 12px;
+
+  --shadow-card: 0 2px 12px rgba(46, 56, 48, 0.08);
+  --shadow-card-hover: 0 6px 24px rgba(46, 56, 48, 0.14);
+  --shadow-modal: 0 12px 40px rgba(46, 56, 48, 0.12);
+
+  --ease-default: cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+[data-theme="soft-blueprint"] {
+  --color-primary: #5B7FD4;
+  --color-primary-light: #8FAAEE;
+  --color-secondary: #F5A382;
+  --color-accent: #F9C846;
+  --color-neutral-light: #F4F6FB;
+  --color-neutral-mid: #DDE3F0;
+  --color-neutral-dark: #1E2A45;
+  --color-surface: #FFFFFF;
+  --color-sage-bubble: #EEF2FC;
+
+  --font-display: var(--font-sora);
+  --font-body: var(--font-dm-sans);
+
+  --radius-card: 20px;
+  --radius-bubble: 20px;
+  --radius-bubble-tail: 6px;
+  --radius-button: 10px;
+  --radius-input: 10px;
+
+  --shadow-card: 0 1px 8px rgba(30, 42, 69, 0.07);
+  --shadow-card-hover: 0 4px 20px rgba(91, 127, 212, 0.15);
+  --shadow-modal: 0 0 0 3px rgba(91, 127, 212, 0.25);
+
+  --ease-default: ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dusk-bloom"] {
+  --color-primary: #6B4F8C;
+  --color-primary-light: #A889CC;
+  --color-secondary: #D98B8B;
+  --color-accent: #E8A838;
+  --color-neutral-light: #F6F2EF;
+  --color-neutral-mid: #D9D0DC;
+  --color-neutral-dark: #2A1F33;
+  --color-surface: #FEFCFA;
+  --color-sage-bubble: #F2EDF8;
+
+  --font-display: var(--font-besley);
+  --font-body: var(--font-nunito);
+
+  --radius-card: 24px;
+  --radius-bubble: 22px;
+  --radius-bubble-tail: 4px;
+  --radius-button: 14px;
+  --radius-input: 14px;
+
+  --shadow-card: 0 2px 16px rgba(42, 31, 51, 0.08);
+  --shadow-card-hover: 0 8px 32px rgba(107, 79, 140, 0.18);
+  --shadow-modal: 0 4px 20px rgba(232, 168, 56, 0.35);
+
+  --ease-default: cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+/* ===== GLOBAL STYLES ===== */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-neutral-light);
+  color: var(--color-neutral-dark);
+  font-family: var(--font-body), system-ui, sans-serif;
+  transition: background-color 0.35s, color 0.25s;
+}
+
+/* Smooth transitions on theme switch */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, box-shadow, border-radius;
+  transition-duration: 0.3s;
+  transition-timing-function: var(--ease-default);
+}
+
+/* Override transitions for elements that shouldn't animate */
+input,
+textarea,
+button {
+  transition-property: background-color, color, border-color, box-shadow, border-radius, transform;
+}
+
+/* Chat animation keyframes */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(14px); transform: translateY(120px); }
+  to   { opacity: 1; transform: translateX(0); transform: translateY(0);}
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-14px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }

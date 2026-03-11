@@ -1,0 +1,188 @@
+"use client";
+
+import { useTheme } from "@/lib/ThemeContext";
+
+export default function Rationale() {
+  const { theme } = useTheme();
+
+  return (
+    <div className="max-w-2xl mx-auto px-4 space-y-10">
+      {/* Header */}
+      <div className="text-center">
+        <h2
+          className="text-3xl font-bold mb-2"
+          style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+        >
+          {theme.name}
+        </h2>
+        <p
+          className="text-base italic opacity-70"
+          style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+        >
+          {theme.tagline}
+        </p>
+        <div className="flex items-center justify-center gap-4 mt-3 text-sm opacity-60">
+          <span style={{ fontFamily: "var(--font-body)" }}>{theme.emotionalRegister}</span>
+          <span>·</span>
+          <span style={{ fontFamily: "var(--font-body)" }}>{theme.brandAnalogy}</span>
+        </div>
+      </div>
+
+      {/* Color Palette */}
+      <Section title="Color Palette">
+        <div className="grid grid-cols-3 gap-3">
+          {theme.colors.map((color) => (
+            <div key={color.hex} className="flex flex-col items-center gap-2">
+              <div
+                className="w-full aspect-square rounded-xl ring-1 ring-black/5"
+                style={{
+                  backgroundColor: color.hex,
+                  borderRadius: "var(--radius-card)",
+                }}
+              />
+              <div className="text-center">
+                <p
+                  className="text-xs font-semibold"
+                  style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                >
+                  {color.name}
+                </p>
+                <p
+                  className="text-[10px] opacity-50 uppercase tracking-wide"
+                  style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                >
+                  {color.role}
+                </p>
+                <p
+                  className="text-[10px] font-mono opacity-40"
+                  style={{ color: "var(--color-neutral-dark)" }}
+                >
+                  {color.hex}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Color Philosophy */}
+      <Section title="Color Philosophy">
+        <p
+          className="text-sm leading-relaxed opacity-80"
+          style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+        >
+          {theme.colorPhilosophy}
+        </p>
+      </Section>
+
+      {/* Font Pairing */}
+      <Section title="Font Pairing">
+        <div
+          className="p-6 rounded-xl space-y-6"
+          style={{
+            background: "var(--color-surface)",
+            borderRadius: "var(--radius-card)",
+            boxShadow: "var(--shadow-card)",
+          }}
+        >
+          <div>
+            <p className="text-xs uppercase tracking-widest opacity-40 mb-2" style={{ fontFamily: "var(--font-body)" }}>
+              Display — {theme.displayFont}
+            </p>
+            <p
+              className="text-2xl font-bold"
+              style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+            >
+              The quick brown fox jumps over the lazy dog
+            </p>
+          </div>
+          <div className="border-t pt-4" style={{ borderColor: "var(--color-neutral-mid)" }}>
+            <p className="text-xs uppercase tracking-widest opacity-40 mb-2" style={{ fontFamily: "var(--font-body)" }}>
+              Body — {theme.bodyFont}
+            </p>
+            <p
+              className="text-base leading-relaxed"
+              style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            >
+              The quick brown fox jumps over the lazy dog. Sage helps parents navigate the hundreds
+              of decisions that shape their child&apos;s early years with confidence and calm.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Typographic Voice */}
+      <Section title="Typographic Voice">
+        <p
+          className="text-sm leading-relaxed opacity-80"
+          style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+        >
+          {theme.typographicVoice}
+        </p>
+      </Section>
+
+      {/* Component Language */}
+      <Section title="Component Language">
+        <ul className="space-y-2">
+          {theme.componentLanguage.map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm opacity-80"
+              style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            >
+              <span
+                className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                style={{ background: "var(--color-primary)" }}
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Design Rationale Summary */}
+      <Section title="Design Rationale">
+        <div
+          className="p-6 rounded-xl"
+          style={{
+            background: "var(--color-sage-bubble)",
+            borderRadius: "var(--radius-card)",
+          }}
+        >
+          <p
+            className="text-sm leading-relaxed"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            {getRationale(theme.id)}
+          </p>
+        </div>
+      </Section>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <h3
+        className="text-lg font-semibold mb-4"
+        style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+      >
+        {title}
+      </h3>
+      {children}
+    </div>
+  );
+}
+
+function getRationale(themeId: string): string {
+  const rationales: Record<string, string> = {
+    "morning-light":
+      "The Morning Light variation uses earthy greens and warm clay tones to create an environment that feels like a trusted, grounding presence — not a clinical tool. Fraunces, with its optical warmth, carries emotional weight in headings, making Sage's responses feel crafted, not generated. Plus Jakarta Sans keeps the UI scannable. Together, the softened shadows, botanical accents, and rounded corners create a space where an overwhelmed parent feels seen, safe, and supported — like a deep breath before the day begins.",
+    "soft-blueprint":
+      "The Soft Blueprint variation leverages the universal trust signal of blue, tempered by peach warmth, to create an experience that reads as expert without being cold. Sora's geometric precision communicates competence and modernity, while DM Sans provides effortless readability. The systematic top-border accents on cards create a structured, organized feeling — giving overwhelmed parents the reassurance that someone (or something) has their life together. The clean grid patterns and focus-ring highlights evoke a premium wellness clinic: trustworthy, structured, and deeply reassuring.",
+    "dusk-bloom":
+      "The Dusk & Bloom variation uses deep plum and dusty rose to create a premium, emotionally resonant experience that stands apart from the blue-dominated app landscape. Besley brings editorial elegance to Sage's empathetic responses — the italic opening lines read like a handwritten note from a trusted friend. Nunito maintains warmth at interface scale. Shadow-only card depth, frosted-glass input bars, and amber glow CTAs create an atmosphere of luxury self-care. This is a tool that respects the emotional weight of parenting, making parents feel not just supported, but deeply understood.",
+  };
+  return rationales[themeId] || "";
+}

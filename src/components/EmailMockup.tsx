@@ -1,0 +1,187 @@
+"use client";
+
+import { useTheme } from "@/lib/ThemeContext";
+import { Leaf, Brain, Flower } from "@phosphor-icons/react";
+
+export default function EmailMockup() {
+  const { themeId } = useTheme();
+
+  const containerRadius = themeId === "dusk-bloom" ? "24px" : themeId === "soft-blueprint" ? "6px" : "16px";
+  const containerBorder =
+    themeId === "dusk-bloom" ? "1px solid var(--color-neutral-mid)" : "none";
+
+  return (
+    <div className="flex justify-center px-4">
+      <div
+        className="w-full max-w-[600px] overflow-hidden"
+        style={{
+          borderRadius: containerRadius,
+          border: containerBorder,
+          boxShadow: "var(--shadow-modal)",
+          background: "var(--color-surface)",
+        }}
+      >
+        {/* Email Header */}
+        <div
+          className="flex items-center justify-between px-6 py-4 border-b"
+          style={{ borderColor: "var(--color-neutral-mid)" }}
+        >
+          <div className="flex items-center gap-2">
+            <EmailLogo themeId={themeId} />
+            <span
+              className="text-lg font-semibold"
+              style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+            >
+              Sage
+            </span>
+          </div>
+          <div className="flex gap-4">
+            {["About", "Blog", "Help"].map((link) => (
+              <span
+                key={link}
+                className="text-xs opacity-50 cursor-pointer hover:opacity-80"
+                style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+              >
+                {link}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Hero Section */}
+        <div
+          className="relative px-8 py-16 text-center overflow-hidden"
+          style={getHeroStyle(themeId)}
+        >
+          {/* Decorative background image */}
+          {themeId === "morning-light" && (
+            <img src="/bg-email-morning-light.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+          )}
+          {themeId === "soft-blueprint" && (
+            <img src="/bg-email-soft-blueprint.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+          )}
+          {themeId === "dusk-bloom" && (
+            <img src="/bg-email-dusk-n-bloom.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+          )}
+
+          <p
+            className="text-xs uppercase tracking-widest mb-4 opacity-60 relative z-10"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            One less thing to worry about today
+          </p>
+          <h2
+            className="text-3xl md:text-4xl font-bold leading-tight relative z-10"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--color-neutral-dark)",
+            }}
+          >
+            Parent with confidence,
+            <br />
+            every day.
+          </h2>
+        </div>
+
+        {/* Body */}
+        <div className="px-8 py-10 text-center">
+          <p
+            className="text-base leading-relaxed max-w-md mx-auto mb-2"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: "var(--color-neutral-dark)",
+              opacity: 0.85,
+            }}
+          >
+            Meet Sage. The personalized AI partner that helps you navigate tantrums, milestones, and
+            the millions of decisions in between.
+          </p>
+          <p
+            className="text-base leading-relaxed max-w-md mx-auto mb-8"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: "var(--color-neutral-dark)",
+              opacity: 0.85,
+            }}
+          >
+            Get advice that actually knows your child.
+          </p>
+
+          {/* CTA Button */}
+          <button
+            className="inline-block px-8 py-4 text-base font-semibold text-white cursor-pointer hover:opacity-90 transition-opacity"
+            style={{
+              fontFamily: "var(--font-body)",
+              background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
+              borderRadius: "var(--radius-button)",
+              boxShadow:
+                themeId === "dusk-bloom"
+                  ? "0 4px 20px rgba(232, 168, 56, 0.35)"
+                  : "var(--shadow-card)",
+              color: themeId === "dusk-bloom" ? "var(--color-neutral-dark)" : "white",
+            }}
+          >
+            Chat with Sage — It&apos;s Free
+          </button>
+        </div>
+
+        {/* Footer */}
+        <div
+          className="px-8 py-6 text-center border-t"
+          style={{
+            borderColor: "var(--color-neutral-mid)",
+            background: "var(--color-neutral-light)",
+          }}
+        >
+          <div className="flex justify-center gap-6 mb-3">
+            {["Privacy", "Terms", "Contact"].map((link) => (
+              <span
+                key={link}
+                className="text-xs opacity-40 cursor-pointer hover:opacity-70"
+                style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+              >
+                {link}
+              </span>
+            ))}
+          </div>
+          <p
+            className="text-xs opacity-30"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            You&apos;re receiving this because you signed up for Sage. Unsubscribe
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function EmailLogo({ themeId }: { themeId: string }) {
+  const iconProps = { size: 22, color: "var(--color-primary)" } as const;
+  if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
+  if (themeId === "dusk-bloom") return <Flower {...iconProps} weight="duotone" />;
+  return <Leaf {...iconProps} weight="fill" />;
+}
+
+function getHeroStyle(themeId: string): React.CSSProperties {
+  if (themeId === "morning-light") {
+    return {
+      background: `
+        radial-gradient(circle at 20% 30%, rgba(111, 168, 132, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(201, 123, 75, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #F7F3EE 0%, #EEF5F1 100%)
+      `,
+    };
+  }
+  if (themeId === "soft-blueprint") {
+    return {
+      background: `linear-gradient(135deg, #8FAAEE 0%, #F4F6FB 100%)`,
+    };
+  }
+  return {
+    background: `
+      radial-gradient(circle at 50% 50%, rgba(107, 79, 140, 0.12) 0%, transparent 70%),
+      linear-gradient(135deg, #F2EDF8 0%, #F6F2EF 100%)
+    `,
+  };
+}
