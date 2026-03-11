@@ -26,7 +26,6 @@ export default function ThemeSwitcher() {
             style={{
               fontFamily: "var(--font-body)",
               color: isActive ? t.primaryHex : "var(--color-neutral-dark)",
-              ringColor: isActive ? t.primaryHex : undefined,
               borderColor: isActive ? t.primaryHex : "transparent",
               ...(isActive ? { boxShadow: `0 0 0 2px ${t.primaryHex}` } : {}),
             }}
