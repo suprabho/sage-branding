@@ -15,8 +15,8 @@
   --color-surface: #FDFAF7;
   --color-sage-bubble: #EEF5F1;
 
-  --font-display: var(--font-fraunces);
-  --font-body: var(--font-plus-jakarta-sans);
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
 
   --radius-card: 16px;
   --radius-bubble: 18px;
@@ -42,8 +42,8 @@
   --color-surface: #FFFFFF;
   --color-sage-bubble: #EEF2FC;
 
-  --font-display: var(--font-sora);
-  --font-body: var(--font-dm-sans);
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
 
   --radius-card: 20px;
   --radius-bubble: 20px;
@@ -69,8 +69,8 @@
   --color-surface: #FEFCFA;
   --color-sage-bubble: #F2EDF8;
 
-  --font-display: var(--font-besley);
-  --font-body: var(--font-nunito);
+  --font-display: "Besley", Georgia, serif;
+  --font-body: "Nunito", system-ui, sans-serif;
 
   --radius-card: 24px;
   --radius-bubble: 22px;
