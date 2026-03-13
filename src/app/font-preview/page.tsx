@@ -21,86 +21,11 @@ const fonts: FontDef[] = [
       "https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..700;1,62..125,400..700&display=swap",
     widthAxes: "wdth 62\u2013125",
     widths: [
+      { label: "Condensed (62%)", style: { fontStretch: "62%" } },
       { label: "Normal (100%)", style: { fontStretch: "100%" } },
       { label: "Expanded (125%)", style: { fontStretch: "125%" } },
     ],
     character: "Structured, industrial, engineering-confident",
-  },
-  {
-    name: "Big Shoulders Display",
-    family: "Big Shoulders Display",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;600;700;800&display=swap",
-    widthAxes: "Naturally ultra-wide",
-    widths: [{ label: "Default (naturally wide)", style: {} }],
-    character: "Chicago signage DNA \u2014 bold, commanding, civic",
-  },
-  {
-    name: "Literata",
-    family: "Literata",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..700&display=swap",
-    widthAxes: "opsz 7\u201372",
-    widths: [{ label: "Default (optical sizing)", style: {} }],
-    character: "Editorial elegance, book design DNA",
-  },
-  {
-    name: "Epilogue",
-    family: "Epilogue",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800&display=swap",
-    widthAxes: "Standard (no wdth axis via Google)",
-    widths: [{ label: "Default", style: {} }],
-    character: "Clean contemporary, modern confidence",
-  },
-  {
-    name: "Recursive",
-    family: "Recursive",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Recursive:CASL,MONO,wght@0,0,400..700;0,1,400..700;1,0,400..700;1,1,400..700&display=swap",
-    widthAxes: "MONO 0\u20131, CASL 0\u20131",
-    widths: [
-      {
-        label: "Sans (MONO 0)",
-        style: { fontVariationSettings: "'MONO' 0, 'CASL' 0" },
-      },
-      {
-        label: "Mono (MONO 1)",
-        style: { fontVariationSettings: "'MONO' 1, 'CASL' 0" },
-      },
-      {
-        label: "Casual Mono (MONO 1, CASL 1)",
-        style: { fontVariationSettings: "'MONO' 1, 'CASL' 1" },
-      },
-    ],
-    character: "Morphs between mono and sans. Tech-forward",
-  },
-  {
-    name: "Commissioner",
-    family: "Commissioner",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Commissioner:wght@400;600;700&display=swap",
-    widthAxes: "Standard weight range",
-    widths: [{ label: "Default", style: {} }],
-    character: "Warm, authoritative, humanist",
-  },
-  {
-    name: "Oswald",
-    family: "Oswald",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap",
-    widthAxes: "Naturally tall/condensed",
-    widths: [{ label: "Default (condensed)", style: {} }],
-    character: "Industrial poster, tall and narrow",
-  },
-  {
-    name: "Barlow",
-    family: "Barlow",
-    googleUrl:
-      "https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700&display=swap",
-    widthAxes: "Standard width grotesk",
-    widths: [{ label: "Default", style: {} }],
-    character: "Industrial, slightly wide, clean",
   },
   {
     name: "Anybody",
@@ -111,22 +36,34 @@ const fonts: FontDef[] = [
     widths: [
       { label: "Condensed (50%)", style: { fontStretch: "50%" } },
       { label: "Normal (100%)", style: { fontStretch: "100%" } },
+      { label: "Wide (125%)", style: { fontStretch: "125%" } },
       { label: "Ultra Wide (150%)", style: { fontStretch: "150%" } },
     ],
-    character: "EXTREME width range. Goes from ultra-condensed to absurdly wide",
+    character: "EXTREME width range \u2014 from ultra-condensed to absurdly wide",
   },
   {
-    name: "Saira",
-    family: "Saira",
+    name: "Fredoka",
+    family: "Fredoka",
     googleUrl:
-      "https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,400..700;1,50..125,400..700&display=swap",
-    widthAxes: "wdth 50\u2013125",
+      "https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&display=swap",
+    widthAxes: "wdth 75\u2013125",
     widths: [
-      { label: "Condensed (50%)", style: { fontStretch: "50%" } },
+      { label: "Condensed (75%)", style: { fontStretch: "75%" } },
       { label: "Normal (100%)", style: { fontStretch: "100%" } },
-      { label: "Expanded (125%)", style: { fontStretch: "125%" } },
+      { label: "Wide (125%)", style: { fontStretch: "125%" } },
     ],
-    character: "Tech-sport aesthetic, structured wide forms",
+    character: "Rounded, playful, warm \u2014 friendly authority with soft edges",
+  },
+  {
+    name: "Lexend Deca",
+    family: "Lexend Deca",
+    googleUrl:
+      "https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap",
+    widthAxes: "Standard width (naturally wide letterforms)",
+    widths: [
+      { label: "Default (naturally wide)", style: {} },
+    ],
+    character: "Designed for readability \u2014 wide, open letterforms, modern confidence",
   },
 ];
 
@@ -159,10 +96,10 @@ export default function FontPreview() {
 
       <div style={{ padding: "40px 24px", maxWidth: 1200, margin: "0 auto", fontFamily: "system-ui, sans-serif" }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 8 }}>
-          Font Preview — Wide / Variable Candidates
+          Font Preview — 4 Candidates
         </h1>
         <p style={{ fontSize: 14, opacity: 0.6, marginBottom: 40 }}>
-          10 fonts shown against both proposed bold palettes. Pick your favorites for Soft Blueprint and Dusk &amp; Bloom.
+          Archivo, Anybody, Fredoka, Lexend Deca — shown against both proposed bold palettes at various widths.
         </p>
 
         {fonts.map((font) => (
