@@ -9,6 +9,9 @@ export default function EmailMockup() {
   const containerRadius = themeId === "dusk-bloom" ? "24px" : themeId === "soft-blueprint" ? "6px" : "16px";
   const containerBorder =
     themeId === "dusk-bloom" ? "1px solid var(--color-neutral-mid)" : "none";
+  const isDusk = themeId === "dusk-bloom";
+  const textColor = isDusk ? "#F6F2EF" : "var(--color-neutral-dark)";
+  const mutedTextColor = isDusk ? "rgba(246, 242, 239, 0.5)" : "var(--color-neutral-dark)";
 
   return (
     <div className="flex justify-center px-4">
@@ -18,19 +21,19 @@ export default function EmailMockup() {
           borderRadius: containerRadius,
           border: containerBorder,
           boxShadow: "var(--shadow-modal)",
-          background: "var(--color-surface)",
+          background: isDusk ? "var(--color-neutral-dark)" : "var(--color-surface)",
         }}
       >
         {/* Email Header */}
         <div
           className="flex items-center justify-between px-6 py-4 border-b"
-          style={{ borderColor: "var(--color-neutral-mid)" }}
+          style={{ borderColor: isDusk ? "rgba(217, 208, 220, 0.2)" : "var(--color-neutral-mid)" }}
         >
           <div className="flex items-center gap-2">
             <EmailLogo themeId={themeId} />
             <span
               className="text-lg font-semibold"
-              style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+              style={{ fontFamily: "var(--font-display)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)" }}
             >
               Sage
             </span>
@@ -40,7 +43,7 @@ export default function EmailMockup() {
               <span
                 key={link}
                 className="text-xs opacity-50 cursor-pointer hover:opacity-80"
-                style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                style={{ fontFamily: "var(--font-body)", color: textColor }}
               >
                 {link}
               </span>
@@ -66,7 +69,7 @@ export default function EmailMockup() {
 
           <p
             className="text-xs uppercase tracking-widest mb-4 opacity-60 relative z-10"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            style={{ fontFamily: "var(--font-body)", color: textColor }}
           >
             One less thing to worry about today
           </p>
@@ -74,7 +77,7 @@ export default function EmailMockup() {
             className="text-3xl md:text-4xl font-bold leading-tight relative z-10"
             style={{
               fontFamily: "var(--font-display)",
-              color: "var(--color-neutral-dark)",
+              color: textColor,
             }}
           >
             Parent with confidence,
@@ -89,7 +92,7 @@ export default function EmailMockup() {
             className="text-base leading-relaxed max-w-md mx-auto mb-2"
             style={{
               fontFamily: "var(--font-body)",
-              color: "var(--color-neutral-dark)",
+              color: textColor,
               opacity: 0.85,
             }}
           >
@@ -100,7 +103,7 @@ export default function EmailMockup() {
             className="text-base leading-relaxed max-w-md mx-auto mb-8"
             style={{
               fontFamily: "var(--font-body)",
-              color: "var(--color-neutral-dark)",
+              color: textColor,
               opacity: 0.85,
             }}
           >
@@ -115,8 +118,8 @@ export default function EmailMockup() {
         <div
           className="px-8 py-6 text-center border-t"
           style={{
-            borderColor: "var(--color-neutral-mid)",
-            background: "var(--color-neutral-light)",
+            borderColor: isDusk ? "rgba(217, 208, 220, 0.2)" : "var(--color-neutral-mid)",
+            background: isDusk ? "rgba(42, 31, 51, 0.8)" : "var(--color-neutral-light)",
           }}
         >
           <div className="flex justify-center gap-6 mb-3">
@@ -124,7 +127,7 @@ export default function EmailMockup() {
               <span
                 key={link}
                 className="text-xs opacity-40 cursor-pointer hover:opacity-70"
-                style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                style={{ fontFamily: "var(--font-body)", color: mutedTextColor }}
               >
                 {link}
               </span>
@@ -132,7 +135,7 @@ export default function EmailMockup() {
           </div>
           <p
             className="text-xs opacity-30"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            style={{ fontFamily: "var(--font-body)", color: mutedTextColor }}
           >
             You&apos;re receiving this because you signed up for Sage. Unsubscribe
           </p>
@@ -223,8 +226,8 @@ function getHeroStyle(themeId: string): React.CSSProperties {
   }
   return {
     background: `
-      radial-gradient(circle at 50% 50%, rgba(107, 79, 140, 0.12) 0%, transparent 70%),
-      linear-gradient(135deg, #F2EDF8 0%, #F6F2EF 100%)
+      radial-gradient(circle at 50% 50%, rgba(107, 79, 140, 0.3) 0%, transparent 70%),
+      linear-gradient(135deg, #2A1F33 0%, #3D2E4A 100%)
     `,
   };
 }
