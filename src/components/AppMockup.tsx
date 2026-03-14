@@ -57,17 +57,25 @@ export default function AppMockup() {
           aspectRatio: "9 / 19.5",
           borderRadius: "40px",
           border: `8px solid var(--color-neutral-dark)`,
-          background: "var(--color-neutral-light)",
+          background: themeId === "dusk-bloom" ? "var(--color-neutral-dark)" : "var(--color-neutral-light)",
           boxShadow: "var(--shadow-modal)",
         }}
       >
         {/* App Header */}
-        <div className="flex items-center justify-between p-3 shrink-0">
+        <div
+          className="flex items-center justify-between p-3 shrink-0"
+          style={themeId === "dusk-bloom" ? {
+            background: "var(--color-primary)",
+          } : {}}
+        >
           <div className="flex items-center gap-2">
             <SageIcon themeId={themeId} />
             <h1
               className="text-xl font-semibold"
-              style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+              style={{
+                fontFamily: "var(--font-display)",
+                color: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-neutral-dark)",
+              }}
             >
               Sage
             </h1>
@@ -75,7 +83,7 @@ export default function AppMockup() {
           <UserCircle
             size={28}
             weight={theme.iconStyle}
-            color="var(--color-neutral-dark)"
+            color={themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-neutral-dark)"}
             className="opacity-60"
           />
         </div>
@@ -85,7 +93,10 @@ export default function AppMockup() {
           {/* Timestamp */}
           <p
             className="text-center text-xs opacity-50"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            style={{
+              fontFamily: "var(--font-body)",
+              color: themeId === "dusk-bloom" ? "var(--color-neutral-mid)" : "var(--color-neutral-dark)",
+            }}
           >
             Today, 8:42 PM
           </p>
@@ -321,30 +332,26 @@ function ChatInput({ themeId }: { themeId: string }) {
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: frosted glass, pill input, amber send button with glow
+    // Luxe: dark aubergine bar, dusty rose input pill, amber send
     return (
       <div
-        className="shrink-0 px-4 py-3 border-t"
+        className="shrink-0 px-4 py-3"
         style={{
-          borderColor: "var(--color-neutral-mid)",
-          background: "rgba(254, 252, 250, 0.85)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
+          background: "var(--color-primary)",
         }}
       >
         <div
           className="flex items-center gap-2"
           style={{
-            background: "rgba(255,255,255,0.6)",
+            background: "var(--color-secondary)",
             borderRadius: "99px",
-            border: "1px solid var(--color-neutral-mid)",
             padding: "6px 6px 6px 16px",
           }}
         >
           <input
             type="text"
             placeholder="Ask Sage anything..."
-            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
+            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-60"
             style={{
               fontFamily: "var(--font-body)",
               color: "var(--color-neutral-dark)",
@@ -568,9 +575,9 @@ function ResourceCard({ themeId }: { themeId: string }) {
 /* ============ HELPER COMPONENTS ============ */
 
 function SageIcon({ themeId }: { themeId: string }) {
+  if (themeId === "dusk-bloom") return <Flower size={24} color="var(--color-accent)" weight="duotone" />;
   const iconProps = { size: 24, color: "var(--color-primary)" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
-  if (themeId === "dusk-bloom") return <Flower {...iconProps} weight="duotone" />;
   return <Leaf {...iconProps} weight="fill" />;
 }
 
