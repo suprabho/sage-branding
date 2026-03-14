@@ -30,6 +30,11 @@ const NEW_OVERRIDES: Record<string, Record<string, string>> = {
     "--color-neutral-dark": "#080E1F",
     "--color-surface": "#FFFFFF",
     "--color-sage-bubble": "#DBE4FC",
+    "--radius-card": "8px",
+    "--radius-bubble": "6px",
+    "--radius-bubble-tail": "2px",
+    "--radius-button": "4px",
+    "--radius-input": "4px",
   },
   "dusk-bloom": {
     "--color-primary": "#3A0E6E",
@@ -41,6 +46,11 @@ const NEW_OVERRIDES: Record<string, Record<string, string>> = {
     "--color-neutral-dark": "#0D0517",
     "--color-surface": "#FEFBFF",
     "--color-sage-bubble": "#EDE0F8",
+    "--radius-card": "28px",
+    "--radius-bubble": "26px",
+    "--radius-bubble-tail": "6px",
+    "--radius-button": "99px",
+    "--radius-input": "99px",
   },
 };
 

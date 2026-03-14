@@ -107,22 +107,8 @@ export default function EmailMockup() {
             Get advice that actually knows your child.
           </p>
 
-          {/* CTA Button */}
-          <button
-            className="inline-block px-8 py-4 text-base font-semibold text-white cursor-pointer hover:opacity-90 transition-opacity"
-            style={{
-              fontFamily: "var(--font-body)",
-              background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
-              borderRadius: "var(--radius-button)",
-              boxShadow:
-                themeId === "dusk-bloom"
-                  ? "0 4px 20px rgba(232, 168, 56, 0.35)"
-                  : "var(--shadow-card)",
-              color: themeId === "dusk-bloom" ? "var(--color-neutral-dark)" : "white",
-            }}
-          >
-            Chat with Sage — It&apos;s Free
-          </button>
+          {/* CTA Button — distinct per theme */}
+          <EmailCTA themeId={themeId} />
         </div>
 
         {/* Footer */}
@@ -161,6 +147,63 @@ function EmailLogo({ themeId }: { themeId: string }) {
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
   if (themeId === "dusk-bloom") return <Flower {...iconProps} weight="duotone" />;
   return <Leaf {...iconProps} weight="fill" />;
+}
+
+function EmailCTA({ themeId }: { themeId: string }) {
+  if (themeId === "soft-blueprint") {
+    // Sharp: squared, uppercase, bordered, structured
+    return (
+      <button
+        className="inline-block px-10 py-4 text-sm font-bold cursor-pointer hover:opacity-90 transition-opacity"
+        style={{
+          fontFamily: "var(--font-body)",
+          background: "var(--color-primary)",
+          color: "white",
+          borderRadius: "4px",
+          textTransform: "uppercase",
+          letterSpacing: "0.12em",
+          border: "2px solid var(--color-primary)",
+          boxShadow: "none",
+        }}
+      >
+        Chat with Sage — It&apos;s Free
+      </button>
+    );
+  }
+
+  if (themeId === "dusk-bloom") {
+    // Luxe: full pill, gradient, amber glow
+    return (
+      <button
+        className="inline-block px-10 py-4 text-base font-semibold cursor-pointer hover:opacity-90 transition-opacity"
+        style={{
+          fontFamily: "var(--font-body)",
+          background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%)",
+          color: "white",
+          borderRadius: "99px",
+          boxShadow: "0 6px 28px rgba(232, 168, 56, 0.4)",
+          letterSpacing: "0.04em",
+        }}
+      >
+        Chat with Sage — It&apos;s Free
+      </button>
+    );
+  }
+
+  // Morning Light: warm, rounded, organic
+  return (
+    <button
+      className="inline-block px-8 py-4 text-base font-semibold text-white cursor-pointer hover:opacity-90 transition-opacity"
+      style={{
+        fontFamily: "var(--font-body)",
+        background: "var(--color-primary)",
+        borderRadius: "12px",
+        boxShadow: "var(--shadow-card)",
+      }}
+    >
+      Chat with Sage — It&apos;s Free
+    </button>
+  );
 }
 
 function getHeroStyle(themeId: string): React.CSSProperties {
