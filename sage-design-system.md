@@ -100,7 +100,7 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 - Typing indicator: three dots with staggered pulse
 
 **Component Language:**
-- Resource cards use a left-border accent in Sage Moss (`4px`)
+- Resource cards use shadow-only depth — no border accents, clean and organic
 - Inline charts use rounded bar fills in the primary palette
 - Email CTA button: full-width on mobile, uses a subtle grain overlay texture on the green background
 
@@ -108,7 +108,7 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 ---
 
 ## ✦ VARIATION 2 — "Soft Blueprint"
-*Clean, structured, and deeply reassuring. Like a good pediatrician's office — expert but never cold.*
+*Bold, engineered, and unapologetically technical. Like a mission control for parenting — we built this.*
 
 ---
 
@@ -116,26 +116,26 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| **Primary** | Periwinkle Blue | `#5B7FD4` | CTAs, active nav, AI elements |
-| **Primary Light** | Lavender Mist | `#8FAAEE` | Hover, gradient, tints |
-| **Secondary** | Peach Blush | `#F5A382` | Warm accents, emotional moments |
-| **Accent** | Marigold | `#F9C846` | Badges, highlights, "new" states |
-| **Neutral Light** | Frost | `#F4F6FB` | Page background |
-| **Neutral Mid** | Pale Slate | `#DDE3F0` | Dividers, input borders |
-| **Neutral Dark** | Ink Navy | `#1E2A45` | Body text, headings |
+| **Primary** | Electric Blue | `#2563EB` | CTAs, active nav, AI elements |
+| **Primary Light** | Sky Blue | `#60A5FA` | Hover, gradient, tints |
+| **Secondary** | Coral | `#FF6B6B` | Warm accents, emotional moments |
+| **Accent** | Lemon | `#FFD93D` | Badges, highlights, "new" states |
+| **Neutral Light** | Ice White | `#F0F4FF` | Page background |
+| **Neutral Mid** | Cool Slate | `#CBD5E8` | Dividers, input borders |
+| **Neutral Dark** | Midnight | `#0F172A` | Body text, headings |
 | **Surface** | Pure White | `#FFFFFF` | Cards, modals, chat bubbles |
-| **Sage Bubble** | Blue Tint | `#EEF2FC` | AI response bubble background |
+| **Sage Bubble** | Blue Wash | `#E8EEFF` | AI response bubble background |
 
-**Color Philosophy:**  
-Blue is globally associated with trust, expertise, and calm — the right frequency for a parent looking for certainty. Peach rescues it from coldness. Marigold sparks joy and draws the eye to key actions. The palette reads "premium, modern healthcare" not "app store children's game."
+**Color Philosophy:**
+Electric Blue is high-conviction trust — deeper and bolder than periwinkle, it says "we engineered this." Coral injects warmth and emotional vitality without softening the authority. Lemon creates urgency and delight at key decision points. The palette reads "technical precision meets human care."
 
 ---
 
 ### 2. Typography
 
 **Font Pair:**
-- **Display / Headings:** `Sora` — Geometric, rounded, contemporary. Feels like it belongs in 2025 — ambitious but approachable.
-- **Body / UI:** `DM Sans` — Neutral, low-friction reading. Optical sizing makes it work across scales.
+- **Display / Headings:** `Space Mono` — Monospaced, technical authority. Unexpected for a parenting app — signals "we engineered this."
+- **Body / UI:** `Inter Tight` — Condensed, purposeful, structured. High readability at density.
 
 **Type Scale:**
 
@@ -143,15 +143,15 @@ Blue is globally associated with trust, expertise, and calm — the right freque
 |-------|------|--------|-------------|-------|
 | Display XL | 44px / 2.75rem | 700 | 1.1 | Email hero, onboarding |
 | Heading 1 | 34px / 2.125rem | 700 | 1.15 | Page titles |
-| Heading 2 | 26px / 1.625rem | 600 | 1.2 | Card headers |
-| Heading 3 | 20px / 1.25rem | 600 | 1.3 | Subheadings |
+| Heading 2 | 26px / 1.625rem | 700 | 1.2 | Card headers |
+| Heading 3 | 20px / 1.25rem | 700 | 1.3 | Subheadings |
 | Body L | 18px / 1.125rem | 400 | 1.65 | Email body |
 | Body M | 16px / 1rem | 400 | 1.6 | Chat, UI default |
-| Body S | 14px / 0.875rem | 400 | 1.5 | Labels, metadata |
+| Body S | 14px / 0.875rem | 500 | 1.5 | Labels, metadata |
 | Caption | 12px / 0.75rem | 500 | 1.4 | Timestamps |
 
-**Typographic Voice:**  
-Sora's geometric warmth is used for impact moments (the AI's opening line, the email headline). DM Sans maintains readability across dense informational contexts. All body weights stay at 400 — no bold body text; scarcity of weight gives it more power when used.
+**Typographic Voice:**
+Space Mono brings unexpected technical authority — its monospaced letterforms signal engineering rigor in a space dominated by soft, rounded typefaces. Inter Tight keeps the body text crisp and condensed, maximizing information density without sacrificing readability. The contrast between monospace display and tight sans body creates a distinctive, ownable voice.
 
 ---
 
@@ -180,21 +180,22 @@ Sora's geometric warmth is used for impact moments (the AI's opening line, the e
 ### 4. Patterns & Visual Elements
 
 **Corner Radius:**
-- Cards: `20px`
-- Chat bubbles: `20px` (with `6px` on sending-end corner)
-- Buttons: `10px`
-- Inputs: `10px`
+- Cards: `8px`
+- Chat bubbles: `6px` (with `2px` on sending-end corner)
+- Buttons: `4px`
+- Inputs: `4px`
 - Tags: `99px`
 
 **Shadows:**
-- Card resting: `0 1px 8px rgba(30, 42, 69, 0.07)`
-- Card hover: `0 4px 20px rgba(91, 127, 212, 0.15)`
-- Input focus ring: `0 0 0 3px rgba(91, 127, 212, 0.25)`
+- Card resting: `0 1px 8px rgba(15, 23, 42, 0.07)`
+- Card hover: `0 4px 20px rgba(37, 99, 235, 0.18)`
+- Input focus ring: `0 0 0 3px rgba(37, 99, 235, 0.25)`
+- Solid offset shadow (cards, CTAs): `4px 4px 0px #FFD93D` — graphic, bold, signature treatment
 
 **Surface Patterns:**
-- **Blueprint grid** — ultra-faint `#DDE3F0` grid lines at `1px`, 20px spacing on hero and onboarding areas
+- **Dotted grid** — `radial-gradient(circle, #CBD5E8 1px, transparent 1px)` at 20px spacing on chat background — blueprint aesthetic
 - **Concentric arcs** as decorative element behind profile header — subtle, `10% opacity`, primary blue
-- **Gradient sweep** from `Lavender Mist → Frost` used as email hero background
+- **Gradient sweep** from `Sky Blue → Ice White` used as email hero background
 
 **Motion Principles:**
 - Ease: `ease-out`, `200-240ms` range — nothing bouncy; grounded and responsive
@@ -203,8 +204,11 @@ Sora's geometric warmth is used for impact moments (the AI's opening line, the e
 - Button press: subtle `scale(0.97)` depress
 
 **Component Language:**
-- All cards have a thin top border accent (`3px`, Primary Blue) — creates a systematic "header stripe" feeling
-- Inline resource preview uses a split layout: thumbnail left / action buttons right
+- Lemon yellow (`#FFD93D`) header bar on app and email mockups — bold, high-energy brand signal
+- Yellow marker-pen highlight on key phrases in AI chat bubble and email body text
+- Resource cards use Electric Blue (`#2563EB`) border + solid Lemon yellow offset shadow (`4px 4px 0px`)
+- Email CTA button uses matching solid yellow offset shadow
+- Space Mono headings create a technical, engineered feel uncommon in parenting apps
 - Email has a `6px` border-radius on the email container itself (simulates a card envelope)
 
 ---
@@ -219,42 +223,55 @@ Sora's geometric warmth is used for impact moments (the AI's opening line, the e
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| **Primary** | Deep Plum | `#6B4F8C` | Brand anchor, primary actions |
-| **Primary Light** | Lilac | `#A889CC` | Hover states, tints, gradients |
-| **Secondary** | Dusty Rose | `#D98B8B` | Emotional warmth, soft emphasis |
+| **Primary** | Lilac | `#A889CC` | Primary actions, active states |
+| **Primary Light** | Soft Lilac | `#C4ADDE` | Hover states, tints |
+| **Secondary** | Dusty Rose | `#D98B8B` | Emotional warmth, user bubbles |
 | **Accent** | Amber Glow | `#E8A838` | CTAs, key highlights, delight |
-| **Neutral Light** | Cream Dusk | `#F6F2EF` | Background, modal overlays |
-| **Neutral Mid** | Mauve Grey | `#D9D0DC` | Borders, dividers |
-| **Neutral Dark** | Deep Aubergine | `#2A1F33` | Headings, body text |
-| **Surface** | Warm Ivory | `#FEFCFA` | Cards, bubbles |
-| **Sage Bubble** | Plum Tint | `#F2EDF8` | AI response bubble |
+| **Page Background** | Deep Plum | `#6B4F8C` | Page-level background |
+| **Neutral Mid** | Dark Plum | `#503A6B` | Borders, dividers |
+| **Page Text** | Cream Dusk | `#F6F2EF` | Headings, body text |
+| **Surface** | Mid Plum | `#7B5FA0` | Cards, elevated surfaces |
+| **Sage Bubble** | Deep Grape | `#5C4378` | AI bubble backgrounds |
+| **Mockup Dark** | Deep Aubergine | `#2A1F33` | App/email mockup backgrounds |
+| **Mockup Light** | Warm Ivory | `#FEFCFA` | Mockup card surfaces |
+| **Mockup Bubble** | Plum Tint | `#F2EDF8` | Mockup AI response bubble |
 
-**Color Philosophy:**  
-Plum signals depth, intelligence, and self-care — it has become associated with premium wellness and mindful tools. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. Used together they communicate: *"this is a sophisticated tool that respects your emotions."* It stands out sharply in an app landscape dominated by blues.
+**Color Philosophy:**
+Deep Plum as the page background creates an immersive, premium atmosphere — like opening a luxury self-care app at dusk. Cream text on plum provides elegant contrast while Lilac accents glow against the dark surface. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. The mockups maintain their own internal dark aesthetic with Deep Aubergine, preserving realistic app/email previews within the branded page shell.
 
 ---
 
 ### 2. Typography
 
 **Font Pair:**
-- **Display / Headings:** `Besley` — A high-contrast editorial serif with distinct personality. Evokes bedtime stories, journals, and warmth. Perfect for an app about childhood.
-- **Body / UI:** `Nunito` — Rounded and soft grotesque. Excellent legibility, deeply friendly without being childish.
+- **Display / Headings:** `Archivo` — A variable-width grotesque that ranges from ultra-condensed (62%) to expanded (125%). Its width axis enables dynamic typographic hierarchy within a single family: expanded for bold hero moments, condensed for dense labels, and standard for general headings.
+- **Body / UI:** `Lexend Deca` — Designed for optimal reading proficiency with open letterforms and generous spacing. Effortlessly legible at all sizes, modern without being cold.
+
+**Archivo Width Usage:**
+
+| Context | Width (`font-stretch`) | Weight | Effect |
+|---------|----------------------|--------|--------|
+| Hero headlines, brand name | 115% (expanded) | 700 | Bold, commanding presence |
+| AI opening sentence, card titles | 110% (semi-expanded) | 500–600 | Confident, warm emphasis |
+| Standard headings | 100% (normal) | 600–700 | Clean, balanced |
+| Nav links, labels | 85% (semi-condensed) | 400–500 | Compact, efficient |
+| Timestamps, captions, metadata | 75% (condensed) | 400 | Dense, utilitarian, uppercase |
 
 **Type Scale:**
 
-| Label | Size | Weight | Line Height | Usage |
-|-------|------|--------|-------------|-------|
-| Display XL | 42px / 2.625rem | 700 | 1.1 | Email hero |
-| Heading 1 | 32px / 2rem | 700 | 1.2 | App screen titles |
-| Heading 2 | 24px / 1.5rem | 700 | 1.25 | Section headers |
-| Heading 3 | 20px / 1.25rem | 600 | 1.3 | Card titles |
-| Body L | 18px / 1.125rem | 400 | 1.7 | Email body copy |
-| Body M | 16px / 1rem | 400 | 1.6 | Chat messages |
-| Body S | 14px / 0.875rem | 600 | 1.5 | Labels, button text |
-| Caption | 12px / 0.75rem | 400 | 1.4 | Timestamps, metadata |
+| Label | Size | Weight | Width | Line Height | Usage |
+|-------|------|--------|-------|-------------|-------|
+| Display XL | 42px / 2.625rem | 700 | 115% | 1.1 | Email hero (Archivo) |
+| Heading 1 | 32px / 2rem | 700 | 115% | 1.2 | App screen titles (Archivo) |
+| Heading 2 | 24px / 1.5rem | 700 | 100% | 1.25 | Section headers (Archivo) |
+| Heading 3 | 20px / 1.25rem | 600 | 110% | 1.3 | Card titles (Archivo) |
+| Body L | 18px / 1.125rem | 400 | — | 1.7 | Email body copy (Lexend Deca) |
+| Body M | 16px / 1rem | 400 | — | 1.6 | Chat messages (Lexend Deca) |
+| Body S | 14px / 0.875rem | 500 | — | 1.5 | Labels, button text (Lexend Deca) |
+| Caption | 12px / 0.75rem | 400 | 75% | 1.4 | Timestamps, metadata (Archivo condensed) |
 
-**Typographic Voice:**  
-Besley at large scales creates an editorial, emotionally resonant moment — perfect for the AI's empathetic opening lines. Nunito maintains warmth at small sizes. Italic Playfair used for Sage's quotes or highlighted insights — it reads like a handwritten note.
+**Typographic Voice:**
+Archivo's variable width axis creates dynamic typographic hierarchy — expanded for bold hero moments, condensed for dense UI labels, and standard for body. Lexend Deca provides effortless readability with its open letterforms. Together they feel modern, confident, and premium.
 
 ---
 
@@ -308,11 +325,14 @@ Besley at large scales creates an editorial, emotionally resonant moment — per
 - CTA button: amber glow pulses softly at `2s` interval when idle
 
 **Component Language:**
-- Cards have no sharp outlines — depth is communicated through shadow only
-- AI response bubbles use `italic Playfair` for the opening empathetic sentence
+- Deep Plum (`#6B4F8C`) page background with Cream Dusk (`#F6F2EF`) text — immersive dark shell
+- App header uses Deep Plum background with Amber Glow brand mark
+- AI chat bubble features a Soft Lilac (`#C4ADDE`) radial gradient from top-left corner + inner shadow for depth
+- AI response bubbles use expanded-width Archivo (110%, weight 500) for the opening empathetic sentence
 - Resource card preview has a soft gradient overlay at the bottom edge (scrim) fading to Plum Tint
-- Email container uses a decorative `1px` outer border in Mauve Grey with `24px` radius — envelope-like
 - Chat input bar floats above a frosted-glass backdrop (`backdrop-filter: blur(12px)`)
+- Mockups retain internal Deep Aubergine (`#2A1F33`) dark aesthetic via hardcoded values
+- Email container uses a decorative `1px` outer border in Dark Plum with `24px` radius — envelope-like
 
 ---
 
@@ -322,14 +342,14 @@ Besley at large scales creates an editorial, emotionally resonant moment — per
 
 | | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" |
 |---|---|---|---|
-| **Primary Color** | Sage Moss `#4A7C59` | Periwinkle Blue `#5B7FD4` | Deep Plum `#6B4F8C` |
-| **Emotional Register** | Grounded, natural, calm | Trustworthy, structured, expert | Premium, deep, emotionally rich |
-| **Display Font** | Fraunces (optical serif) | Sora (geometric) | Besley (editorial serif) |
-| **Body Font** | Plus Jakarta Sans | DM Sans | Nunito |
+| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` |
+| **Emotional Register** | Grounded, natural, calm | Engineered, bold, high-signal | Premium, deep, emotionally rich |
+| **Display Font** | Fraunces (optical serif) | Space Mono (monospace) | Archivo (variable width) |
+| **Body Font** | Plus Jakarta Sans | Inter Tight | Lexend Deca |
 | **Icon Style** | Rounded filled / duotone | Clean outline, 2px stroke | Duotone layered |
 | **Corner Radius** | 16px cards | 20px cards | 24px cards |
-| **Brand Analogy** | Herbal tea, morning journal | Pediatric wellness clinic | Luxury self-care, evening ritual |
-| **Best for** | Most universally appealing | Trust-forward, expert-backed | Standout, premium differentiation |
+| **Brand Analogy** | Herbal tea, morning journal | Mission control, parenting co-pilot | Luxury self-care, evening ritual |
+| **Best for** | Most universally appealing | Bold differentiation, tech-forward trust | Standout, premium differentiation |
 
 ---
 

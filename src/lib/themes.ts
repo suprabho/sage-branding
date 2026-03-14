@@ -20,6 +20,12 @@ export interface ThemeConfig {
   colorPhilosophy: string;
   typographicVoice: string;
   componentLanguage: string[];
+  fontWidths?: {
+    context: string;
+    stretch: string;
+    weight: string;
+    sample: string;
+  }[];
 }
 
 export const themes: Record<ThemeId, ThemeConfig> = {
@@ -49,7 +55,7 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     typographicVoice:
       "Fraunces carries emotional weight in moments of reassurance (headings, chat response openers). Plus Jakarta Sans keeps the operational UI clean and fast to scan. Never uppercase for body text — it feels cold.",
     componentLanguage: [
-      "Resource cards use a left-border accent in Sage Moss (4px)",
+      "Resource cards use shadow-only depth — no border accents, clean and organic",
       "Inline charts use rounded bar fills in the primary palette",
       "Email CTA button uses a subtle grain overlay texture on green background",
       "Slightly springy motion — cubic-bezier(0.34, 1.2, 0.64, 1)",
@@ -58,32 +64,35 @@ export const themes: Record<ThemeId, ThemeConfig> = {
   "soft-blueprint": {
     id: "soft-blueprint",
     name: "Soft Blueprint",
-    tagline: "Clean, structured, and deeply reassuring. Like a good pediatrician's office — expert but never cold.",
-    primaryHex: "#5B7FD4",
-    emotionalRegister: "Trustworthy, structured, expert",
-    brandAnalogy: "Pediatric wellness clinic",
-    displayFont: "Sora",
-    bodyFont: "DM Sans",
+    tagline: "Bold, engineered, and unapologetically technical. Like a mission control for parenting — we built this.",
+    primaryHex: "#2563EB",
+    emotionalRegister: "Engineered, bold, high-signal",
+    brandAnalogy: "Mission control meets parenting co-pilot",
+    displayFont: "Space Mono",
+    bodyFont: "Inter Tight",
     iconStyle: "regular",
     colors: [
-      { name: "Periwinkle Blue", hex: "#5B7FD4", role: "Primary" },
-      { name: "Lavender Mist", hex: "#8FAAEE", role: "Primary Light" },
-      { name: "Peach Blush", hex: "#F5A382", role: "Secondary" },
-      { name: "Marigold", hex: "#F9C846", role: "Accent" },
-      { name: "Frost", hex: "#F4F6FB", role: "Background" },
-      { name: "Pale Slate", hex: "#DDE3F0", role: "Neutral Mid" },
-      { name: "Ink Navy", hex: "#1E2A45", role: "Text" },
+      { name: "Electric Blue", hex: "#2563EB", role: "Primary" },
+      { name: "Sky Blue", hex: "#60A5FA", role: "Primary Light" },
+      { name: "Coral", hex: "#FF6B6B", role: "Secondary" },
+      { name: "Lemon", hex: "#FFD93D", role: "Accent" },
+      { name: "Ice White", hex: "#F0F4FF", role: "Background" },
+      { name: "Cool Slate", hex: "#CBD5E8", role: "Neutral Mid" },
+      { name: "Midnight", hex: "#0F172A", role: "Text" },
       { name: "Pure White", hex: "#FFFFFF", role: "Surface" },
-      { name: "Blue Tint", hex: "#EEF2FC", role: "AI Bubble" },
+      { name: "Blue Wash", hex: "#E8EEFF", role: "AI Bubble" },
     ],
     colorPhilosophy:
-      "Blue is globally associated with trust, expertise, and calm — the right frequency for a parent looking for certainty. Peach rescues it from coldness. Marigold sparks joy and draws the eye to key actions. The palette reads 'premium, modern healthcare' not 'app store children's game.'",
+      "Electric Blue is high-conviction trust — deeper and bolder than periwinkle, it says 'we engineered this.' Coral injects warmth and emotional vitality without softening the authority. Lemon creates urgency and delight at key decision points. The palette reads 'technical precision meets human care.'",
     typographicVoice:
-      "Sora's geometric warmth is used for impact moments (the AI's opening line, the email headline). DM Sans maintains readability across dense informational contexts. All body weights stay at 400 — no bold body text; scarcity of weight gives it more power when used.",
+      "Space Mono brings unexpected technical authority to a parenting app — its monospaced letterforms signal 'we built this with engineering rigor.' Inter Tight keeps the body text crisp and condensed, maximizing information density without sacrificing readability. The contrast between monospace display and tight sans body creates a distinctive voice that stands apart.",
     componentLanguage: [
-      "All cards have a thin top border accent (3px, Primary Blue) — systematic 'header stripe' feeling",
-      "Inline resource preview uses a split layout: thumbnail left / action buttons right",
-      "Email container has a 6px border-radius simulating a card envelope",
+      "Lemon yellow (#FFD93D) header bar on app and email — bold, high-energy brand signal",
+      "Yellow marker-pen highlight on key phrases in AI chat and email body text",
+      "Resource cards use Electric Blue border + solid Lemon yellow offset shadow (4px 4px 0px)",
+      "Dotted grid pattern (20px spacing, Cool Slate) on chat background — blueprint feel",
+      "Email CTA uses solid yellow offset shadow matching the card treatment",
+      "Space Mono headings create a technical, engineered feel uncommon in parenting apps",
       "Grounded, responsive motion — ease-out, 200-240ms range",
     ],
   },
@@ -91,33 +100,43 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     id: "dusk-bloom",
     name: "Dusk & Bloom",
     tagline: "Deep, premium, and emotionally resonant. A quiet evening journal meets a trusted companion.",
-    primaryHex: "#6B4F8C",
+    primaryHex: "#A889CC",
     emotionalRegister: "Premium, deep, emotionally rich",
     brandAnalogy: "Luxury self-care, evening ritual",
-    displayFont: "Besley",
-    bodyFont: "Nunito",
+    displayFont: "Archivo",
+    bodyFont: "Lexend Deca",
     iconStyle: "duotone",
     colors: [
-      { name: "Deep Plum", hex: "#6B4F8C", role: "Primary" },
-      { name: "Lilac", hex: "#A889CC", role: "Primary Light" },
+      { name: "Deep Plum", hex: "#6B4F8C", role: "Page Background" },
+      { name: "Lilac", hex: "#A889CC", role: "Primary" },
       { name: "Dusty Rose", hex: "#D98B8B", role: "Secondary" },
       { name: "Amber Glow", hex: "#E8A838", role: "Accent" },
-      { name: "Cream Dusk", hex: "#F6F2EF", role: "Background" },
-      { name: "Mauve Grey", hex: "#D9D0DC", role: "Neutral Mid" },
-      { name: "Deep Aubergine", hex: "#2A1F33", role: "Text" },
-      { name: "Warm Ivory", hex: "#FEFCFA", role: "Surface" },
-      { name: "Plum Tint", hex: "#F2EDF8", role: "AI Bubble" },
+      { name: "Cream Dusk", hex: "#F6F2EF", role: "Page Text" },
+      { name: "Mid Plum", hex: "#7B5FA0", role: "Surface" },
+      { name: "Deep Aubergine", hex: "#2A1F33", role: "Mockup BG" },
+      { name: "Soft Lilac", hex: "#C4ADDE", role: "Hover/Tint" },
+      { name: "Deep Grape", hex: "#5C4378", role: "AI Bubble" },
     ],
     colorPhilosophy:
-      "Plum signals depth, intelligence, and self-care — associated with premium wellness and mindful tools. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. Together they communicate: 'this is a sophisticated tool that respects your emotions.' It stands out sharply in an app landscape dominated by blues.",
+      "Deep Plum as the page background creates an immersive, premium atmosphere. Cream text on plum provides elegant contrast while Lilac accents glow against the dark surface. Dusty Rose brings emotional safety. Amber creates urgency and warmth. The mockups maintain their own internal dark aesthetic with Deep Aubergine.",
     typographicVoice:
-      "Besley at large scales creates an editorial, emotionally resonant moment — perfect for the AI's empathetic opening lines. Nunito maintains warmth at small sizes. Italic Besley used for Sage's quotes or highlighted insights — it reads like a handwritten note.",
+      "Archivo's variable width axis creates dynamic typographic hierarchy — condensed for dense UI labels, standard for body, and expanded for bold hero moments. Lexend Deca provides effortless readability with its open letterforms. Together they feel modern, confident, and premium.",
     componentLanguage: [
-      "Cards have no sharp outlines — depth communicated through shadow only",
-      "AI response bubbles use italic Besley for the opening empathetic sentence",
+      "Deep Plum (#6B4F8C) page background with Cream Dusk (#F6F2EF) text — immersive dark shell",
+      "App header uses Deep Plum background with Amber Glow brand mark",
+      "AI chat bubble features a Soft Lilac (#C4ADDE) radial gradient from top-left + inner shadow",
+      "AI response bubbles use expanded-width Archivo for the opening empathetic sentence",
       "Resource card preview has a soft gradient overlay (scrim) fading to Plum Tint",
       "Chat input bar floats above a frosted-glass backdrop (backdrop-filter: blur)",
+      "Mockups retain internal Deep Aubergine (#2A1F33) dark aesthetic via hardcoded values",
       "Ultra-smooth, premium deceleration — cubic-bezier(0.22, 1, 0.36, 1)",
+    ],
+    fontWidths: [
+      { context: "Hero headlines, brand name", stretch: "115%", weight: "700", sample: "Sage" },
+      { context: "AI opening, card titles", stretch: "110%", weight: "500", sample: "Good evening, Sarah." },
+      { context: "Standard headings", stretch: "100%", weight: "600", sample: "Bedtime Routine" },
+      { context: "Nav links, labels", stretch: "85%", weight: "500", sample: "Dashboard · Activity · Settings" },
+      { context: "Timestamps, metadata", stretch: "75%", weight: "400", sample: "TODAY, 8:42 PM · 3 MIN READ" },
     ],
   },
 };

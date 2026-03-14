@@ -111,6 +111,56 @@ export default function Rationale() {
         </div>
       </Section>
 
+      {/* Font Width Usage — only for themes with variable width */}
+      {theme.fontWidths && (
+        <Section title="Font Width Usage">
+          <p
+            className="text-sm leading-relaxed opacity-70 mb-5"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            {theme.displayFont} uses a variable width axis (<code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--color-sage-bubble)" }}>font-stretch</code>) to create hierarchy within a single typeface — wider for impact, narrower for density.
+          </p>
+          <div className="space-y-1">
+            {theme.fontWidths.map((fw, i) => (
+              <div
+                key={i}
+                className="flex items-baseline gap-4 py-3 px-4 rounded-lg"
+                style={{
+                  background: i % 2 === 0 ? "var(--color-surface)" : "transparent",
+                }}
+              >
+                <div className="shrink-0 w-36">
+                  <p
+                    className="text-xs opacity-50"
+                    style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                  >
+                    {fw.context}
+                  </p>
+                  <p
+                    className="text-[10px] font-mono opacity-30 mt-0.5"
+                    style={{ color: "var(--color-neutral-dark)" }}
+                  >
+                    {fw.stretch} · w{fw.weight}
+                  </p>
+                </div>
+                <p
+                  className="flex-1 text-xl"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontStretch: fw.stretch,
+                    fontWeight: Number(fw.weight),
+                    color: "var(--color-neutral-dark)",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {fw.sample}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* Typographic Voice */}
       <Section title="Typographic Voice">
         <p
@@ -178,11 +228,11 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 function getRationale(themeId: string): string {
   const rationales: Record<string, string> = {
     "morning-light":
-      "The Morning Light variation uses earthy greens and warm clay tones to create an environment that feels like a trusted, grounding presence — not a clinical tool. Fraunces, with its optical warmth, carries emotional weight in headings, making Sage's responses feel crafted, not generated. Plus Jakarta Sans keeps the UI scannable. Together, the softened shadows, botanical accents, and rounded corners create a space where an overwhelmed parent feels seen, safe, and supported — like a deep breath before the day begins.",
+      "The Morning Light variation uses earthy greens and warm clay tones to create an environment that feels like a trusted, grounding presence — not a clinical tool. Fraunces, with its optical warmth, carries emotional weight in headings, making Sage's responses feel crafted, not generated. Plus Jakarta Sans keeps the UI scannable. Resource cards rely on shadow-only depth for a clean, organic feel. Together, the softened shadows and rounded corners create a space where an overwhelmed parent feels seen, safe, and supported — like a deep breath before the day begins.",
     "soft-blueprint":
-      "The Soft Blueprint variation leverages the universal trust signal of blue, tempered by peach warmth, to create an experience that reads as expert without being cold. Sora's geometric precision communicates competence and modernity, while DM Sans provides effortless readability. The systematic top-border accents on cards create a structured, organized feeling — giving overwhelmed parents the reassurance that someone (or something) has their life together. The clean grid patterns and focus-ring highlights evoke a premium wellness clinic: trustworthy, structured, and deeply reassuring.",
+      "The Soft Blueprint variation goes bold — Electric Blue is high-conviction trust, deeper and more saturated than typical app blues, saying 'we engineered this.' Space Mono as the display font is deliberately unexpected for a parenting app, bringing technical authority that signals engineering rigor. Inter Tight keeps the body text crisp and condensed. Lemon yellow runs throughout as a signature accent: header bars, marker-pen text highlights on key phrases, and solid offset shadows on CTAs and resource cards. A dotted grid pattern on the chat background reinforces the blueprint aesthetic. Coral injects warmth without softening the authority. The overall voice is unmistakably bold: mission control meets parenting co-pilot.",
     "dusk-bloom":
-      "The Dusk & Bloom variation uses deep plum and dusty rose to create a premium, emotionally resonant experience that stands apart from the blue-dominated app landscape. Besley brings editorial elegance to Sage's empathetic responses — the italic opening lines read like a handwritten note from a trusted friend. Nunito maintains warmth at interface scale. Shadow-only card depth, frosted-glass input bars, and amber glow CTAs create an atmosphere of luxury self-care. This is a tool that respects the emotional weight of parenting, making parents feel not just supported, but deeply understood.",
+      "The Dusk & Bloom variation immerses users in a deep plum page environment that feels like opening a luxury wellness app at dusk. Cream text glows against the plum surface while Lilac accents create luminous highlights. The app header uses Deep Plum with an Amber brand mark, and the AI chat bubble features a Soft Lilac radial gradient with a subtle inner shadow for depth. Archivo's variable width axis drives dynamic typographic hierarchy — expanded for bold hero moments, condensed for dense labels, and standard for body copy. Lexend Deca provides effortless readability. The mockups retain their own internal dark aubergine aesthetic, preserving realistic previews within the branded plum shell. Shadow-only card depth, frosted-glass input bars, and amber glow CTAs create an atmosphere of premium self-care.",
   };
   return rationales[themeId] || "";
 }

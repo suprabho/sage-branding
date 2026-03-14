@@ -1,45 +1,6 @@
 import type { Metadata } from "next";
-import { Fraunces, Plus_Jakarta_Sans, Sora, DM_Sans, Nunito, Besley } from "next/font/google";
 import { ThemeProvider } from "@/lib/ThemeContext";
 import "./globals.css";
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const besley = Besley({
-  variable: "--font-besley",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  style: ["normal", "italic"],
-});
-
-const nunito = Nunito({
-  variable: "--font-nunito",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
 
 export const metadata: Metadata = {
   title: "Sage — Brand Showcase",
@@ -53,9 +14,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google Fonts loaded via link tags */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&family=Inter+Tight:wght@400;500;600;700&family=Archivo:ital,wdth,wght@0,62..125,400..700;1,62..125,400..700&family=Lexend+Deca:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         data-theme="morning-light"
-        className={`${fraunces.variable} ${plusJakartaSans.variable} ${sora.variable} ${dmSans.variable} ${besley.variable} ${nunito.variable} antialiased`}
+        className="antialiased"
       >
         <ThemeProvider>
           {children}
