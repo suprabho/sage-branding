@@ -350,10 +350,10 @@ function ChatInput({ themeId }: { themeId: string }) {
           <input
             type="text"
             placeholder="Ask Sage anything..."
-            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
+            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-60"
             style={{
               fontFamily: "var(--font-body)",
-              color: "var(--color-neutral-mid)",
+              color: "var(--color-surface)",
             }}
             readOnly
           />
