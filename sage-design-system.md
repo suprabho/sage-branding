@@ -116,26 +116,26 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| **Primary** | Periwinkle Blue | `#5B7FD4` | CTAs, active nav, AI elements |
-| **Primary Light** | Lavender Mist | `#8FAAEE` | Hover, gradient, tints |
-| **Secondary** | Peach Blush | `#F5A382` | Warm accents, emotional moments |
-| **Accent** | Marigold | `#F9C846` | Badges, highlights, "new" states |
-| **Neutral Light** | Frost | `#F4F6FB` | Page background |
-| **Neutral Mid** | Pale Slate | `#DDE3F0` | Dividers, input borders |
-| **Neutral Dark** | Ink Navy | `#1E2A45` | Body text, headings |
+| **Primary** | Electric Blue | `#2563EB` | CTAs, active nav, AI elements |
+| **Primary Light** | Sky Blue | `#60A5FA` | Hover, gradient, tints |
+| **Secondary** | Coral | `#FF6B6B` | Warm accents, emotional moments |
+| **Accent** | Lemon | `#FFD93D` | Badges, highlights, "new" states |
+| **Neutral Light** | Ice White | `#F0F4FF` | Page background |
+| **Neutral Mid** | Cool Slate | `#CBD5E8` | Dividers, input borders |
+| **Neutral Dark** | Midnight | `#0F172A` | Body text, headings |
 | **Surface** | Pure White | `#FFFFFF` | Cards, modals, chat bubbles |
-| **Sage Bubble** | Blue Tint | `#EEF2FC` | AI response bubble background |
+| **Sage Bubble** | Blue Wash | `#E8EEFF` | AI response bubble background |
 
-**Color Philosophy:**  
-Blue is globally associated with trust, expertise, and calm — the right frequency for a parent looking for certainty. Peach rescues it from coldness. Marigold sparks joy and draws the eye to key actions. The palette reads "premium, modern healthcare" not "app store children's game."
+**Color Philosophy:**
+Electric Blue is high-conviction trust — deeper and bolder than periwinkle, it says "we engineered this." Coral injects warmth and emotional vitality without softening the authority. Lemon creates urgency and delight at key decision points. The palette reads "technical precision meets human care."
 
 ---
 
 ### 2. Typography
 
 **Font Pair:**
-- **Display / Headings:** `Sora` — Geometric, rounded, contemporary. Feels like it belongs in 2025 — ambitious but approachable.
-- **Body / UI:** `DM Sans` — Neutral, low-friction reading. Optical sizing makes it work across scales.
+- **Display / Headings:** `Space Mono` — Monospaced, technical authority. Unexpected for a parenting app — signals "we engineered this."
+- **Body / UI:** `Inter Tight` — Condensed, purposeful, structured. High readability at density.
 
 **Type Scale:**
 
@@ -143,15 +143,15 @@ Blue is globally associated with trust, expertise, and calm — the right freque
 |-------|------|--------|-------------|-------|
 | Display XL | 44px / 2.75rem | 700 | 1.1 | Email hero, onboarding |
 | Heading 1 | 34px / 2.125rem | 700 | 1.15 | Page titles |
-| Heading 2 | 26px / 1.625rem | 600 | 1.2 | Card headers |
-| Heading 3 | 20px / 1.25rem | 600 | 1.3 | Subheadings |
+| Heading 2 | 26px / 1.625rem | 700 | 1.2 | Card headers |
+| Heading 3 | 20px / 1.25rem | 700 | 1.3 | Subheadings |
 | Body L | 18px / 1.125rem | 400 | 1.65 | Email body |
 | Body M | 16px / 1rem | 400 | 1.6 | Chat, UI default |
-| Body S | 14px / 0.875rem | 400 | 1.5 | Labels, metadata |
+| Body S | 14px / 0.875rem | 500 | 1.5 | Labels, metadata |
 | Caption | 12px / 0.75rem | 500 | 1.4 | Timestamps |
 
-**Typographic Voice:**  
-Sora's geometric warmth is used for impact moments (the AI's opening line, the email headline). DM Sans maintains readability across dense informational contexts. All body weights stay at 400 — no bold body text; scarcity of weight gives it more power when used.
+**Typographic Voice:**
+Space Mono brings unexpected technical authority — its monospaced letterforms signal engineering rigor in a space dominated by soft, rounded typefaces. Inter Tight keeps the body text crisp and condensed, maximizing information density without sacrificing readability. The contrast between monospace display and tight sans body creates a distinctive, ownable voice.
 
 ---
 
@@ -335,14 +335,14 @@ Archivo's variable width axis creates dynamic typographic hierarchy — expanded
 
 | | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" |
 |---|---|---|---|
-| **Primary Color** | Sage Moss `#4A7C59` | Periwinkle Blue `#5B7FD4` | Lilac on Deep Plum `#A889CC / #6B4F8C` |
-| **Emotional Register** | Grounded, natural, calm | Trustworthy, structured, expert | Premium, deep, emotionally rich |
-| **Display Font** | Fraunces (optical serif) | Sora (geometric) | Archivo (variable width) |
-| **Body Font** | Plus Jakarta Sans | DM Sans | Lexend Deca |
+| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` |
+| **Emotional Register** | Grounded, natural, calm | Engineered, bold, high-signal | Premium, deep, emotionally rich |
+| **Display Font** | Fraunces (optical serif) | Space Mono (monospace) | Archivo (variable width) |
+| **Body Font** | Plus Jakarta Sans | Inter Tight | Lexend Deca |
 | **Icon Style** | Rounded filled / duotone | Clean outline, 2px stroke | Duotone layered |
 | **Corner Radius** | 16px cards | 20px cards | 24px cards |
-| **Brand Analogy** | Herbal tea, morning journal | Pediatric wellness clinic | Luxury self-care, evening ritual |
-| **Best for** | Most universally appealing | Trust-forward, expert-backed | Standout, premium differentiation |
+| **Brand Analogy** | Herbal tea, morning journal | Mission control, parenting co-pilot | Luxury self-care, evening ritual |
+| **Best for** | Most universally appealing | Bold differentiation, tech-forward trust | Standout, premium differentiation |
 
 ---
 

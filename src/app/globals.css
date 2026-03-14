@@ -32,18 +32,18 @@
 }
 
 [data-theme="soft-blueprint"] {
-  --color-primary: #5B7FD4;
-  --color-primary-light: #8FAAEE;
-  --color-secondary: #F5A382;
-  --color-accent: #F9C846;
-  --color-neutral-light: #F4F6FB;
-  --color-neutral-mid: #DDE3F0;
-  --color-neutral-dark: #1E2A45;
+  --color-primary: #2563EB;
+  --color-primary-light: #60A5FA;
+  --color-secondary: #FF6B6B;
+  --color-accent: #FFD93D;
+  --color-neutral-light: #F0F4FF;
+  --color-neutral-mid: #CBD5E8;
+  --color-neutral-dark: #0F172A;
   --color-surface: #FFFFFF;
-  --color-sage-bubble: #EEF2FC;
+  --color-sage-bubble: #E8EEFF;
 
-  --font-display: "Sora", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-display: "Space Mono", "Courier New", monospace;
+  --font-body: "Inter Tight", system-ui, sans-serif;
 
   --radius-card: 8px;
   --radius-bubble: 6px;
@@ -51,9 +51,9 @@
   --radius-button: 4px;
   --radius-input: 4px;
 
-  --shadow-card: 0 1px 8px rgba(30, 42, 69, 0.07);
-  --shadow-card-hover: 0 4px 20px rgba(91, 127, 212, 0.15);
-  --shadow-modal: 0 0 0 3px rgba(91, 127, 212, 0.25);
+  --shadow-card: 0 1px 8px rgba(15, 23, 42, 0.07);
+  --shadow-card-hover: 0 4px 20px rgba(37, 99, 235, 0.18);
+  --shadow-modal: 0 0 0 3px rgba(37, 99, 235, 0.25);
 
   --ease-default: ease-out;
 }
