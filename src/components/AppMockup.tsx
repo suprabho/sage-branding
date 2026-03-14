@@ -330,7 +330,7 @@ function ChatInput({ themeId }: { themeId: string }) {
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: same dark bg as chat area, dusty rose input pill, amber send
+    // Luxe: same dark bg as chat area, subtle elevated input pill, amber send
     return (
       <div
         className="shrink-0 px-4 py-3"
@@ -341,18 +341,19 @@ function ChatInput({ themeId }: { themeId: string }) {
         <div
           className="flex items-center gap-2"
           style={{
-            background: "var(--color-secondary)",
+            background: "var(--color-neutral-dark)",
             borderRadius: "99px",
             padding: "6px 6px 6px 16px",
+            border: "1px solid var(--color-neutral-mid)",
           }}
         >
           <input
             type="text"
             placeholder="Ask Sage anything..."
-            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-60"
+            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
             style={{
               fontFamily: "var(--font-body)",
-              color: "var(--color-neutral-dark)",
+              color: "var(--color-neutral-mid)",
             }}
             readOnly
           />
