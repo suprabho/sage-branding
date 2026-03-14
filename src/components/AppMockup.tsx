@@ -550,7 +550,6 @@ function ResourceCard({ themeId }: { themeId: string }) {
         background: "var(--color-surface)",
         borderRadius: "16px",
         boxShadow: "var(--shadow-card)",
-        borderLeft: "4px solid var(--color-secondary)",
       }}
     >
       <img
