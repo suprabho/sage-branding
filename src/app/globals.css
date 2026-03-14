@@ -59,15 +59,15 @@
 }
 
 [data-theme="dusk-bloom"] {
-  --color-primary: #6B4F8C;
-  --color-primary-light: #A889CC;
+  --color-primary: #A889CC;
+  --color-primary-light: #C4ADDE;
   --color-secondary: #D98B8B;
   --color-accent: #E8A838;
-  --color-neutral-light: #F6F2EF;
-  --color-neutral-mid: #D9D0DC;
-  --color-neutral-dark: #2A1F33;
-  --color-surface: #FEFCFA;
-  --color-sage-bubble: #F2EDF8;
+  --color-neutral-light: #6B4F8C;
+  --color-neutral-mid: #503A6B;
+  --color-neutral-dark: #F6F2EF;
+  --color-surface: #7B5FA0;
+  --color-sage-bubble: #5C4378;
 
   --font-display: "Archivo", system-ui, sans-serif;
   --font-body: "Lexend Deca", system-ui, sans-serif;

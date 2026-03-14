@@ -8,7 +8,7 @@ export default function EmailMockup() {
 
   const containerRadius = themeId === "dusk-bloom" ? "24px" : themeId === "soft-blueprint" ? "6px" : "16px";
   const containerBorder =
-    themeId === "dusk-bloom" ? "1px solid var(--color-neutral-mid)" : "none";
+    themeId === "dusk-bloom" ? "1px solid #503A6B" : "none";
   const isDusk = themeId === "dusk-bloom";
   const textColor = isDusk ? "#F6F2EF" : "var(--color-neutral-dark)";
   const mutedTextColor = isDusk ? "rgba(246, 242, 239, 0.5)" : "var(--color-neutral-dark)";
@@ -21,13 +21,13 @@ export default function EmailMockup() {
           borderRadius: containerRadius,
           border: containerBorder,
           boxShadow: "var(--shadow-modal)",
-          background: isDusk ? "var(--color-neutral-dark)" : "var(--color-surface)",
+          background: isDusk ? "#2A1F33" : "var(--color-surface)",
         }}
       >
         {/* Email Header */}
         <div
           className="flex items-center justify-between px-6 py-4 border-b"
-          style={{ borderColor: isDusk ? "rgba(217, 208, 220, 0.2)" : "var(--color-neutral-mid)" }}
+          style={{ borderColor: isDusk ? "rgba(80, 58, 107, 0.4)" : "var(--color-neutral-mid)" }}
         >
           <div className="flex items-center gap-2">
             <EmailLogo themeId={themeId} />
@@ -119,8 +119,8 @@ export default function EmailMockup() {
         <div
           className="px-8 py-6 text-center border-t"
           style={{
-            borderColor: isDusk ? "rgba(217, 208, 220, 0.2)" : "var(--color-neutral-mid)",
-            background: isDusk ? "rgba(42, 31, 51, 0.8)" : "var(--color-neutral-light)",
+            borderColor: isDusk ? "rgba(80, 58, 107, 0.4)" : "var(--color-neutral-mid)",
+            background: isDusk ? "rgba(30, 20, 40, 0.6)" : "var(--color-neutral-light)",
           }}
         >
           <div className="flex justify-center gap-6 mb-3">
@@ -182,7 +182,7 @@ function EmailCTA({ themeId }: { themeId: string }) {
         className="inline-block px-10 py-4 text-base font-semibold cursor-pointer hover:opacity-90 transition-opacity"
         style={{
           fontFamily: "var(--font-body)",
-          background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%)",
+          background: "linear-gradient(135deg, #6B4F8C 0%, #A889CC 100%)",
           color: "white",
           borderRadius: "99px",
           boxShadow: "0 6px 28px rgba(217, 139, 139, 0.45)",

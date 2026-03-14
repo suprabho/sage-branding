@@ -56,8 +56,8 @@ export default function AppMockup() {
         style={{
           aspectRatio: "9 / 19.5",
           borderRadius: "40px",
-          border: `8px solid var(--color-neutral-dark)`,
-          background: themeId === "dusk-bloom" ? "var(--color-neutral-dark)" : "var(--color-neutral-light)",
+          border: `8px solid ${themeId === "dusk-bloom" ? "#2A1F33" : "var(--color-neutral-dark)"}`,
+          background: themeId === "dusk-bloom" ? "#2A1F33" : "var(--color-neutral-light)",
           boxShadow: "var(--shadow-modal)",
         }}
       >
@@ -96,7 +96,7 @@ export default function AppMockup() {
             className="text-center text-xs opacity-50"
             style={{
               fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
-              color: themeId === "dusk-bloom" ? "var(--color-neutral-mid)" : "var(--color-neutral-dark)",
+              color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
               ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
             }}
           >
@@ -176,7 +176,7 @@ function UserBubble({ themeId }: { themeId: string }) {
         className="max-w-[80%] px-5 py-3.5 text-sm"
         style={{
           background: "var(--color-secondary)",
-          color: "var(--color-neutral-dark)",
+          color: "#2A1F33",
           fontFamily: "var(--font-body)",
           borderRadius: "26px 26px 6px 26px",
         }}
@@ -241,13 +241,13 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: pill-like, italic opener, gradient left accent, soft glow
+    // Luxe: pill-like, expanded opener, soft glow
     return (
       <div
         className="px-5 py-3.5 text-sm leading-relaxed"
         style={{
-          background: "var(--color-sage-bubble)",
-          color: "var(--color-neutral-dark)",
+          background: "#F2EDF8",
+          color: "#2A1F33",
           fontFamily: "var(--font-body)",
           borderRadius: "30px 30px 30px 8px",
           boxShadow: "0 4px 20px rgba(107, 79, 140, 0.1)",
@@ -336,16 +336,16 @@ function ChatInput({ themeId }: { themeId: string }) {
       <div
         className="shrink-0 px-4 py-3"
         style={{
-          background: "var(--color-neutral-dark)",
+          background: "#2A1F33",
         }}
       >
         <div
           className="flex items-center gap-2"
           style={{
-            background: "var(--color-neutral-dark)",
+            background: "#2A1F33",
             borderRadius: "99px",
             padding: "6px 6px 6px 16px",
-            border: "1px solid var(--color-neutral-mid)",
+            border: "1px solid #503A6B",
           }}
         >
           <input
@@ -481,7 +481,7 @@ function ResourceCard({ themeId }: { themeId: string }) {
       <div
         className="overflow-hidden"
         style={{
-          background: "var(--color-surface)",
+          background: "#FEFCFA",
           borderRadius: "28px",
           boxShadow: "0 8px 32px rgba(107, 79, 140, 0.18)",
         }}
@@ -496,20 +496,20 @@ function ResourceCard({ themeId }: { themeId: string }) {
           <div
             className="absolute inset-x-0 bottom-0 h-20"
             style={{
-              background: "linear-gradient(to top, var(--color-sage-bubble) 0%, transparent 100%)",
+              background: "linear-gradient(to top, #F2EDF8 0%, transparent 100%)",
             }}
           />
         </div>
         <div className="px-4 pt-1 pb-2">
           <p
             className="text-sm font-semibold leading-tight"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)", fontStretch: "110%" }}
+            style={{ fontFamily: "var(--font-display)", color: "#2A1F33", fontStretch: "110%" }}
           >
             Dinosaur Bedtime Routine Chart
           </p>
           <p
             className="text-xs mt-0.5 opacity-50"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)", fontStretch: "85%" }}
+            style={{ fontFamily: "var(--font-display)", color: "#2A1F33", fontStretch: "85%" }}
           >
             Custom activity chart for Ollie
           </p>
@@ -583,7 +583,7 @@ function SageIcon({ themeId }: { themeId: string }) {
 }
 
 function SageIconSmall({ themeId }: { themeId: string }) {
-  if (themeId === "dusk-bloom") return <Flower size={16} color="var(--color-primary)" weight="duotone" />;
+  if (themeId === "dusk-bloom") return <Flower size={16} color="white" weight="duotone" />;
   const iconProps = { size: 16, color: "white" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
   return <Leaf {...iconProps} weight="fill" />;
@@ -608,7 +608,7 @@ function ActionButtonIcon({ icon }: { icon: React.ReactNode }) {
   return (
     <button
       className="flex-1 flex items-center justify-center py-1.5 hover:opacity-80 transition-opacity cursor-pointer"
-      style={{ color: "var(--color-primary)" }}
+      style={{ color: "#6B4F8C" }}
     >
       {icon}
     </button>

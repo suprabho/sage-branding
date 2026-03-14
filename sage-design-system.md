@@ -219,18 +219,21 @@ Sora's geometric warmth is used for impact moments (the AI's opening line, the e
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| **Primary** | Deep Plum | `#6B4F8C` | Brand anchor, primary actions |
-| **Primary Light** | Lilac | `#A889CC` | Hover states, tints, gradients |
-| **Secondary** | Dusty Rose | `#D98B8B` | Emotional warmth, soft emphasis |
+| **Primary** | Lilac | `#A889CC` | Primary actions, active states |
+| **Primary Light** | Soft Lilac | `#C4ADDE` | Hover states, tints |
+| **Secondary** | Dusty Rose | `#D98B8B` | Emotional warmth, user bubbles |
 | **Accent** | Amber Glow | `#E8A838` | CTAs, key highlights, delight |
-| **Neutral Light** | Cream Dusk | `#F6F2EF` | Background, modal overlays |
-| **Neutral Mid** | Mauve Grey | `#D9D0DC` | Borders, dividers |
-| **Neutral Dark** | Deep Aubergine | `#2A1F33` | Headings, body text |
-| **Surface** | Warm Ivory | `#FEFCFA` | Cards, bubbles |
-| **Sage Bubble** | Plum Tint | `#F2EDF8` | AI response bubble |
+| **Page Background** | Deep Plum | `#6B4F8C` | Page-level background |
+| **Neutral Mid** | Dark Plum | `#503A6B` | Borders, dividers |
+| **Page Text** | Cream Dusk | `#F6F2EF` | Headings, body text |
+| **Surface** | Mid Plum | `#7B5FA0` | Cards, elevated surfaces |
+| **Sage Bubble** | Deep Grape | `#5C4378` | AI bubble backgrounds |
+| **Mockup Dark** | Deep Aubergine | `#2A1F33` | App/email mockup backgrounds |
+| **Mockup Light** | Warm Ivory | `#FEFCFA` | Mockup card surfaces |
+| **Mockup Bubble** | Plum Tint | `#F2EDF8` | Mockup AI response bubble |
 
-**Color Philosophy:**  
-Plum signals depth, intelligence, and self-care — it has become associated with premium wellness and mindful tools. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. Used together they communicate: *"this is a sophisticated tool that respects your emotions."* It stands out sharply in an app landscape dominated by blues.
+**Color Philosophy:**
+Deep Plum as the page background creates an immersive, premium atmosphere — like opening a luxury self-care app at dusk. Cream text on plum provides elegant contrast while Lilac accents glow against the dark surface. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. The mockups maintain their own internal dark aesthetic with Deep Aubergine, preserving realistic app/email previews within the branded page shell.
 
 ---
 
@@ -332,7 +335,7 @@ Archivo's variable width axis creates dynamic typographic hierarchy — expanded
 
 | | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" |
 |---|---|---|---|
-| **Primary Color** | Sage Moss `#4A7C59` | Periwinkle Blue `#5B7FD4` | Deep Plum `#6B4F8C` |
+| **Primary Color** | Sage Moss `#4A7C59` | Periwinkle Blue `#5B7FD4` | Lilac on Deep Plum `#A889CC / #6B4F8C` |
 | **Emotional Register** | Grounded, natural, calm | Trustworthy, structured, expert | Premium, deep, emotionally rich |
 | **Display Font** | Fraunces (optical serif) | Sora (geometric) | Archivo (variable width) |
 | **Body Font** | Plus Jakarta Sans | DM Sans | Lexend Deca |
