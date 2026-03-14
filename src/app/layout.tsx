@@ -19,7 +19,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Besley:ital,wght@0,400;0,700;1,400;1,700&family=Nunito:wght@400;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600&family=Sora:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=Archivo:ital,wdth,wght@0,62..125,400..700;1,62..125,400..700&family=Lexend+Deca:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>

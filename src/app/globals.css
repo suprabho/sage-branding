@@ -69,8 +69,8 @@
   --color-surface: #FEFCFA;
   --color-sage-bubble: #F2EDF8;
 
-  --font-display: "Besley", Georgia, serif;
-  --font-body: "Nunito", system-ui, sans-serif;
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Lexend Deca", system-ui, sans-serif;
 
   --radius-card: 28px;
   --radius-bubble: 26px;

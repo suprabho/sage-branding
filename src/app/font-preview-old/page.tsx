@@ -46,19 +46,19 @@ const fonts: FontDef[] = [
     usedIn: "Soft Blueprint \u2014 Body",
   },
   {
-    name: "Besley",
-    family: "Besley",
+    name: "Archivo",
+    family: "Archivo",
     googleUrl:
-      "https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400;0,700;1,400;1,700&display=swap",
-    description: "High-contrast editorial serif. Evokes bedtime stories and journals.",
+      "https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..700;1,62..125,400..700&display=swap",
+    description: "Variable-width grotesque (62%–125%). Dynamic hierarchy via width axis — expanded for heroes, condensed for labels.",
     usedIn: "Dusk & Bloom \u2014 Display",
   },
   {
-    name: "Nunito",
-    family: "Nunito",
+    name: "Lexend Deca",
+    family: "Lexend Deca",
     googleUrl:
-      "https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap",
-    description: "Rounded and soft grotesque. Deeply friendly without being childish.",
+      "https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700&display=swap",
+    description: "Designed for optimal readability with open letterforms. Modern and effortlessly legible.",
     usedIn: "Dusk & Bloom \u2014 Body",
   },
 ];

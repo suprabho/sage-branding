@@ -75,6 +75,7 @@ export default function AppMockup() {
               style={{
                 fontFamily: "var(--font-display)",
                 color: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-neutral-dark)",
+                ...(themeId === "dusk-bloom" ? { fontStretch: "115%" } : {}),
               }}
             >
               Sage
@@ -94,8 +95,9 @@ export default function AppMockup() {
           <p
             className="text-center text-xs opacity-50"
             style={{
-              fontFamily: "var(--font-body)",
+              fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
               color: themeId === "dusk-bloom" ? "var(--color-neutral-mid)" : "var(--color-neutral-dark)",
+              ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
             }}
           >
             Today, 8:42 PM
@@ -252,7 +254,7 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
           minHeight: "2.5rem",
         }}
       >
-        <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic" }}>
+        <span style={{ fontFamily: "var(--font-display)", fontStretch: "110%", fontWeight: 500 }}>
           {FULL_TEXT.slice(0, Math.min(visibleChars, ITALIC_SPLIT))}
         </span>
         {visibleChars > ITALIC_SPLIT && FULL_TEXT.slice(ITALIC_SPLIT, visibleChars)}
@@ -501,13 +503,13 @@ function ResourceCard({ themeId }: { themeId: string }) {
         <div className="px-4 pt-1 pb-2">
           <p
             className="text-sm font-semibold leading-tight"
-            style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
+            style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)", fontStretch: "110%" }}
           >
             Dinosaur Bedtime Routine Chart
           </p>
           <p
             className="text-xs mt-0.5 opacity-50"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+            style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)", fontStretch: "85%" }}
           >
             Custom activity chart for Ollie
           </p>

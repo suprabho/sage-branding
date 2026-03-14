@@ -33,7 +33,7 @@ export default function EmailMockup() {
             <EmailLogo themeId={themeId} />
             <span
               className="text-lg font-semibold"
-              style={{ fontFamily: "var(--font-display)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)" }}
+              style={{ fontFamily: "var(--font-display)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)", ...(isDusk ? { fontStretch: "115%" } : {}) }}
             >
               Sage
             </span>
@@ -43,7 +43,7 @@ export default function EmailMockup() {
               <span
                 key={link}
                 className="text-xs cursor-pointer hover:opacity-80"
-                style={{ fontFamily: "var(--font-body)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)", opacity: isDusk ? 0.8 : 0.5 }}
+                style={{ fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)", opacity: isDusk ? 0.8 : 0.5, ...(isDusk ? { fontStretch: "85%", letterSpacing: "0.03em" } : {}) }}
               >
                 {link}
               </span>
@@ -69,7 +69,7 @@ export default function EmailMockup() {
 
           <p
             className="text-xs uppercase tracking-widest mb-4 opacity-60 relative z-10"
-            style={{ fontFamily: "var(--font-body)", color: textColor }}
+            style={{ fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)", color: textColor, ...(isDusk ? { fontStretch: "75%", letterSpacing: "0.1em" } : {}) }}
           >
             One less thing to worry about today
           </p>
@@ -78,6 +78,7 @@ export default function EmailMockup() {
             style={{
               fontFamily: "var(--font-display)",
               color: textColor,
+              ...(isDusk ? { fontStretch: "115%" } : {}),
             }}
           >
             Parent with confidence,
@@ -127,7 +128,7 @@ export default function EmailMockup() {
               <span
                 key={link}
                 className="text-xs opacity-40 cursor-pointer hover:opacity-70"
-                style={{ fontFamily: "var(--font-body)", color: mutedTextColor }}
+                style={{ fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)", color: mutedTextColor, ...(isDusk ? { fontStretch: "80%" } : {}) }}
               >
                 {link}
               </span>
@@ -135,7 +136,7 @@ export default function EmailMockup() {
           </div>
           <p
             className="text-xs opacity-30"
-            style={{ fontFamily: "var(--font-body)", color: mutedTextColor }}
+            style={{ fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)", color: mutedTextColor, ...(isDusk ? { fontStretch: "80%" } : {}) }}
           >
             You&apos;re receiving this because you signed up for Sage. Unsubscribe
           </p>

@@ -237,24 +237,34 @@ Plum signals depth, intelligence, and self-care — it has become associated wit
 ### 2. Typography
 
 **Font Pair:**
-- **Display / Headings:** `Besley` — A high-contrast editorial serif with distinct personality. Evokes bedtime stories, journals, and warmth. Perfect for an app about childhood.
-- **Body / UI:** `Nunito` — Rounded and soft grotesque. Excellent legibility, deeply friendly without being childish.
+- **Display / Headings:** `Archivo` — A variable-width grotesque that ranges from ultra-condensed (62%) to expanded (125%). Its width axis enables dynamic typographic hierarchy within a single family: expanded for bold hero moments, condensed for dense labels, and standard for general headings.
+- **Body / UI:** `Lexend Deca` — Designed for optimal reading proficiency with open letterforms and generous spacing. Effortlessly legible at all sizes, modern without being cold.
+
+**Archivo Width Usage:**
+
+| Context | Width (`font-stretch`) | Weight | Effect |
+|---------|----------------------|--------|--------|
+| Hero headlines, brand name | 115% (expanded) | 700 | Bold, commanding presence |
+| AI opening sentence, card titles | 110% (semi-expanded) | 500–600 | Confident, warm emphasis |
+| Standard headings | 100% (normal) | 600–700 | Clean, balanced |
+| Nav links, labels | 85% (semi-condensed) | 400–500 | Compact, efficient |
+| Timestamps, captions, metadata | 75% (condensed) | 400 | Dense, utilitarian, uppercase |
 
 **Type Scale:**
 
-| Label | Size | Weight | Line Height | Usage |
-|-------|------|--------|-------------|-------|
-| Display XL | 42px / 2.625rem | 700 | 1.1 | Email hero |
-| Heading 1 | 32px / 2rem | 700 | 1.2 | App screen titles |
-| Heading 2 | 24px / 1.5rem | 700 | 1.25 | Section headers |
-| Heading 3 | 20px / 1.25rem | 600 | 1.3 | Card titles |
-| Body L | 18px / 1.125rem | 400 | 1.7 | Email body copy |
-| Body M | 16px / 1rem | 400 | 1.6 | Chat messages |
-| Body S | 14px / 0.875rem | 600 | 1.5 | Labels, button text |
-| Caption | 12px / 0.75rem | 400 | 1.4 | Timestamps, metadata |
+| Label | Size | Weight | Width | Line Height | Usage |
+|-------|------|--------|-------|-------------|-------|
+| Display XL | 42px / 2.625rem | 700 | 115% | 1.1 | Email hero (Archivo) |
+| Heading 1 | 32px / 2rem | 700 | 115% | 1.2 | App screen titles (Archivo) |
+| Heading 2 | 24px / 1.5rem | 700 | 100% | 1.25 | Section headers (Archivo) |
+| Heading 3 | 20px / 1.25rem | 600 | 110% | 1.3 | Card titles (Archivo) |
+| Body L | 18px / 1.125rem | 400 | — | 1.7 | Email body copy (Lexend Deca) |
+| Body M | 16px / 1rem | 400 | — | 1.6 | Chat messages (Lexend Deca) |
+| Body S | 14px / 0.875rem | 500 | — | 1.5 | Labels, button text (Lexend Deca) |
+| Caption | 12px / 0.75rem | 400 | 75% | 1.4 | Timestamps, metadata (Archivo condensed) |
 
-**Typographic Voice:**  
-Besley at large scales creates an editorial, emotionally resonant moment — perfect for the AI's empathetic opening lines. Nunito maintains warmth at small sizes. Italic Playfair used for Sage's quotes or highlighted insights — it reads like a handwritten note.
+**Typographic Voice:**
+Archivo's variable width axis creates dynamic typographic hierarchy — expanded for bold hero moments, condensed for dense UI labels, and standard for body. Lexend Deca provides effortless readability with its open letterforms. Together they feel modern, confident, and premium.
 
 ---
 
@@ -309,7 +319,7 @@ Besley at large scales creates an editorial, emotionally resonant moment — per
 
 **Component Language:**
 - Cards have no sharp outlines — depth is communicated through shadow only
-- AI response bubbles use `italic Playfair` for the opening empathetic sentence
+- AI response bubbles use expanded-width Archivo (110%, weight 500) for the opening empathetic sentence
 - Resource card preview has a soft gradient overlay at the bottom edge (scrim) fading to Plum Tint
 - Email container uses a decorative `1px` outer border in Mauve Grey with `24px` radius — envelope-like
 - Chat input bar floats above a frosted-glass backdrop (`backdrop-filter: blur(12px)`)
@@ -324,8 +334,8 @@ Besley at large scales creates an editorial, emotionally resonant moment — per
 |---|---|---|---|
 | **Primary Color** | Sage Moss `#4A7C59` | Periwinkle Blue `#5B7FD4` | Deep Plum `#6B4F8C` |
 | **Emotional Register** | Grounded, natural, calm | Trustworthy, structured, expert | Premium, deep, emotionally rich |
-| **Display Font** | Fraunces (optical serif) | Sora (geometric) | Besley (editorial serif) |
-| **Body Font** | Plus Jakarta Sans | DM Sans | Nunito |
+| **Display Font** | Fraunces (optical serif) | Sora (geometric) | Archivo (variable width) |
+| **Body Font** | Plus Jakarta Sans | DM Sans | Lexend Deca |
 | **Icon Style** | Rounded filled / duotone | Clean outline, 2px stroke | Duotone layered |
 | **Corner Radius** | 16px cards | 20px cards | 24px cards |
 | **Brand Analogy** | Herbal tea, morning journal | Pediatric wellness clinic | Luxury self-care, evening ritual |

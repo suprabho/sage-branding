@@ -94,8 +94,8 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     primaryHex: "#6B4F8C",
     emotionalRegister: "Premium, deep, emotionally rich",
     brandAnalogy: "Luxury self-care, evening ritual",
-    displayFont: "Besley",
-    bodyFont: "Nunito",
+    displayFont: "Archivo",
+    bodyFont: "Lexend Deca",
     iconStyle: "duotone",
     colors: [
       { name: "Deep Plum", hex: "#6B4F8C", role: "Primary" },
@@ -111,10 +111,10 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     colorPhilosophy:
       "Plum signals depth, intelligence, and self-care — associated with premium wellness and mindful tools. Dusty Rose brings emotional safety. Amber creates urgency and warmth without stress. Together they communicate: 'this is a sophisticated tool that respects your emotions.' It stands out sharply in an app landscape dominated by blues.",
     typographicVoice:
-      "Besley at large scales creates an editorial, emotionally resonant moment — perfect for the AI's empathetic opening lines. Nunito maintains warmth at small sizes. Italic Besley used for Sage's quotes or highlighted insights — it reads like a handwritten note.",
+      "Archivo's variable width axis creates dynamic typographic hierarchy — condensed for dense UI labels, standard for body, and expanded for bold hero moments. Lexend Deca provides effortless readability with its open letterforms. Together they feel modern, confident, and premium.",
     componentLanguage: [
       "Cards have no sharp outlines — depth communicated through shadow only",
-      "AI response bubbles use italic Besley for the opening empathetic sentence",
+      "AI response bubbles use expanded-width Archivo for the opening empathetic sentence",
       "Resource card preview has a soft gradient overlay (scrim) fading to Plum Tint",
       "Chat input bar floats above a frosted-glass backdrop (backdrop-filter: blur)",
       "Ultra-smooth, premium deceleration — cubic-bezier(0.22, 1, 0.36, 1)",
