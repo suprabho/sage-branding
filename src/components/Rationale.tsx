@@ -111,6 +111,56 @@ export default function Rationale() {
         </div>
       </Section>
 
+      {/* Font Width Usage — only for themes with variable width */}
+      {theme.fontWidths && (
+        <Section title="Font Width Usage">
+          <p
+            className="text-sm leading-relaxed opacity-70 mb-5"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            {theme.displayFont} uses a variable width axis (<code className="text-xs px-1.5 py-0.5 rounded" style={{ background: "var(--color-sage-bubble)" }}>font-stretch</code>) to create hierarchy within a single typeface — wider for impact, narrower for density.
+          </p>
+          <div className="space-y-1">
+            {theme.fontWidths.map((fw, i) => (
+              <div
+                key={i}
+                className="flex items-baseline gap-4 py-3 px-4 rounded-lg"
+                style={{
+                  background: i % 2 === 0 ? "var(--color-surface)" : "transparent",
+                }}
+              >
+                <div className="shrink-0 w-36">
+                  <p
+                    className="text-xs opacity-50"
+                    style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+                  >
+                    {fw.context}
+                  </p>
+                  <p
+                    className="text-[10px] font-mono opacity-30 mt-0.5"
+                    style={{ color: "var(--color-neutral-dark)" }}
+                  >
+                    {fw.stretch} · w{fw.weight}
+                  </p>
+                </div>
+                <p
+                  className="flex-1 text-xl"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontStretch: fw.stretch,
+                    fontWeight: Number(fw.weight),
+                    color: "var(--color-neutral-dark)",
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {fw.sample}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* Typographic Voice */}
       <Section title="Typographic Voice">
         <p

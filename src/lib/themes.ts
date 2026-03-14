@@ -20,6 +20,12 @@ export interface ThemeConfig {
   colorPhilosophy: string;
   typographicVoice: string;
   componentLanguage: string[];
+  fontWidths?: {
+    context: string;
+    stretch: string;
+    weight: string;
+    sample: string;
+  }[];
 }
 
 export const themes: Record<ThemeId, ThemeConfig> = {
@@ -118,6 +124,13 @@ export const themes: Record<ThemeId, ThemeConfig> = {
       "Resource card preview has a soft gradient overlay (scrim) fading to Plum Tint",
       "Chat input bar floats above a frosted-glass backdrop (backdrop-filter: blur)",
       "Ultra-smooth, premium deceleration — cubic-bezier(0.22, 1, 0.36, 1)",
+    ],
+    fontWidths: [
+      { context: "Hero headlines, brand name", stretch: "115%", weight: "700", sample: "Sage" },
+      { context: "AI opening, card titles", stretch: "110%", weight: "500", sample: "Good evening, Sarah." },
+      { context: "Standard headings", stretch: "100%", weight: "600", sample: "Bedtime Routine" },
+      { context: "Nav links, labels", stretch: "85%", weight: "500", sample: "Dashboard · Activity · Settings" },
+      { context: "Timestamps, metadata", stretch: "75%", weight: "400", sample: "TODAY, 8:42 PM · 3 MIN READ" },
     ],
   },
 };
