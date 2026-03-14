@@ -100,7 +100,11 @@ export default function EmailMockup() {
               opacity: 0.85,
             }}
           >
-            Meet Sage. The personalized AI partner that helps you navigate tantrums, milestones, and
+            Meet Sage. The {themeId === "soft-blueprint" ? (
+              <span style={{ background: "var(--color-accent)", padding: "1px 3px", borderRadius: "2px" }}>personalized AI partner</span>
+            ) : (
+              "personalized AI partner"
+            )}{" "}that helps you navigate tantrums, milestones, and
             the millions of decisions in between.
           </p>
           <p
