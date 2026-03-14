@@ -248,11 +248,11 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
       <div
         className="px-5 py-3.5 text-sm leading-relaxed"
         style={{
-          background: "#F2EDF8",
+          background: "radial-gradient(ellipse at 30% 20%, rgba(168, 137, 204, 0.15) 0%, #F2EDF8 70%)",
           color: "#2A1F33",
           fontFamily: "var(--font-body)",
           borderRadius: "30px 30px 30px 8px",
-          boxShadow: "0 4px 20px rgba(107, 79, 140, 0.1)",
+          boxShadow: "inset 0 2px 8px rgba(107, 79, 140, 0.1), 0 4px 20px rgba(107, 79, 140, 0.1)",
           minHeight: "2.5rem",
         }}
       >
