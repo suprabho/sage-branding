@@ -55,7 +55,7 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     typographicVoice:
       "Fraunces carries emotional weight in moments of reassurance (headings, chat response openers). Plus Jakarta Sans keeps the operational UI clean and fast to scan. Never uppercase for body text — it feels cold.",
     componentLanguage: [
-      "Resource cards use a left-border accent in Sage Moss (4px)",
+      "Resource cards use shadow-only depth — no border accents, clean and organic",
       "Inline charts use rounded bar fills in the primary palette",
       "Email CTA button uses a subtle grain overlay texture on green background",
       "Slightly springy motion — cubic-bezier(0.34, 1.2, 0.64, 1)",
@@ -87,9 +87,12 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     typographicVoice:
       "Space Mono brings unexpected technical authority to a parenting app — its monospaced letterforms signal 'we built this with engineering rigor.' Inter Tight keeps the body text crisp and condensed, maximizing information density without sacrificing readability. The contrast between monospace display and tight sans body creates a distinctive voice that stands apart.",
     componentLanguage: [
-      "All cards have a thin top border accent (3px, Electric Blue) — systematic 'header stripe' feeling",
+      "Lemon yellow (#FFD93D) header bar on app and email — bold, high-energy brand signal",
+      "Yellow marker-pen highlight on key phrases in AI chat and email body text",
+      "Resource cards use Electric Blue border + solid Lemon yellow offset shadow (4px 4px 0px)",
+      "Dotted grid pattern (20px spacing, Cool Slate) on chat background — blueprint feel",
+      "Email CTA uses solid yellow offset shadow matching the card treatment",
       "Space Mono headings create a technical, engineered feel uncommon in parenting apps",
-      "Email container has a 6px border-radius simulating a card envelope",
       "Grounded, responsive motion — ease-out, 200-240ms range",
     ],
   },
@@ -119,10 +122,13 @@ export const themes: Record<ThemeId, ThemeConfig> = {
     typographicVoice:
       "Archivo's variable width axis creates dynamic typographic hierarchy — condensed for dense UI labels, standard for body, and expanded for bold hero moments. Lexend Deca provides effortless readability with its open letterforms. Together they feel modern, confident, and premium.",
     componentLanguage: [
-      "Cards have no sharp outlines — depth communicated through shadow only",
+      "Deep Plum (#6B4F8C) page background with Cream Dusk (#F6F2EF) text — immersive dark shell",
+      "App header uses Deep Plum background with Amber Glow brand mark",
+      "AI chat bubble features a Soft Lilac (#C4ADDE) radial gradient from top-left + inner shadow",
       "AI response bubbles use expanded-width Archivo for the opening empathetic sentence",
       "Resource card preview has a soft gradient overlay (scrim) fading to Plum Tint",
       "Chat input bar floats above a frosted-glass backdrop (backdrop-filter: blur)",
+      "Mockups retain internal Deep Aubergine (#2A1F33) dark aesthetic via hardcoded values",
       "Ultra-smooth, premium deceleration — cubic-bezier(0.22, 1, 0.36, 1)",
     ],
     fontWidths: [

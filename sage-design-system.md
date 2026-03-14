@@ -100,7 +100,7 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 - Typing indicator: three dots with staggered pulse
 
 **Component Language:**
-- Resource cards use a left-border accent in Sage Moss (`4px`)
+- Resource cards use shadow-only depth — no border accents, clean and organic
 - Inline charts use rounded bar fills in the primary palette
 - Email CTA button: full-width on mobile, uses a subtle grain overlay texture on the green background
 
@@ -108,7 +108,7 @@ Fraunces carries emotional weight in moments of reassurance (headings, chat resp
 ---
 
 ## ✦ VARIATION 2 — "Soft Blueprint"
-*Clean, structured, and deeply reassuring. Like a good pediatrician's office — expert but never cold.*
+*Bold, engineered, and unapologetically technical. Like a mission control for parenting — we built this.*
 
 ---
 
@@ -180,21 +180,22 @@ Space Mono brings unexpected technical authority — its monospaced letterforms 
 ### 4. Patterns & Visual Elements
 
 **Corner Radius:**
-- Cards: `20px`
-- Chat bubbles: `20px` (with `6px` on sending-end corner)
-- Buttons: `10px`
-- Inputs: `10px`
+- Cards: `8px`
+- Chat bubbles: `6px` (with `2px` on sending-end corner)
+- Buttons: `4px`
+- Inputs: `4px`
 - Tags: `99px`
 
 **Shadows:**
-- Card resting: `0 1px 8px rgba(30, 42, 69, 0.07)`
-- Card hover: `0 4px 20px rgba(91, 127, 212, 0.15)`
-- Input focus ring: `0 0 0 3px rgba(91, 127, 212, 0.25)`
+- Card resting: `0 1px 8px rgba(15, 23, 42, 0.07)`
+- Card hover: `0 4px 20px rgba(37, 99, 235, 0.18)`
+- Input focus ring: `0 0 0 3px rgba(37, 99, 235, 0.25)`
+- Solid offset shadow (cards, CTAs): `4px 4px 0px #FFD93D` — graphic, bold, signature treatment
 
 **Surface Patterns:**
-- **Blueprint grid** — ultra-faint `#DDE3F0` grid lines at `1px`, 20px spacing on hero and onboarding areas
+- **Dotted grid** — `radial-gradient(circle, #CBD5E8 1px, transparent 1px)` at 20px spacing on chat background — blueprint aesthetic
 - **Concentric arcs** as decorative element behind profile header — subtle, `10% opacity`, primary blue
-- **Gradient sweep** from `Lavender Mist → Frost` used as email hero background
+- **Gradient sweep** from `Sky Blue → Ice White` used as email hero background
 
 **Motion Principles:**
 - Ease: `ease-out`, `200-240ms` range — nothing bouncy; grounded and responsive
@@ -203,8 +204,11 @@ Space Mono brings unexpected technical authority — its monospaced letterforms 
 - Button press: subtle `scale(0.97)` depress
 
 **Component Language:**
-- All cards have a thin top border accent (`3px`, Primary Blue) — creates a systematic "header stripe" feeling
-- Inline resource preview uses a split layout: thumbnail left / action buttons right
+- Lemon yellow (`#FFD93D`) header bar on app and email mockups — bold, high-energy brand signal
+- Yellow marker-pen highlight on key phrases in AI chat bubble and email body text
+- Resource cards use Electric Blue (`#2563EB`) border + solid Lemon yellow offset shadow (`4px 4px 0px`)
+- Email CTA button uses matching solid yellow offset shadow
+- Space Mono headings create a technical, engineered feel uncommon in parenting apps
 - Email has a `6px` border-radius on the email container itself (simulates a card envelope)
 
 ---
@@ -321,11 +325,14 @@ Archivo's variable width axis creates dynamic typographic hierarchy — expanded
 - CTA button: amber glow pulses softly at `2s` interval when idle
 
 **Component Language:**
-- Cards have no sharp outlines — depth is communicated through shadow only
+- Deep Plum (`#6B4F8C`) page background with Cream Dusk (`#F6F2EF`) text — immersive dark shell
+- App header uses Deep Plum background with Amber Glow brand mark
+- AI chat bubble features a Soft Lilac (`#C4ADDE`) radial gradient from top-left corner + inner shadow for depth
 - AI response bubbles use expanded-width Archivo (110%, weight 500) for the opening empathetic sentence
 - Resource card preview has a soft gradient overlay at the bottom edge (scrim) fading to Plum Tint
-- Email container uses a decorative `1px` outer border in Mauve Grey with `24px` radius — envelope-like
 - Chat input bar floats above a frosted-glass backdrop (`backdrop-filter: blur(12px)`)
+- Mockups retain internal Deep Aubergine (`#2A1F33`) dark aesthetic via hardcoded values
+- Email container uses a decorative `1px` outer border in Dark Plum with `24px` radius — envelope-like
 
 ---
 
