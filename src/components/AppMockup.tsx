@@ -117,7 +117,7 @@ export default function AppMockup() {
             <div
               className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
               style={{
-                background: "var(--color-primary)",
+                background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
                 borderRadius: themeId === "soft-blueprint" ? "4px" : "50%",
               }}
             >
@@ -168,17 +168,15 @@ function UserBubble({ themeId }: { themeId: string }) {
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: pill-like, soft glow, gradient left border
+    // Luxe: dusty rose bubble, pill-like
     return (
       <div
         className="max-w-[80%] px-5 py-3.5 text-sm"
         style={{
-          background: "var(--color-surface)",
+          background: "var(--color-secondary)",
           color: "var(--color-neutral-dark)",
           fontFamily: "var(--font-body)",
           borderRadius: "26px 26px 6px 26px",
-          boxShadow: "0 4px 20px rgba(107, 79, 140, 0.12)",
-          borderRight: "3px solid var(--color-secondary)",
         }}
       >
         {text}
@@ -332,12 +330,12 @@ function ChatInput({ themeId }: { themeId: string }) {
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: dark aubergine bar, dusty rose input pill, amber send
+    // Luxe: same dark bg as chat area, dusty rose input pill, amber send
     return (
       <div
         className="shrink-0 px-4 py-3"
         style={{
-          background: "var(--color-primary)",
+          background: "var(--color-neutral-dark)",
         }}
       >
         <div
@@ -582,9 +580,9 @@ function SageIcon({ themeId }: { themeId: string }) {
 }
 
 function SageIconSmall({ themeId }: { themeId: string }) {
+  if (themeId === "dusk-bloom") return <Flower size={16} color="var(--color-primary)" weight="duotone" />;
   const iconProps = { size: 16, color: "white" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
-  if (themeId === "dusk-bloom") return <Flower {...iconProps} weight="duotone" />;
   return <Leaf {...iconProps} weight="fill" />;
 }
 
