@@ -66,6 +66,8 @@ export default function AppMockup() {
           className="flex items-center justify-between p-3 shrink-0"
           style={themeId === "dusk-bloom" ? {
             background: "var(--color-primary)",
+          } : themeId === "soft-blueprint" ? {
+            background: "var(--color-accent)",
           } : {}}
         >
           <div className="flex items-center gap-2">

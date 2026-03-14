@@ -27,7 +27,10 @@ export default function EmailMockup() {
         {/* Email Header */}
         <div
           className="flex items-center justify-between px-6 py-4 border-b"
-          style={{ borderColor: isDusk ? "rgba(80, 58, 107, 0.4)" : "var(--color-neutral-mid)" }}
+          style={{
+            borderColor: isDusk ? "rgba(80, 58, 107, 0.4)" : "var(--color-neutral-mid)",
+            ...(themeId === "soft-blueprint" ? { background: "var(--color-accent)" } : {}),
+          }}
         >
           <div className="flex items-center gap-2">
             <EmailLogo themeId={themeId} />
