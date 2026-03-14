@@ -83,7 +83,7 @@ export default function AppMockup() {
           <UserCircle
             size={28}
             weight={theme.iconStyle}
-            color={themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-neutral-dark)"}
+            color={themeId === "dusk-bloom" ? "var(--color-secondary)" : "var(--color-neutral-dark)"}
             className="opacity-60"
           />
         </div>
@@ -247,8 +247,7 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
           background: "var(--color-sage-bubble)",
           color: "var(--color-neutral-dark)",
           fontFamily: "var(--font-body)",
-          borderRadius: "26px 26px 26px 6px",
-          borderLeft: "3px solid var(--color-primary)",
+          borderRadius: "30px 30px 30px 8px",
           boxShadow: "0 4px 20px rgba(107, 79, 140, 0.1)",
           minHeight: "2.5rem",
         }}
