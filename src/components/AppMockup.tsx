@@ -223,7 +223,7 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
   );
 
   if (themeId === "soft-blueprint") {
-    // Sharp: squared, top-border accent stripe
+    // Sharp: squared, top-border accent stripe, yellow-highlighted opener
     return (
       <div
         className="px-4 py-3 text-sm leading-relaxed"
@@ -236,7 +236,10 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
           minHeight: "2.5rem",
         }}
       >
-        {FULL_TEXT.slice(0, visibleChars)}
+        <span style={{ background: "var(--color-accent)", padding: "1px 3px", borderRadius: "2px" }}>
+          {FULL_TEXT.slice(0, Math.min(visibleChars, ITALIC_SPLIT))}
+        </span>
+        {visibleChars > ITALIC_SPLIT && FULL_TEXT.slice(ITALIC_SPLIT, visibleChars)}
         {cursor}
       </div>
     );
