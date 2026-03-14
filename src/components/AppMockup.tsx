@@ -435,7 +435,6 @@ function ResourceCard({ themeId }: { themeId: string }) {
           background: "var(--color-surface)",
           borderRadius: "8px",
           border: "1.5px solid var(--color-neutral-mid)",
-          borderTop: "3px solid var(--color-primary)",
         }}
       >
         <img
