@@ -238,7 +238,6 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
           color: "var(--color-neutral-dark)",
           fontFamily: "var(--font-body)",
           borderRadius: "6px 6px 6px 2px",
-          borderTop: "3px solid var(--color-primary)",
           minHeight: "2.5rem",
         }}
       >
