@@ -174,7 +174,7 @@ function EmailCTA({ themeId }: { themeId: string }) {
           textTransform: "uppercase",
           letterSpacing: "0.12em",
           border: "2px solid var(--color-primary)",
-          boxShadow: "none",
+          boxShadow: "4px 4px 0px var(--color-accent)",
         }}
       >
         Chat with Sage — It&apos;s Free
