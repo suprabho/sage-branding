@@ -92,7 +92,13 @@ export default function AppMockup() {
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4">
+        <div
+          className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4"
+          style={themeId === "soft-blueprint" ? {
+            backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
+            backgroundSize: "20px 20px",
+          } : {}}
+        >
           {/* Timestamp */}
           <p
             className="text-center text-xs opacity-50"
