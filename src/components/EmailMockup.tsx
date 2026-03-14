@@ -42,8 +42,8 @@ export default function EmailMockup() {
             {["About", "Blog", "Help"].map((link) => (
               <span
                 key={link}
-                className="text-xs opacity-50 cursor-pointer hover:opacity-80"
-                style={{ fontFamily: "var(--font-body)", color: textColor }}
+                className="text-xs cursor-pointer hover:opacity-80"
+                style={{ fontFamily: "var(--font-body)", color: isDusk ? "var(--color-accent)" : "var(--color-neutral-dark)", opacity: isDusk ? 0.8 : 0.5 }}
               >
                 {link}
               </span>
@@ -148,7 +148,7 @@ export default function EmailMockup() {
 function EmailLogo({ themeId }: { themeId: string }) {
   const iconProps = { size: 22, color: "var(--color-primary)" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
-  if (themeId === "dusk-bloom") return <Flower {...iconProps} weight="duotone" />;
+  if (themeId === "dusk-bloom") return <Flower size={22} color="var(--color-accent)" weight="duotone" />;
   return <Leaf {...iconProps} weight="fill" />;
 }
 
@@ -184,7 +184,7 @@ function EmailCTA({ themeId }: { themeId: string }) {
           background: "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%)",
           color: "white",
           borderRadius: "99px",
-          boxShadow: "0 6px 28px rgba(232, 168, 56, 0.4)",
+          boxShadow: "0 6px 28px rgba(217, 139, 139, 0.45)",
           letterSpacing: "0.04em",
         }}
       >
