@@ -25,7 +25,7 @@ export default function ThemeSwitcher() {
             `}
             style={{
               fontFamily: "var(--font-body)",
-              color: themeId === "dusk-bloom" ? "#2A1F33" : isActive ? t.primaryHex : "var(--color-neutral-dark)",
+              color: "var(--color-neutral-dark)",
               borderColor: isActive ? t.primaryHex : "transparent",
               ...(isActive ? { boxShadow: `0 0 0 2px ${t.primaryHex}` } : {}),
             }}

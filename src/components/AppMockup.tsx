@@ -61,94 +61,143 @@ export default function AppMockup() {
           boxShadow: "var(--shadow-modal)",
         }}
       >
-        {/* App Header */}
-        <div
-          className="flex items-center justify-between p-3 shrink-0"
-          style={themeId === "dusk-bloom" ? {
-            background: "#6B4F8C",
-          } : themeId === "soft-blueprint" ? {
-            background: "var(--color-accent)",
-          } : {}}
-        >
-          <div className="flex items-center gap-2">
-            <SageIcon themeId={themeId} />
-            <h1
-              className="text-xl font-semibold"
+        {/* App Header - floating pills for dusk-bloom */}
+        {themeId === "dusk-bloom" ? (
+          <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between">
+            <div
+              className="flex items-center gap-2 px-3 py-2"
               style={{
-                fontFamily: "var(--font-display)",
-                color: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-neutral-dark)",
-                ...(themeId === "dusk-bloom" ? { fontStretch: "115%" } : {}),
+                background: "rgba(42, 31, 51, 0.7)",
+                backdropFilter: "blur(12px)",
+                borderRadius: "99px",
               }}
             >
-              Sage
-            </h1>
+              <SageIcon themeId={themeId} />
+              <h1
+                className="text-lg font-semibold"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--color-accent)",
+                  fontStretch: "115%",
+                }}
+              >
+                Sage
+              </h1>
+            </div>
+            <div
+              className="flex items-center justify-center w-10 h-10"
+              style={{
+                background: "rgba(42, 31, 51, 0.7)",
+                backdropFilter: "blur(12px)",
+                borderRadius: "99px",
+              }}
+            >
+              <UserCircle
+                size={24}
+                weight={theme.iconStyle}
+                color="var(--color-secondary)"
+              />
+            </div>
           </div>
-          <UserCircle
-            size={28}
-            weight={theme.iconStyle}
-            color={themeId === "dusk-bloom" ? "var(--color-secondary)" : "var(--color-neutral-dark)"}
-            className="opacity-60"
-          />
-        </div>
+        ) : (
+          <div
+            className="flex items-center justify-between p-3 shrink-0"
+            style={themeId === "soft-blueprint" ? {
+              background: "var(--color-accent)",
+            } : {}}
+          >
+            <div className="flex items-center gap-2">
+              <SageIcon themeId={themeId} />
+              <h1
+                className="text-xl font-semibold"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--color-neutral-dark)",
+                }}
+              >
+                Sage
+              </h1>
+            </div>
+            <UserCircle
+              size={28}
+              weight={theme.iconStyle}
+              color="var(--color-neutral-dark)"
+              className="opacity-60"
+            />
+          </div>
+        )}
 
-        {/* Chat Messages */}
-        <div
-          className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4"
-          style={themeId === "soft-blueprint" ? {
-            backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
-            backgroundSize: "20px 20px",
-          } : {}}
-        >
-          {/* Timestamp */}
-          <p
-            className="text-center text-xs opacity-50"
+        {/* Chat Messages + Input Container */}
+        <div className={`flex-1 relative overflow-hidden ${themeId === "dusk-bloom" ? "-mt-14" : ""}`}>
+          <div
+            className="absolute inset-0 overflow-y-auto px-4 flex flex-col gap-4"
             style={{
-              fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
-              color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
-              ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
+              paddingTop: themeId === "dusk-bloom" ? "80px" : "16px",
+              paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom") ? "72px" : "16px",
+              ...(themeId === "soft-blueprint" ? {
+                backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
+                backgroundSize: "20px 20px",
+              } : {}),
             }}
           >
-            Today, 8:42 PM
-          </p>
-
-          {/* User Bubble */}
-          <div
-            className="flex justify-end"
-            style={{ animation: "fadeInRight 0.25s var(--ease-default) 0.4s both" }}
-          >
-            <UserBubble themeId={themeId} />
-          </div>
-
-          {/* Sage Response */}
-          <div
-            className="flex gap-2.5 items-start"
-            style={{ animation: "fadeInLeft 0.35s var(--ease-default) 0.9s both" }}
-          >
-            <div
-              className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
+            {/* Timestamp */}
+            <p
+              className="text-center text-xs opacity-50"
               style={{
-                background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
-                borderRadius: themeId === "soft-blueprint" ? "4px" : "50%",
+                fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
+                color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
+                ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
               }}
             >
-              <SageIconSmall themeId={themeId} />
-            </div>
-            <div className="flex flex-col gap-3 max-w-[85%]">
-              {/* Text Response */}
-              <AiBubble themeId={themeId} visibleChars={visibleChars} />
+              Today, 8:42 PM
+            </p>
 
-              {/* Resource Card */}
-              {showCard && (
-                <div style={{ animation: "fadeInUp 0.4s var(--ease-default) both" }}>
-                  <ResourceCard themeId={themeId} />
-                </div>
-              )}
+            {/* User Bubble */}
+            <div
+              className="flex justify-end"
+              style={{ animation: "fadeInRight 0.25s var(--ease-default) 0.4s both" }}
+            >
+              <UserBubble themeId={themeId} />
+            </div>
+
+            {/* Sage Response */}
+            <div
+              className="flex gap-2.5 items-start"
+              style={{ animation: "fadeInLeft 0.35s var(--ease-default) 0.9s both" }}
+            >
+              <div
+                className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
+                style={{
+                  background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
+                  borderRadius: themeId === "soft-blueprint" ? "4px" : "50%",
+                }}
+              >
+                <SageIconSmall themeId={themeId} />
+              </div>
+              <div className="flex flex-col gap-3 max-w-[85%]">
+                {/* Text Response */}
+                <AiBubble themeId={themeId} visibleChars={visibleChars} />
+
+                {/* Resource Card */}
+                {showCard && (
+                  <div style={{ animation: "fadeInUp 0.4s var(--ease-default) both" }}>
+                    <ResourceCard themeId={themeId} />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Floating Chat Input for soft-blueprint and dusk-bloom */}
+          {(themeId === "soft-blueprint" || themeId === "dusk-bloom") && (
+            <div className="absolute bottom-0 left-0 right-0">
+              <ChatInput themeId={themeId} />
+            </div>
+          )}
         </div>
 
-        {/* Chat Input */}
-        <ChatInput themeId={themeId} />
+        {/* Chat Input for other themes */}
+        {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && <ChatInput themeId={themeId} />}
       </div>
     </div>
   );
@@ -259,7 +308,7 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
           background: "radial-gradient(ellipse at 0% 0%, #C4ADDE 0%, #F2EDF8 50%)",
           color: "#2A1F33",
           fontFamily: "var(--font-body)",
-          borderRadius: "30px 30px 30px 8px",
+          borderRadius: "8px 30px 30px 30px",
           boxShadow: "inset 0 2px 8px rgba(107, 79, 140, 0.1), 0 4px 20px rgba(107, 79, 140, 0.1)",
           minHeight: "2.5rem",
         }}
@@ -300,8 +349,7 @@ function ChatInput({ themeId }: { themeId: string }) {
       <div
         className="shrink-0 px-4 py-3"
         style={{
-          background: "var(--color-surface)",
-          borderTop: "2px solid var(--color-primary)",
+          background: "transparent",
         }}
       >
         <div
@@ -341,12 +389,12 @@ function ChatInput({ themeId }: { themeId: string }) {
   }
 
   if (themeId === "dusk-bloom") {
-    // Luxe: same dark bg as chat area, subtle elevated input pill, amber send
+    // Luxe: floating input pill, amber send
     return (
       <div
         className="shrink-0 px-4 py-3"
         style={{
-          background: "#2A1F33",
+          background: "transparent",
         }}
       >
         <div
@@ -392,30 +440,32 @@ function ChatInput({ themeId }: { themeId: string }) {
         background: "var(--color-surface)",
       }}
     >
-      <div
-        className="flex items-center gap-2"
-        style={{
-          background: "var(--color-neutral-light)",
-          borderRadius: "12px",
-          border: "1px solid var(--color-neutral-mid)",
-          padding: "8px 12px",
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Ask Sage anything..."
-          className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
+      <div className="flex items-center gap-2">
+        <div
+          className="flex-1 flex items-center"
           style={{
-            fontFamily: "var(--font-body)",
-            color: "var(--color-neutral-dark)",
+            background: "var(--color-neutral-light)",
+            borderRadius: "12px",
+            border: "1px solid var(--color-neutral-mid)",
+            padding: "10px 14px",
           }}
-          readOnly
-        />
+        >
+          <input
+            type="text"
+            placeholder="Ask Sage anything..."
+            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: "var(--color-neutral-dark)",
+            }}
+            readOnly
+          />
+        </div>
         <button
-          className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
           style={{ background: "var(--color-primary)" }}
         >
-          <PaperPlaneTilt size={16} weight="fill" color="white" />
+          <PaperPlaneTilt size={18} weight="fill" color="white" />
         </button>
       </div>
     </div>

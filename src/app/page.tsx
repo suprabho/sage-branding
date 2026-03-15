@@ -78,10 +78,10 @@ export default function Home() {
                   className="text-left text-sm px-3 py-2 rounded transition-all"
                   style={{
                     fontFamily: "var(--font-body)",
-                    color: isActive ? "var(--color-primary)" : "var(--color-neutral-dark)",
+                    color: "var(--color-neutral-dark)",
                     background: isActive ? "color-mix(in srgb, var(--color-primary) 10%, transparent)" : "transparent",
                     fontWeight: isActive ? 600 : 400,
-                    opacity: isActive ? 1 : 0.55,
+                    opacity: 1,
                     borderLeft: `2px solid ${isActive ? "var(--color-primary)" : "transparent"}`,
                   }}
                 >
