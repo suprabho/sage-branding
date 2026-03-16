@@ -132,7 +132,7 @@ export default function AppMockup() {
           <div
             className="absolute inset-0 overflow-y-auto px-4 flex flex-col gap-4"
             style={{
-              paddingTop: themeId === "dusk-bloom" ? "80px" : "16px",
+              paddingTop: themeId === "dusk-bloom" ? "120px" : "16px",
               paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom") ? "72px" : "16px",
               ...(themeId === "soft-blueprint" ? {
                 backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
