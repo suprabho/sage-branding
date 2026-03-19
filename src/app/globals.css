@@ -85,6 +85,33 @@
   --ease-default: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+[data-theme="grounded"] {
+  --color-primary: #2D5A3D;
+  --color-primary-light: #4A7C5C;
+  --color-secondary: #C0714B;
+  --color-accent: #D4943A;
+  --color-neutral-light: #FFFFFF;
+  --color-neutral-mid: #E5E5E3;
+  --color-neutral-dark: #1C2024;
+  --color-surface: #FFFFFF;
+  --color-sage-bubble: #EFF5F1;
+
+  --font-display: "Lora", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+
+  --radius-card: 12px;
+  --radius-bubble: 14px;
+  --radius-bubble-tail: 4px;
+  --radius-button: 10px;
+  --radius-input: 10px;
+
+  --shadow-card: 0 1px 8px rgba(28, 32, 36, 0.06);
+  --shadow-card-hover: 0 4px 16px rgba(28, 32, 36, 0.1);
+  --shadow-modal: 0 8px 32px rgba(28, 32, 36, 0.1);
+
+  --ease-default: ease-out;
+}
+
 /* ===== GLOBAL STYLES ===== */
 
 body {

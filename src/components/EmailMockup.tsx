@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@/lib/ThemeContext";
-import { Leaf, Brain, Flower } from "@phosphor-icons/react";
+import { Leaf, Brain, Flower, Tree } from "@phosphor-icons/react";
 
 export default function EmailMockup() {
   const { themeId } = useTheme();
@@ -157,10 +157,30 @@ function EmailLogo({ themeId }: { themeId: string }) {
   const iconProps = { size: 22, color: "var(--color-primary)" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
   if (themeId === "dusk-bloom") return <Flower size={22} color="var(--color-accent)" weight="duotone" />;
+  if (themeId === "grounded") return <Tree {...iconProps} weight="regular" />;
   return <Leaf {...iconProps} weight="fill" />;
 }
 
 function EmailCTA({ themeId }: { themeId: string }) {
+  if (themeId === "grounded") {
+    // Grounded: solid, intentional, rounded rectangle — warm and direct
+    return (
+      <button
+        className="inline-block px-10 py-4 text-base font-semibold cursor-pointer hover:opacity-90 transition-opacity"
+        style={{
+          fontFamily: "var(--font-body)",
+          background: "#2D5A3D",
+          color: "white",
+          borderRadius: "10px",
+          boxShadow: "0 2px 8px rgba(45, 90, 61, 0.2)",
+          letterSpacing: "0.01em",
+        }}
+      >
+        Chat with Sage — It&apos;s Free
+      </button>
+    );
+  }
+
   if (themeId === "soft-blueprint") {
     // Sharp: squared, uppercase, bordered, structured
     return (
@@ -218,6 +238,15 @@ function EmailCTA({ themeId }: { themeId: string }) {
 }
 
 function getHeroStyle(themeId: string): React.CSSProperties {
+  if (themeId === "grounded") {
+    return {
+      background: `
+        radial-gradient(circle at 30% 40%, rgba(45, 90, 61, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(192, 113, 75, 0.06) 0%, transparent 50%),
+        linear-gradient(175deg, #FFFFFF 0%, #EFF5F1 100%)
+      `,
+    };
+  }
   if (themeId === "morning-light") {
     return {
       background: `
