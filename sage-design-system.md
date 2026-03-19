@@ -1,5 +1,5 @@
 # Sage — Design System Explorations
-### Three Brand Direction Variations
+### Four Brand Direction Variations
 
 ---
 
@@ -338,18 +338,126 @@ Archivo's variable width axis creates dynamic typographic hierarchy — expanded
 
 ---
 
+## ✦ VARIATION 4 — "Grounded"
+*Confident, direct, and warm. Like a trusted friend who also has their facts straight.*
+
+---
+
+### 1. Colors
+
+| Role | Name | Hex | Usage |
+|------|------|-----|-------|
+| **Primary** | Deep Forest | `#2D5A3D` | CTAs, active states, logo mark, AI avatar |
+| **Primary Light** | Forest Fern | `#4A7C5C` | Hover states, gradient fills |
+| **Secondary** | Terracotta | `#C0714B` | AI bubble border, resource card accent, highlights |
+| **Accent** | Golden Amber | `#D4943A` | Badges, warm emphasis, delight moments |
+| **Neutral Light** | Clean White | `#FFFFFF` | Page background — not beige, not pastel |
+| **Neutral Mid** | Cool Gray | `#E5E5E3` | Dividers, borders, secondary backgrounds |
+| **Neutral Dark** | Charcoal | `#1C2024` | Body text, headings |
+| **Surface** | Pure White | `#FFFFFF` | Cards, modals, chat bubbles (user) |
+| **Sage Bubble** | Sage Mist | `#EFF5F1` | AI response bubble background |
+
+**Color Philosophy:**
+Deep Forest anchors Sage in earthy authority — darker than true sage green, it communicates competence and trust without softness. Terracotta introduces warmth and human connection. Golden Amber signals clarity at key decision points. The palette sits on clean white — not beige, not pastels — to feel like a steady hand, not a nursery. No baby blues, no blush pinks. Inspired by the premium confidence of brands like Nanit and Coterie.
+
+---
+
+### 2. Typography
+
+**Font Pair:**
+- **Display / Headings:** `Lora` — A humanist serif with presence and editorial conviction. Slightly warm, confident, with a clear point of view. Headlines feel authored, not generated.
+- **Body / UI:** `Plus Jakarta Sans` — Clean, modern, and highly readable. Keeps operational UI accessible and fast to scan.
+
+**Type Scale:**
+
+| Label | Size | Weight | Line Height | Usage |
+|-------|------|--------|-------------|-------|
+| Display XL | 40px / 2.5rem | 700 | 1.15 | Email hero headline |
+| Heading 1 | 32px / 2rem | 600 | 1.2 | Section headers |
+| Heading 2 | 24px / 1.5rem | 600 | 1.25 | Card titles, modals |
+| Heading 3 | 20px / 1.25rem | 500 | 1.3 | Subheadings |
+| Body L | 18px / 1.125rem | 400 | 1.6 | Email body, long-form |
+| Body M | 16px / 1rem | 400 | 1.55 | Chat messages, default UI |
+| Body S | 14px / 0.875rem | 400 | 1.5 | Labels, secondary text |
+| Caption | 12px / 0.75rem | 500 | 1.4 | Timestamps, metadata |
+
+**Typographic Voice:**
+Lora is a humanist serif with presence and editorial conviction — it brings the "point of view" the brand calls for. The serif-sans pairing feels editorial: not clinical, not cute. Never uppercase for body text — it feels cold. The serif carries weight in headings and AI response openers (italic), making advice feel personally authored.
+
+---
+
+### 3. Iconography
+
+**Style:** Clean line icons with slightly increased weight — intentional, never overly rounded or playful.
+**Library Base:** Phosphor Icons (`regular` weight for all contexts)
+**Key Icons:**
+
+| Context | Icon | Style Note |
+|---------|------|------------|
+| Sage identity | `Tree` | Regular weight, Deep Forest color |
+| Profile | `UserCircle` | Regular weight |
+| Save / Library | `BookmarkSimple` | Regular, fill on saved state |
+| Print | `Printer` | Regular |
+| Chat input | `PaperPlaneTilt` | Regular, in solid button |
+| Resource card | `FileText` | Regular |
+| Success | `CheckCircle` | Regular, Deep Forest |
+| Warning | `WarningCircle` | Regular, Golden Amber |
+
+**Sizing:** 16px (inline), 18–20px (default), 24px (feature), 32px (hero/empty states)
+**Treatment:** Icons always feel solid and purposeful. No duotone, no fill for decorative effect — clean line weight communicates professionalism and clarity.
+
+---
+
+### 4. Patterns & Visual Elements
+
+**Corner Radius:**
+- Cards: `12px`
+- Chat bubbles: `14px` (with `4px` on the sending corner)
+- Buttons: `10px` — rounded rectangles, not pills or sharp squares
+- Inputs: `10px`
+- Chips/Tags: `99px` (fully rounded)
+
+**Shadows:**
+- Card resting: `0 1px 8px rgba(28, 32, 36, 0.06)` — extremely subtle
+- Card hover: `0 4px 16px rgba(28, 32, 36, 0.1)`
+- Modal: `0 8px 32px rgba(28, 32, 36, 0.1)`
+
+**Surface Patterns:**
+- **Clean white backgrounds** — generous margins signal calm, each screen feels like one clear thought
+- **Subtle asymmetric layout** — deliberate visual hierarchy guides the eye with confidence
+- **Terracotta left-border accent** on AI response bubbles and resource cards — warm, distinctive signature
+- **No decorative patterns** — the design speaks through typography, color, and whitespace
+
+**Motion Principles:**
+- Ease: `ease-out`, `280-320ms` range — deliberate, calm, reassuring
+- Chat bubble entrance: fade + slide, `250ms`
+- Resource card reveal: fade-in-up, `300ms`
+- Micro-interactions: subtle, quiet confirmations — never celebratory or bouncy
+
+**Component Language:**
+- White backgrounds with generous margins — each screen feels like one clear thought
+- AI response bubble: Sage Mist background + terracotta left-border accent + italic serif opener
+- Resource cards: subtle shadow + terracotta left border — clean, editorial hierarchy
+- Clean line icons at regular weight — slightly weighted, never playful
+- Buttons are solid rounded rectangles (10px radius) — intentional, not floaty
+- Chat input: white with subtle border + solid Deep Forest send button (rounded square)
+- Asymmetric visual hierarchy guides the eye with confidence, not decoration
+
+---
+---
+
 ## ✦ COMPARISON SNAPSHOT
 
-| | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" |
-|---|---|---|---|
-| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` |
-| **Emotional Register** | Grounded, natural, calm | Engineered, bold, high-signal | Premium, deep, emotionally rich |
-| **Display Font** | Fraunces (optical serif) | Space Mono (monospace) | Archivo (variable width) |
-| **Body Font** | Plus Jakarta Sans | Inter Tight | Lexend Deca |
-| **Icon Style** | Rounded filled / duotone | Clean outline, 2px stroke | Duotone layered |
-| **Corner Radius** | 16px cards | 20px cards | 24px cards |
-| **Brand Analogy** | Herbal tea, morning journal | Mission control, parenting co-pilot | Luxury self-care, evening ritual |
-| **Best for** | Most universally appealing | Bold differentiation, tech-forward trust | Standout, premium differentiation |
+| | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" | Variation 4 "Grounded" |
+|---|---|---|---|---|
+| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` | Deep Forest `#2D5A3D` |
+| **Emotional Register** | Grounded, natural, calm | Engineered, bold, high-signal | Premium, deep, emotionally rich | Authoritative, approachable, steady |
+| **Display Font** | Fraunces (optical serif) | Space Mono (monospace) | Archivo (variable width) | Lora (humanist serif) |
+| **Body Font** | Plus Jakarta Sans | Inter Tight | Lexend Deca | Plus Jakarta Sans |
+| **Icon Style** | Rounded filled / duotone | Clean outline, 2px stroke | Duotone layered | Clean line, regular weight |
+| **Corner Radius** | 16px cards | 8px cards | 24px cards | 12px cards |
+| **Brand Analogy** | Herbal tea, morning journal | Mission control, parenting co-pilot | Luxury self-care, evening ritual | Nanit meets Coterie — premium confidence |
+| **Best for** | Most universally appealing | Bold differentiation, tech-forward trust | Standout, premium differentiation | Art direction brief alignment — confident authority with warmth |
 
 ---
 

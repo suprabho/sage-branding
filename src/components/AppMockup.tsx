@@ -7,6 +7,7 @@ import {
   Leaf,
   Brain,
   Flower,
+  Tree,
   PaperPlaneTilt,
   ArrowRight,
   Eye,
@@ -56,8 +57,8 @@ export default function AppMockup() {
         style={{
           aspectRatio: "9 / 19.5",
           borderRadius: "40px",
-          border: `8px solid ${themeId === "dusk-bloom" ? "#2A1F33" : "var(--color-neutral-dark)"}`,
-          background: themeId === "dusk-bloom" ? "#2A1F33" : "var(--color-neutral-light)",
+          border: `8px solid ${themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#1C2024" : "var(--color-neutral-dark)"}`,
+          background: themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#FFFFFF" : "var(--color-neutral-light)",
           boxShadow: "var(--shadow-modal)",
         }}
       >
@@ -104,6 +105,9 @@ export default function AppMockup() {
             className="flex items-center justify-between p-3 shrink-0"
             style={themeId === "soft-blueprint" ? {
               background: "var(--color-accent)",
+            } : themeId === "grounded" ? {
+              background: "#FFFFFF",
+              borderBottom: "1px solid #E5E5E3",
             } : {}}
           >
             <div className="flex items-center gap-2">
@@ -133,7 +137,7 @@ export default function AppMockup() {
             className="absolute inset-0 overflow-y-auto px-4 flex flex-col gap-4"
             style={{
               paddingTop: themeId === "dusk-bloom" ? "120px" : "16px",
-              paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom") ? "72px" : "16px",
+              paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") ? "72px" : "16px",
               ...(themeId === "soft-blueprint" ? {
                 backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
                 backgroundSize: "20px 20px",
@@ -169,7 +173,7 @@ export default function AppMockup() {
                 className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
                 style={{
                   background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
-                  borderRadius: themeId === "soft-blueprint" ? "4px" : "50%",
+                  borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
                 }}
               >
                 <SageIconSmall themeId={themeId} />
@@ -189,7 +193,7 @@ export default function AppMockup() {
           </div>
 
           {/* Floating Chat Input for soft-blueprint and dusk-bloom */}
-          {(themeId === "soft-blueprint" || themeId === "dusk-bloom") && (
+          {(themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") && (
             <div className="absolute bottom-0 left-0 right-0">
               <ChatInput themeId={themeId} />
             </div>
@@ -197,7 +201,7 @@ export default function AppMockup() {
         </div>
 
         {/* Chat Input for other themes */}
-        {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && <ChatInput themeId={themeId} />}
+        {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && themeId !== "grounded" && <ChatInput themeId={themeId} />}
       </div>
     </div>
   );
@@ -219,6 +223,23 @@ function UserBubble({ themeId }: { themeId: string }) {
           fontFamily: "var(--font-body)",
           borderRadius: "6px 6px 2px 6px",
           border: "none",
+        }}
+      >
+        {text}
+      </div>
+    );
+  }
+
+  if (themeId === "grounded") {
+    // Grounded: clean, confident, terracotta-tinted
+    return (
+      <div
+        className="max-w-[80%] px-4 py-3 text-sm"
+        style={{
+          background: "#2D5A3D",
+          color: "#FFFFFF",
+          fontFamily: "var(--font-body)",
+          borderRadius: "14px 14px 4px 14px",
         }}
       >
         {text}
@@ -276,6 +297,29 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
       }}
     />
   );
+
+  if (themeId === "grounded") {
+    // Grounded: editorial serif opener, clean body, subtle left border
+    return (
+      <div
+        className="px-4 py-3 text-sm leading-relaxed"
+        style={{
+          background: "#EFF5F1",
+          color: "#1C2024",
+          fontFamily: "var(--font-body)",
+          borderRadius: "14px 14px 14px 4px",
+          borderLeft: "3px solid #C0714B",
+          minHeight: "2.5rem",
+        }}
+      >
+        <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 500 }}>
+          {FULL_TEXT.slice(0, Math.min(visibleChars, ITALIC_SPLIT))}
+        </span>
+        {visibleChars > ITALIC_SPLIT && FULL_TEXT.slice(ITALIC_SPLIT, visibleChars)}
+        {cursor}
+      </div>
+    );
+  }
 
   if (themeId === "soft-blueprint") {
     // Sharp: squared, top-border accent stripe, yellow-highlighted opener
@@ -343,6 +387,47 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
 /* ============ CHAT INPUT ============ */
 
 function ChatInput({ themeId }: { themeId: string }) {
+  if (themeId === "grounded") {
+    // Grounded: clean, white input bar, subtle border, intentional send button
+    return (
+      <div
+        className="shrink-0 px-4 py-3"
+        style={{ background: "transparent" }}
+      >
+        <div
+          className="flex items-center gap-2"
+          style={{
+            background: "#FFFFFF",
+            borderRadius: "10px",
+            border: "1px solid #E5E5E3",
+            padding: "8px 12px",
+            boxShadow: "0 1px 4px rgba(28, 32, 36, 0.06)",
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Ask Sage anything..."
+            className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: "#1C2024",
+            }}
+            readOnly
+          />
+          <button
+            className="w-9 h-9 flex items-center justify-center shrink-0"
+            style={{
+              background: "#2D5A3D",
+              borderRadius: "8px",
+            }}
+          >
+            <PaperPlaneTilt size={16} weight="regular" color="white" />
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   if (themeId === "soft-blueprint") {
     // Sharp: flat, squared, prominent bottom border, square send button
     return (
@@ -475,6 +560,55 @@ function ChatInput({ themeId }: { themeId: string }) {
 /* ============ RESOURCE CARD ============ */
 
 function ResourceCard({ themeId }: { themeId: string }) {
+  if (themeId === "grounded") {
+    // Grounded: clean card, terracotta left border, deliberate hierarchy
+    return (
+      <div
+        className="overflow-hidden"
+        style={{
+          background: "#FFFFFF",
+          borderRadius: "12px",
+          borderLeft: "3px solid #C0714B",
+          boxShadow: "0 1px 8px rgba(28, 32, 36, 0.06)",
+        }}
+      >
+        <img
+          src="/resource-image.jpg"
+          alt="Resource"
+          className="w-full h-auto aspect-8.5/11 shrink-0 object-cover"
+        />
+        <div className="p-3">
+          <p
+            className="text-[10px] font-medium uppercase tracking-widest mb-1"
+            style={{ fontFamily: "var(--font-body)", color: "#C0714B" }}
+          >
+            Sleep Guide
+          </p>
+          <p
+            className="text-sm font-semibold leading-tight"
+            style={{ fontFamily: "var(--font-display)", color: "#1C2024" }}
+          >
+            Dinosaur Bedtime Routine Chart
+          </p>
+          <p
+            className="text-xs mt-0.5 opacity-50"
+            style={{ fontFamily: "var(--font-body)", color: "#1C2024" }}
+          >
+            Custom activity chart for Ollie
+          </p>
+        </div>
+        <div
+          className="flex border-t px-2 py-2 gap-1"
+          style={{ borderColor: "#E5E5E3" }}
+        >
+          <ActionButtonText icon={<Eye size={18} />} label="View" />
+          <ActionButtonText icon={<BookmarkSimple size={18} />} label="Save" />
+          <ActionButtonText icon={<Printer size={18} />} label="Print" />
+        </div>
+      </div>
+    );
+  }
+
   if (themeId === "soft-blueprint") {
     // Structured: bordered, top accent stripe, visible text labels, squared
     return (
@@ -636,6 +770,7 @@ function ResourceCard({ themeId }: { themeId: string }) {
 
 function SageIcon({ themeId }: { themeId: string }) {
   if (themeId === "dusk-bloom") return <Flower size={24} color="var(--color-accent)" weight="duotone" />;
+  if (themeId === "grounded") return <Tree size={24} color="var(--color-primary)" weight="regular" />;
   const iconProps = { size: 24, color: "var(--color-primary)" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
   return <Leaf {...iconProps} weight="fill" />;
@@ -643,6 +778,7 @@ function SageIcon({ themeId }: { themeId: string }) {
 
 function SageIconSmall({ themeId }: { themeId: string }) {
   if (themeId === "dusk-bloom") return <Flower size={16} color="white" weight="duotone" />;
+  if (themeId === "grounded") return <Tree size={16} color="white" weight="regular" />;
   const iconProps = { size: 16, color: "white" } as const;
   if (themeId === "soft-blueprint") return <Brain {...iconProps} weight="regular" />;
   return <Leaf {...iconProps} weight="fill" />;

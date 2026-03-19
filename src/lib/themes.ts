@@ -1,4 +1,4 @@
-export type ThemeId = "morning-light" | "soft-blueprint" | "dusk-bloom";
+export type ThemeId = "morning-light" | "soft-blueprint" | "dusk-bloom" | "grounded";
 
 export interface ThemeColor {
   name: string;
@@ -139,6 +139,41 @@ export const themes: Record<ThemeId, ThemeConfig> = {
       { context: "Timestamps, metadata", stretch: "75%", weight: "400", sample: "TODAY, 8:42 PM · 3 MIN READ" },
     ],
   },
+  grounded: {
+    id: "grounded",
+    name: "Grounded",
+    tagline: "Confident, direct, and warm. Like a trusted friend who also has their facts straight.",
+    primaryHex: "#2D5A3D",
+    emotionalRegister: "Authoritative, approachable, steady",
+    brandAnalogy: "Nanit meets Coterie — premium confidence",
+    displayFont: "Lora",
+    bodyFont: "Plus Jakarta Sans",
+    iconStyle: "regular",
+    colors: [
+      { name: "Deep Forest", hex: "#2D5A3D", role: "Primary" },
+      { name: "Forest Fern", hex: "#4A7C5C", role: "Primary Light" },
+      { name: "Terracotta", hex: "#C0714B", role: "Secondary" },
+      { name: "Golden Amber", hex: "#D4943A", role: "Accent" },
+      { name: "Clean White", hex: "#FFFFFF", role: "Background" },
+      { name: "Cool Gray", hex: "#E5E5E3", role: "Neutral Mid" },
+      { name: "Charcoal", hex: "#1C2024", role: "Text" },
+      { name: "Pure White", hex: "#FFFFFF", role: "Surface" },
+      { name: "Sage Mist", hex: "#EFF5F1", role: "AI Bubble" },
+    ],
+    colorPhilosophy:
+      "Deep Forest anchors Sage in earthy authority — darker than true sage green, it communicates competence and trust without softness. Terracotta introduces warmth and human connection. Golden Amber signals clarity at key decision points. The palette sits on clean white — not beige, not pastels — to feel like a steady hand, not a nursery. No baby blues, no blush pinks.",
+    typographicVoice:
+      "Lora is a humanist serif with presence and editorial conviction — it brings the 'point of view' the brief calls for. Headlines feel authored, not generated. Plus Jakarta Sans keeps operational UI clean, fast, and accessible. The serif-sans pairing feels editorial with a POV: not clinical, not cute. Never uppercase body text.",
+    componentLanguage: [
+      "White backgrounds with generous margins — each screen feels like one clear thought",
+      "Resource cards use subtle shadow depth with a thin terracotta left-border accent",
+      "Clean line icons at regular weight — slightly weighted, never overly rounded or playful",
+      "Buttons are solid and intentional — rounded rectangles, not pills or sharp squares",
+      "Asymmetric visual hierarchy guides the eye with confidence, not decoration",
+      "Micro-interactions are subtle and reassuring — quiet confirmations, not celebrations",
+      "Deliberate, calm motion — ease-out, 280-320ms range",
+    ],
+  },
 };
 
-export const themeIds: ThemeId[] = ["morning-light", "soft-blueprint", "dusk-bloom"];
+export const themeIds: ThemeId[] = ["morning-light", "soft-blueprint", "dusk-bloom", "grounded"];
