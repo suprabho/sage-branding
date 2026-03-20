@@ -24,7 +24,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        data-theme="morning-light"
+        data-theme="grounded"
         className="antialiased"
       >
         <ThemeProvider>

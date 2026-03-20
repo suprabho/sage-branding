@@ -1,7 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "@/lib/ThemeContext";
 import { Leaf, Brain, Flower, Tree } from "@phosphor-icons/react";
+
+/** Try loading a generated image with .jpg or .png extension */
+function useGeneratedImage(basePath: string) {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    setSrc(null);
+    const exts = [".jpg", ".png", ".webp"];
+    let cancelled = false;
+    for (const ext of exts) {
+      const img = new Image();
+      img.onload = () => { if (!cancelled) setSrc(basePath + ext); };
+      img.src = basePath + ext;
+    }
+    return () => { cancelled = true; };
+  }, [basePath]);
+  return src;
+}
 
 export default function EmailMockup() {
   const { themeId } = useTheme();
@@ -55,40 +73,7 @@ export default function EmailMockup() {
         </div>
 
         {/* Hero Section */}
-        <div
-          className="relative px-8 py-16 text-center overflow-hidden"
-          style={getHeroStyle(themeId)}
-        >
-          {/* Decorative background image */}
-          {themeId === "morning-light" && (
-            <img src="/bg-email-morning-light.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
-          )}
-          {themeId === "soft-blueprint" && (
-            <img src="/bg-email-soft-blueprint.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
-          )}
-          {themeId === "dusk-bloom" && (
-            <img src="/bg-email-dusk-n-bloom.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
-          )}
-
-          <p
-            className="text-xs uppercase tracking-widest mb-4 opacity-60 relative z-10"
-            style={{ fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)", color: textColor, ...(isDusk ? { fontStretch: "75%", letterSpacing: "0.1em" } : {}) }}
-          >
-            One less thing to worry about today
-          </p>
-          <h2
-            className="text-3xl md:text-4xl font-bold leading-tight relative z-10"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: textColor,
-              ...(isDusk ? { fontStretch: "115%" } : {}),
-            }}
-          >
-            Parent with confidence,
-            <br />
-            every day.
-          </h2>
-        </div>
+        <EmailHero themeId={themeId} isDusk={isDusk} textColor={textColor} />
 
         {/* Body */}
         <div className="px-8 py-10 text-center">
@@ -117,6 +102,9 @@ export default function EmailMockup() {
           >
             Get advice that actually knows your child.
           </p>
+
+          {/* Mascot Illustration */}
+          <EmailMascot themeId={themeId} />
 
           {/* CTA Button — distinct per theme */}
           <EmailCTA themeId={themeId} />
@@ -234,6 +222,94 @@ function EmailCTA({ themeId }: { themeId: string }) {
     >
       Chat with Sage — It&apos;s Free
     </button>
+  );
+}
+
+function EmailHero({ themeId, isDusk, textColor }: { themeId: string; isDusk: boolean; textColor: string }) {
+  const headerSrc = useGeneratedImage(`/generated/${themeId}-email-header`);
+
+  return (
+    <div
+      className="relative px-8 py-16 text-center overflow-hidden"
+      style={getHeroStyle(themeId)}
+    >
+      {/* Generated header image (preferred) */}
+      {headerSrc && (
+        <img
+          src={headerSrc}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          style={{ opacity: 0.85 }}
+          aria-hidden
+        />
+      )}
+
+      {/* Fallback: original decorative background images */}
+      {!headerSrc && themeId === "morning-light" && (
+        <img src="/bg-email-morning-light.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+      )}
+      {!headerSrc && themeId === "soft-blueprint" && (
+        <img src="/bg-email-soft-blueprint.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+      )}
+      {!headerSrc && themeId === "dusk-bloom" && (
+        <img src="/bg-email-dusk-n-bloom.png" alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" aria-hidden />
+      )}
+
+      {/* Scrim overlay for text readability when using generated image */}
+      {headerSrc && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: isDusk
+              ? "linear-gradient(180deg, rgba(42,31,51,0.5) 0%, rgba(42,31,51,0.7) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.6) 100%)",
+          }}
+          aria-hidden
+        />
+      )}
+
+      <p
+        className="text-xs uppercase tracking-widest mb-4 opacity-60 relative z-10"
+        style={{
+          fontFamily: isDusk ? "var(--font-display)" : "var(--font-body)",
+          color: textColor,
+          ...(isDusk ? { fontStretch: "75%", letterSpacing: "0.1em" } : {}),
+        }}
+      >
+        One less thing to worry about today
+      </p>
+      <h2
+        className="text-3xl md:text-4xl font-bold leading-tight relative z-10"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: textColor,
+          ...(isDusk ? { fontStretch: "115%" } : {}),
+        }}
+      >
+        Parent with confidence,
+        <br />
+        every day.
+      </h2>
+    </div>
+  );
+}
+
+function EmailMascot({ themeId }: { themeId: string }) {
+  const mascotSrc = useGeneratedImage(`/generated/${themeId}-mascot`);
+
+  if (!mascotSrc) return null;
+
+  return (
+    <div className="flex justify-center mb-6">
+      <img
+        src={mascotSrc}
+        alt="Sage mascot"
+        className="w-20 h-20 object-contain"
+        style={{
+          filter: themeId === "dusk-bloom" ? "drop-shadow(0 4px 12px rgba(107,79,140,0.3))" : "drop-shadow(0 2px 8px rgba(0,0,0,0.08))",
+        }}
+      />
+    </div>
   );
 }
 

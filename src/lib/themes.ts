@@ -176,4 +176,4 @@ export const themes: Record<ThemeId, ThemeConfig> = {
   },
 };
 
-export const themeIds: ThemeId[] = ["morning-light", "soft-blueprint", "dusk-bloom", "grounded"];
+export const themeIds: ThemeId[] = ["grounded", "soft-blueprint", "dusk-bloom"];

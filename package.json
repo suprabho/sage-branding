@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate-images": "node scripts/generate-images.mjs",
+    "predev": "node scripts/generate-images.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-images.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -15,12 +18,14 @@
     "react-dom": "19.2.3"
   },
   "devDependencies": {
+    "@google/genai": "^1.46.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "mime": "^4.1.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

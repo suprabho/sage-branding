@@ -21,10 +21,28 @@ const FULL_TEXT =
   "Bedtime resistance at age 4 is completely normal. Since you mentioned earlier that Ollie loves dinosaurs, let\u2019s use that to our advantage! Here is a custom routine chart to help him feel in control.";
 const ITALIC_SPLIT = "Bedtime resistance at age 4 is completely normal.".length;
 
+/** Try loading a generated image with .jpg or .png extension */
+function useGeneratedImage(basePath: string) {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => {
+    setSrc(null);
+    const exts = [".jpg", ".png", ".webp"];
+    let cancelled = false;
+    for (const ext of exts) {
+      const img = new Image();
+      img.onload = () => { if (!cancelled) setSrc(basePath + ext); };
+      img.src = basePath + ext;
+    }
+    return () => { cancelled = true; };
+  }, [basePath]);
+  return src;
+}
+
 export default function AppMockup() {
   const { themeId, theme } = useTheme();
   const [visibleChars, setVisibleChars] = useState(0);
   const [showCard, setShowCard] = useState(false);
+  const lifestyleSrc = useGeneratedImage(`/generated/${themeId}-phone-lifestyle`);
 
   useEffect(() => {
     setVisibleChars(0);
@@ -51,17 +69,45 @@ export default function AppMockup() {
 
   return (
     <div className="flex justify-center">
-      {/* Phone Frame */}
+      {/* Lifestyle Background Container */}
       <div
-        className="relative w-[375px] max-w-full overflow-hidden flex flex-col"
+        className="relative"
         style={{
-          aspectRatio: "9 / 19.5",
-          borderRadius: "40px",
-          border: `8px solid ${themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#1C2024" : "var(--color-neutral-dark)"}`,
-          background: themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#FFFFFF" : "var(--color-neutral-light)",
-          boxShadow: "var(--shadow-modal)",
+          width: "460px",
+          maxWidth: "100%",
+          aspectRatio: "3 / 4",
+          borderRadius: !!lifestyleSrc ? "24px" : "0",
+          overflow: "hidden",
         }}
       >
+        {/* Lifestyle Background Image */}
+        {!!lifestyleSrc && (
+          <img
+            src={lifestyleSrc!}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ borderRadius: "24px" }}
+            aria-hidden
+          />
+        )}
+
+        {/* Phone Frame — centered over the lifestyle bg */}
+        <div
+          className="relative mx-auto overflow-hidden flex flex-col"
+          style={{
+            width: "300px",
+            maxWidth: "80%",
+            aspectRatio: "9 / 19.5",
+            borderRadius: "36px",
+            border: `6px solid ${themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#1C2024" : "var(--color-neutral-dark)"}`,
+            background: themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#FFFFFF" : "var(--color-neutral-light)",
+            boxShadow: !!lifestyleSrc
+              ? "0 20px 60px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.2)"
+              : "var(--shadow-modal)",
+            marginTop: !!lifestyleSrc ? "40px" : "0",
+            zIndex: 1,
+          }}
+        >
         {/* App Header - floating pills for dusk-bloom */}
         {themeId === "dusk-bloom" ? (
           <div className="absolute top-3 left-3 right-3 z-10 flex items-center justify-between">
@@ -169,15 +215,7 @@ export default function AppMockup() {
               className="flex gap-2.5 items-start"
               style={{ animation: "fadeInLeft 0.35s var(--ease-default) 0.9s both" }}
             >
-              <div
-                className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
-                style={{
-                  background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
-                  borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
-                }}
-              >
-                <SageIconSmall themeId={themeId} />
-              </div>
+              <MascotAvatar themeId={themeId} />
               <div className="flex flex-col gap-3 max-w-[85%]">
                 {/* Text Response */}
                 <AiBubble themeId={themeId} visibleChars={visibleChars} />
@@ -202,6 +240,7 @@ export default function AppMockup() {
 
         {/* Chat Input for other themes */}
         {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && themeId !== "grounded" && <ChatInput themeId={themeId} />}
+      </div>
       </div>
     </div>
   );
@@ -767,6 +806,41 @@ function ResourceCard({ themeId }: { themeId: string }) {
 }
 
 /* ============ HELPER COMPONENTS ============ */
+
+function MascotAvatar({ themeId }: { themeId: string }) {
+  const mascotSrc = useGeneratedImage(`/generated/${themeId}-mascot`);
+
+  if (mascotSrc) {
+    return (
+      <div
+        className="w-8 h-8 shrink-0 mt-1 overflow-hidden"
+        style={{
+          borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
+          boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
+        }}
+      >
+        <img
+          src={mascotSrc}
+          alt="Sage"
+          className="w-full h-full object-cover"
+        />
+      </div>
+    );
+  }
+
+  // Fallback: original icon avatar
+  return (
+    <div
+      className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
+      style={{
+        background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
+        borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
+      }}
+    >
+      <SageIconSmall themeId={themeId} />
+    </div>
+  );
+}
 
 function SageIcon({ themeId }: { themeId: string }) {
   if (themeId === "dusk-bloom") return <Flower size={24} color="var(--color-accent)" weight="duotone" />;

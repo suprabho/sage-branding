@@ -31,8 +31,8 @@ export default function Rationale() {
       {/* Color Palette */}
       <Section title="Color Palette">
         <div className="grid grid-cols-3 gap-3">
-          {theme.colors.map((color) => (
-            <div key={color.hex} className="flex flex-col items-center gap-2">
+          {theme.colors.map((color, i) => (
+            <div key={`${color.hex}-${i}`} className="flex flex-col items-center gap-2">
               <div
                 className="w-full aspect-square rounded-xl ring-1 ring-black/5"
                 style={{

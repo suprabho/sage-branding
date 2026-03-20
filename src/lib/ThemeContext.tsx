@@ -12,7 +12,7 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [themeId, setThemeId] = useState<ThemeId>("morning-light");
+  const [themeId, setThemeId] = useState<ThemeId>("grounded");
 
   useEffect(() => {
     document.body.setAttribute("data-theme", themeId);
