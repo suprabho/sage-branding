@@ -17,7 +17,7 @@ A **Next.js brand showcase site** that presents multiple design directions side-
 | **Morning Light** | Warm, grounded, organic | Fraunces | Plus Jakarta Sans | Sage Moss (#4A7C59) |
 | **Soft Blueprint** | Bold, engineered, technical | Space Mono | Inter Tight | Electric Blue (#2563EB) |
 | **Dusk & Bloom** | Deep, premium, intimate | Archivo (expanded) | Lexend Deca | Lilac (#A889CC) |
-| **Grounded** | Confident, editorial, direct | Lora | Plus Jakarta Sans | Deep Forest (#2D5A3D) |
+| **Grounded** | Confident, editorial, direct | Lora | Plus Jakarta Sans | Forest (#004f3b) |
 
 ---
 

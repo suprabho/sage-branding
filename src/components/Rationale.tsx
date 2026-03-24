@@ -5,29 +5,61 @@ import { useTheme } from "@/lib/ThemeContext";
 export default function Rationale() {
   const { theme } = useTheme();
 
+  const rationale = getRationale(theme.id);
+
   return (
     <div className="max-w-2xl mx-auto px-4 space-y-10">
       {/* Header */}
-      <div className="text-center">
-        <h2
-          className="text-3xl font-bold mb-2"
-          style={{ fontFamily: "var(--font-display)", color: "var(--color-neutral-dark)" }}
-        >
-          {theme.name}
-        </h2>
-        <p
-          className="text-base italic opacity-70"
-          style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
-        >
-          {theme.tagline}
-        </p>
-        <div className="flex items-center justify-center gap-4 mt-3 text-sm opacity-60">
-          <span style={{ fontFamily: "var(--font-body)" }}>{theme.emotionalRegister}</span>
-          <span>·</span>
-          <span style={{ fontFamily: "var(--font-body)" }}>{theme.brandAnalogy}</span>
+      <div
+        className="rounded-xl overflow-hidden"
+        style={{
+          background: "var(--color-sage-bubble)",
+          borderRadius: "var(--radius-card)",
+          boxShadow: "var(--shadow-card)",
+        }}
+      >
+        {/* Title block */}
+        <div className="px-8 pt-10 pb-6 text-center">
+          <h2
+            className="text-4xl font-bold mb-3"
+            style={{ fontFamily: "var(--font-display)", color: "var(--color-primary)" }}
+          >
+            {theme.name}
+          </h2>
+          <p
+            className="text-base italic opacity-70 max-w-sm mx-auto"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-secondary)" }}
+          >
+            {theme.tagline}
+          </p>
+          <div className="flex items-center justify-center gap-4 mt-4 text-sm opacity-50" style={{ color: "var(--color-secondary)"}}>
+            <span style={{ fontFamily: "var(--font-body)" }}>{theme.emotionalRegister}</span>
+            <span>·</span>
+            <span style={{ fontFamily: "var(--font-body)" }}>{theme.brandAnalogy}</span>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="mx-8">
+          <div className="h-px" style={{ background: "var(--color-neutral-dark)", opacity: 0.1 }} />
+        </div>
+
+        {/* Two-column magazine rationale */}
+        <div className="px-8 py-8 grid grid-cols-2 gap-6">
+          <p
+            className="text-sm leading-loose"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            {rationale.left}
+          </p>
+          <p
+            className="text-sm leading-loose"
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+          >
+            {rationale.right}
+          </p>
         </div>
       </div>
-
       {/* Color Palette */}
       <Section title="Color Palette">
         <div className="grid grid-cols-3 gap-3">
@@ -190,23 +222,6 @@ export default function Rationale() {
         </ul>
       </Section>
 
-      {/* Design Rationale Summary */}
-      <Section title="Design Rationale">
-        <div
-          className="p-6 rounded-xl"
-          style={{
-            background: "var(--color-sage-bubble)",
-            borderRadius: "var(--radius-card)",
-          }}
-        >
-          <p
-            className="text-sm leading-relaxed"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
-          >
-            {getRationale(theme.id)}
-          </p>
-        </div>
-      </Section>
     </div>
   );
 }
@@ -225,16 +240,24 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
-function getRationale(themeId: string): string {
-  const rationales: Record<string, string> = {
-    "morning-light":
-      "The Morning Light variation uses earthy greens and warm clay tones to create an environment that feels like a trusted, grounding presence — not a clinical tool. Fraunces, with its optical warmth, carries emotional weight in headings, making Sage's responses feel crafted, not generated. Plus Jakarta Sans keeps the UI scannable. Resource cards rely on shadow-only depth for a clean, organic feel. Together, the softened shadows and rounded corners create a space where an overwhelmed parent feels seen, safe, and supported — like a deep breath before the day begins.",
-    "soft-blueprint":
-      "The Soft Blueprint variation goes bold — Electric Blue is high-conviction trust, deeper and more saturated than typical app blues, saying 'we engineered this.' Space Mono as the display font is deliberately unexpected for a parenting app, bringing technical authority that signals engineering rigor. Inter Tight keeps the body text crisp and condensed. Lemon yellow runs throughout as a signature accent: header bars, marker-pen text highlights on key phrases, and solid offset shadows on CTAs and resource cards. A dotted grid pattern on the chat background reinforces the blueprint aesthetic. Coral injects warmth without softening the authority. The overall voice is unmistakably bold: mission control meets parenting co-pilot.",
-    "dusk-bloom":
-      "The Dusk & Bloom variation immerses users in a deep plum page environment that feels like opening a luxury wellness app at dusk. Cream text glows against the plum surface while Lilac accents create luminous highlights. The app header uses Deep Plum with an Amber brand mark, and the AI chat bubble features a Soft Lilac radial gradient with a subtle inner shadow for depth. Archivo's variable width axis drives dynamic typographic hierarchy — expanded for bold hero moments, condensed for dense labels, and standard for body copy. Lexend Deca provides effortless readability. The mockups retain their own internal dark aubergine aesthetic, preserving realistic previews within the branded plum shell. Shadow-only card depth, frosted-glass input bars, and amber glow CTAs create an atmosphere of premium self-care.",
-    grounded:
-      "The Grounded variation leads with deep, earthy tones — forest green darker than true sage, warm terracotta, and golden amber — anchored on clean white backgrounds that feel like a steady hand, not a nursery. Lora, a humanist serif, brings editorial conviction and presence to headlines: authored, not generated. Plus Jakarta Sans keeps the operational UI clean and fast. The terracotta left-border accent on AI response bubbles and resource cards creates a warm, deliberate visual signature. Clean line icons at regular weight feel intentional without being playful. Buttons are solid rounded rectangles — neither pills nor sharp squares. Generous white space and asymmetric hierarchy give each screen the feeling of one clear thought. The overall voice is unmistakable: trusted friend who also has their facts straight. Confident, warm, direct — like walking into the room with authority, not whispering reassurance from the corner. Inspired by the premium confidence of Nanit and Coterie.",
+function getRationale(themeId: string): { left: string; right: string } {
+  const rationales: Record<string, { left: string; right: string }> = {
+    "morning-light": {
+      left: "Earthy greens and warm clay tones create an environment that feels like a trusted, grounding presence — not a clinical tool. Fraunces carries emotional weight in headings, making responses feel crafted, not generated.",
+      right: "Resource cards rely on shadow-only depth for a clean, organic feel. Softened shadows and rounded corners create a space where a parent feels seen, safe, and supported — like a deep breath before the day begins.",
+    },
+    "soft-blueprint": {
+      left: "Electric Blue is high-conviction trust, deeper and bolder than typical app blues — saying 'we engineered this.' Space Mono brings unexpected technical authority, signaling engineering rigor in a parenting app.",
+      right: "Lemon yellow runs throughout as a signature accent: header bars, marker-pen highlights, and solid offset shadows. A dotted grid pattern reinforces the blueprint aesthetic. The voice is unmistakable: mission control meets parenting co-pilot.",
+    },
+    "dusk-bloom": {
+      left: "Deep plum immerses users in a premium atmosphere — like opening a luxury wellness app at dusk. Cream text glows against the surface while Lilac accents create luminous highlights.",
+      right: "Archivo's variable width axis drives dynamic typographic hierarchy — expanded for hero moments, condensed for dense labels. Frosted-glass input bars and amber glow CTAs create an atmosphere of premium self-care.",
+    },
+    grounded: {
+      left: "Deep, earthy tones — forest green, warm terracotta, and golden amber — anchored on clean white backgrounds that feel like a steady hand, not a nursery. Lora brings editorial conviction to headlines: authored, not generated.",
+      right: "Terracotta left-border accents create a warm, deliberate visual signature. Generous white space gives each screen the feeling of one clear thought. The voice is unmistakable: confident, warm, direct — like walking into the room with authority.",
+    },
   };
-  return rationales[themeId] || "";
+  return rationales[themeId] || { left: "", right: "" };
 }

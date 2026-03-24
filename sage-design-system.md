@@ -347,18 +347,18 @@ Archivo's variable width axis creates dynamic typographic hierarchy — expanded
 
 | Role | Name | Hex | Usage |
 |------|------|-----|-------|
-| **Primary** | Deep Forest | `#2D5A3D` | CTAs, active states, logo mark, AI avatar |
-| **Primary Light** | Forest Fern | `#4A7C5C` | Hover states, gradient fills |
-| **Secondary** | Terracotta | `#C0714B` | AI bubble border, resource card accent, highlights |
+| **Primary** | Forest | `#004f3b` | CTAs, active states, logo mark, AI avatar |
+| **Primary Light** | Forest Fern | `#009966` | Hover states, gradient fills |
+| **Secondary** | Terracotta | `#B5531E` | AI bubble border, resource card accent, highlights |
 | **Accent** | Golden Amber | `#D4943A` | Badges, warm emphasis, delight moments |
 | **Neutral Light** | Clean White | `#FFFFFF` | Page background — not beige, not pastel |
 | **Neutral Mid** | Cool Gray | `#E5E5E3` | Dividers, borders, secondary backgrounds |
-| **Neutral Dark** | Charcoal | `#1C2024` | Body text, headings |
+| **Neutral Dark** | Slate | `#1E3540` | Body text, headings |
 | **Surface** | Pure White | `#FFFFFF` | Cards, modals, chat bubbles (user) |
-| **Sage Bubble** | Sage Mist | `#EFF5F1` | AI response bubble background |
+| **Sage Bubble** | Bone | `#f6ede2` | AI response bubble background |
 
 **Color Philosophy:**
-Deep Forest anchors Sage in earthy authority — darker than true sage green, it communicates competence and trust without softness. Terracotta introduces warmth and human connection. Golden Amber signals clarity at key decision points. The palette sits on clean white — not beige, not pastels — to feel like a steady hand, not a nursery. No baby blues, no blush pinks. Inspired by the premium confidence of brands like Nanit and Coterie.
+Forest anchors Sage in earthy authority — a deep, grounded green that communicates competence and trust without softness. Terracotta introduces warmth and human connection. Golden Amber signals clarity at key decision points. Slate provides a rich, warm-dark text tone. Bone brings natural warmth to surfaces. The palette feels like a steady hand, not a nursery. No baby blues, no blush pinks. Inspired by the premium confidence of brands like Nanit and Coterie.
 
 ---
 
@@ -394,13 +394,13 @@ Lora is a humanist serif with presence and editorial conviction — it brings th
 
 | Context | Icon | Style Note |
 |---------|------|------------|
-| Sage identity | `Tree` | Regular weight, Deep Forest color |
+| Sage identity | `Tree` | Regular weight, Forest color |
 | Profile | `UserCircle` | Regular weight |
 | Save / Library | `BookmarkSimple` | Regular, fill on saved state |
 | Print | `Printer` | Regular |
 | Chat input | `PaperPlaneTilt` | Regular, in solid button |
 | Resource card | `FileText` | Regular |
-| Success | `CheckCircle` | Regular, Deep Forest |
+| Success | `CheckCircle` | Regular, Forest |
 | Warning | `WarningCircle` | Regular, Golden Amber |
 
 **Sizing:** 16px (inline), 18–20px (default), 24px (feature), 32px (hero/empty states)
@@ -436,11 +436,11 @@ Lora is a humanist serif with presence and editorial conviction — it brings th
 
 **Component Language:**
 - White backgrounds with generous margins — each screen feels like one clear thought
-- AI response bubble: Sage Mist background + terracotta left-border accent + italic serif opener
+- AI response bubble: Bone background + terracotta left-border accent + italic serif opener
 - Resource cards: subtle shadow + terracotta left border — clean, editorial hierarchy
 - Clean line icons at regular weight — slightly weighted, never playful
 - Buttons are solid rounded rectangles (10px radius) — intentional, not floaty
-- Chat input: white with subtle border + solid Deep Forest send button (rounded square)
+- Chat input: white with subtle border + solid Forest send button (rounded square)
 - Asymmetric visual hierarchy guides the eye with confidence, not decoration
 
 ---
@@ -450,7 +450,7 @@ Lora is a humanist serif with presence and editorial conviction — it brings th
 
 | | Variation 1 "Morning Light" | Variation 2 "Soft Blueprint" | Variation 3 "Dusk & Bloom" | Variation 4 "Grounded" |
 |---|---|---|---|---|
-| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` | Deep Forest `#2D5A3D` |
+| **Primary Color** | Sage Moss `#4A7C59` | Electric Blue `#2563EB` | Lilac on Deep Plum `#A889CC / #6B4F8C` | Forest `#004f3b` |
 | **Emotional Register** | Grounded, natural, calm | Engineered, bold, high-signal | Premium, deep, emotionally rich | Authoritative, approachable, steady |
 | **Display Font** | Fraunces (optical serif) | Space Mono (monospace) | Archivo (variable width) | Lora (humanist serif) |
 | **Body Font** | Plus Jakarta Sans | Inter Tight | Lexend Deca | Plus Jakarta Sans |

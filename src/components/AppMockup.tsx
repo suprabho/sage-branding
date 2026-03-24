@@ -15,6 +15,7 @@ import {
   Printer,
   Star,
   Heart,
+  ArrowClockwiseIcon,
 } from "@phosphor-icons/react";
 
 const FULL_TEXT =
@@ -40,11 +41,44 @@ function useGeneratedImage(basePath: string) {
 
 export default function AppMockup() {
   const { themeId, theme } = useTheme();
+  const [screen, setScreen] = useState<"home" | "chat">("home");
   const [visibleChars, setVisibleChars] = useState(0);
+  const [replayKey, setReplayKey] = useState(0);
   const [showCard, setShowCard] = useState(false);
   const lifestyleSrc = useGeneratedImage(`/generated/${themeId}-phone-lifestyle`);
 
+  // Reset to home screen on theme change
   useEffect(() => {
+    setScreen("home");
+    setVisibleChars(0);
+    setShowCard(false);
+  }, [themeId]);
+
+  const handleReplay = () => {
+    setScreen("home");
+    setVisibleChars(0);
+    setShowCard(false);
+    setTappedChip(false);
+    setReplayKey((k) => k + 1);
+  };
+
+  const [tappedChip, setTappedChip] = useState(false);
+
+  // Home screen timeline: show → tap chip → transition to chat
+  useEffect(() => {
+    if (screen !== "home") return;
+    setTappedChip(false);
+    const tapTimeout = setTimeout(() => setTappedChip(true), 2200);
+    const transitionTimeout = setTimeout(() => setScreen("chat"), 3200);
+    return () => {
+      clearTimeout(tapTimeout);
+      clearTimeout(transitionTimeout);
+    };
+  }, [screen, themeId, replayKey]);
+
+  // Chat typing animation (only when on chat screen)
+  useEffect(() => {
+    if (screen !== "chat") return;
     setVisibleChars(0);
     setShowCard(false);
 
@@ -59,13 +93,13 @@ export default function AppMockup() {
           setTimeout(() => setShowCard(true), 350);
         }
       }, 18);
-    }, 1400);
+    }, 3000);
 
     return () => {
       clearTimeout(timeoutId);
       if (intervalId) clearInterval(intervalId);
     };
-  }, [themeId]);
+  }, [screen]);
 
   return (
     <div className="flex justify-center">
@@ -75,9 +109,10 @@ export default function AppMockup() {
         style={{
           width: "460px",
           maxWidth: "100%",
-          aspectRatio: "3 / 4",
+          aspectRatio: "9 / 14",
           borderRadius: !!lifestyleSrc ? "24px" : "0",
           overflow: "hidden",
+          perspective: "1200px",
         }}
       >
         {/* Lifestyle Background Image */}
@@ -99,13 +134,17 @@ export default function AppMockup() {
             maxWidth: "80%",
             aspectRatio: "9 / 19.5",
             borderRadius: "36px",
-            border: `6px solid ${themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#1C2024" : "var(--color-neutral-dark)"}`,
+            border: `6px solid ${themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#1E3540" : "var(--color-neutral-dark)"}`,
             background: themeId === "dusk-bloom" ? "#2A1F33" : themeId === "grounded" ? "#FFFFFF" : "var(--color-neutral-light)",
             boxShadow: !!lifestyleSrc
               ? "0 20px 60px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.2)"
               : "var(--shadow-modal)",
             marginTop: !!lifestyleSrc ? "40px" : "0",
             zIndex: 1,
+            ...(themeId === "grounded" ? {
+              transform: "translateX(24px) translateY(24px) rotateX(9.5deg) rotateY(-30deg) rotateZ(17deg) scale(0.77)",
+              transformStyle: "preserve-3d" as const,
+            } : {}),
           }}
         >
         {/* App Header - floating pills for dusk-bloom */}
@@ -157,7 +196,6 @@ export default function AppMockup() {
             } : {}}
           >
             <div className="flex items-center gap-2">
-              <SageIcon themeId={themeId} />
               <h1
                 className="text-xl font-semibold"
                 style={{
@@ -177,70 +215,371 @@ export default function AppMockup() {
           </div>
         )}
 
-        {/* Chat Messages + Input Container */}
-        <div className={`flex-1 relative overflow-hidden ${themeId === "dusk-bloom" ? "-mt-14" : ""}`}>
-          <div
-            className="absolute inset-0 overflow-y-auto px-4 flex flex-col gap-4"
-            style={{
-              paddingTop: themeId === "dusk-bloom" ? "120px" : "16px",
-              paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") ? "72px" : "16px",
-              ...(themeId === "soft-blueprint" ? {
-                backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              } : {}),
-            }}
-          >
-            {/* Timestamp */}
-            <p
-              className="text-center text-xs opacity-50"
-              style={{
-                fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
-                color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
-                ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
-              }}
-            >
-              Today, 8:42 PM
-            </p>
+        {/* Screen Content */}
+        {screen === "home" ? (
+          <HomePage themeId={themeId} tappedChip={tappedChip} />
+        ) : (
+          <>
+            {/* Chat Messages + Input Container */}
+            <div className={`flex-1 relative overflow-hidden ${themeId === "dusk-bloom" ? "-mt-14" : ""}`}>
+              <div
+                className="absolute inset-0 overflow-y-auto px-4 flex flex-col gap-4"
+                style={{
+                  paddingTop: themeId === "dusk-bloom" ? "120px" : "16px",
+                  paddingBottom: (themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") ? "72px" : "16px",
+                  ...(themeId === "soft-blueprint" ? {
+                    backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
+                    backgroundSize: "20px 20px",
+                  } : {}),
+                }}
+              >
+                {/* Timestamp */}
+                <p
+                  className="text-center text-xs opacity-50"
+                  style={{
+                    fontFamily: themeId === "dusk-bloom" ? "var(--font-display)" : "var(--font-body)",
+                    color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
+                    ...(themeId === "dusk-bloom" ? { fontStretch: "75%", letterSpacing: "0.05em", textTransform: "uppercase" as const } : {}),
+                  }}
+                >
+                  Today, 8:42 PM
+                </p>
 
-            {/* User Bubble */}
-            <div
-              className="flex justify-end"
-              style={{ animation: "fadeInRight 0.25s var(--ease-default) 0.4s both" }}
-            >
-              <UserBubble themeId={themeId} />
-            </div>
+                {/* User Bubble */}
+                <div
+                  className="flex justify-end"
+                  style={{ animation: "fadeInRight 0.25s var(--ease-default) 0.4s both" }}
+                >
+                  <UserBubble themeId={themeId} />
+                </div>
 
-            {/* Sage Response */}
-            <div
-              className="flex gap-2.5 items-start"
-              style={{ animation: "fadeInLeft 0.35s var(--ease-default) 0.9s both" }}
-            >
-              <MascotAvatar themeId={themeId} />
-              <div className="flex flex-col gap-3 max-w-[85%]">
-                {/* Text Response */}
-                <AiBubble themeId={themeId} visibleChars={visibleChars} />
+                {/* Sage Response */}
+                <div
+                  className="flex flex-col gap-3"
+                  style={{ animation: "fadeInLeft 0.35s var(--ease-default) 0.9s both" }}
+                >
+                  {/* Loading state with mascot */}
+                  {visibleChars === 0 && (
+                    <div className="flex justify-center py-2">
+                      <div style={{ animation: "pulse 1.5s ease-in-out infinite" }}>
+                        <MascotAvatar themeId={themeId} size="lg" />
+                      </div>
+                    </div>
+                  )}
 
-                {/* Resource Card */}
-                {showCard && (
-                  <div style={{ animation: "fadeInUp 0.4s var(--ease-default) both" }}>
-                    <ResourceCard themeId={themeId} />
-                  </div>
-                )}
+                  {/* Text Response */}
+                  {visibleChars > 0 && (
+                    <>
+                      <AiBubble themeId={themeId} visibleChars={visibleChars} />
+
+                      {/* Resource Card */}
+                      {showCard && (
+                        <div style={{ animation: "fadeInUp 0.4s var(--ease-default) both" }}>
+                          <ResourceCard themeId={themeId} />
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* Floating Chat Input for soft-blueprint and dusk-bloom */}
-          {(themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") && (
-            <div className="absolute bottom-0 left-0 right-0">
-              <ChatInput themeId={themeId} />
+              {/* Floating Chat Input for soft-blueprint and dusk-bloom */}
+              {(themeId === "soft-blueprint" || themeId === "dusk-bloom" || themeId === "grounded") && (
+                <div className="absolute bottom-0 left-0 right-0">
+                  <ChatInput themeId={themeId} />
+                </div>
+              )}
+            </div>
+
+            {/* Chat Input for other themes */}
+            {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && themeId !== "grounded" && <ChatInput themeId={themeId} />}
+          </>
+        )}
+      </div>
+
+      {/* Replay Button */}
+      <button
+        onClick={handleReplay}
+        className="absolute bottom-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full transition-all opacity-50 hover:opacity-100 cursor-pointer"
+        style={{
+          fontFamily: "var(--font-body)",
+          color: themeId === "dusk-bloom" ? "#D9D0DC" : "var(--color-neutral-dark)",
+          background: themeId === "dusk-bloom" ? "rgba(42, 31, 51, 0.6)" : "rgba(255,255,255,0.7)",
+          backdropFilter: "blur(8px)",
+          border: `1px solid ${themeId === "dusk-bloom" ? "rgba(164, 137, 204, 0.3)" : "var(--color-neutral-mid)"}`,
+        }}
+        title="Replay animation"
+      >
+        <ArrowClockwiseIcon size={14} />
+        Replay
+      </button>
+
+      </div>
+    </div>
+  );
+}
+
+/* ============ HOME PAGE ============ */
+
+const SUGGESTIONS = [
+  "Bedtime won\u2019t stick",
+  "Picky eater help",
+  "Sibling rivalry",
+];
+
+function HomePage({ themeId, tappedChip }: { themeId: string; tappedChip: boolean }) {
+  const mascotSrc = useGeneratedImage(`/generated/${themeId}-mascot`);
+
+  if (themeId === "dusk-bloom") {
+    return (
+      <div
+        className="flex-1 flex flex-col items-center justify-center px-6 -mt-14"
+        style={{ animation: "fadeInUp 0.6s var(--ease-default) both" }}
+      >
+        {/* Mascot */}
+        <div
+          className="w-24 h-24 rounded-full overflow-hidden mb-4"
+          style={{
+            boxShadow: "0 8px 32px rgba(107, 79, 140, 0.3)",
+            border: "3px solid rgba(232, 168, 56, 0.4)",
+          }}
+        >
+          {mascotSrc ? (
+            <img src={mascotSrc} alt="Sage" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: "var(--color-accent)" }}>
+              <Flower size={40} color="white" weight="duotone" />
             </div>
           )}
         </div>
-
-        {/* Chat Input for other themes */}
-        {themeId !== "soft-blueprint" && themeId !== "dusk-bloom" && themeId !== "grounded" && <ChatInput themeId={themeId} />}
+        {/* Greeting */}
+        <h2
+          className="text-lg font-semibold mb-1"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--color-accent)",
+            fontStretch: "115%",
+          }}
+        >
+          Good evening, Sarah
+        </h2>
+        <p
+          className="text-xs text-center mb-6 opacity-60"
+          style={{ fontFamily: "var(--font-body)", color: "#D9D0DC" }}
+        >
+          What&apos;s on your mind tonight?
+        </p>
+        {/* Suggestion chips */}
+        <div className="flex flex-wrap gap-2 justify-center">
+          {SUGGESTIONS.map((s, i) => (
+            <div
+              key={s}
+              className="px-3 py-1.5 text-xs"
+              style={{
+                fontFamily: "var(--font-body)",
+                color: "#D9D0DC",
+                background: tappedChip && i === 0 ? "rgba(232, 168, 56, 0.25)" : "rgba(80, 58, 107, 0.6)",
+                backdropFilter: "blur(8px)",
+                borderRadius: "99px",
+                border: tappedChip && i === 0 ? "1px solid rgba(232, 168, 56, 0.6)" : "1px solid rgba(164, 137, 204, 0.3)",
+                ...(tappedChip && i === 0 ? { animation: "chipTap 0.4s var(--ease-default) both" } : {}),
+              }}
+            >
+              {s}
+            </div>
+          ))}
+        </div>
       </div>
+    );
+  }
+
+  if (themeId === "soft-blueprint") {
+    return (
+      <div
+        className="flex-1 flex flex-col items-center justify-center px-6"
+        style={{
+          animation: "fadeInUp 0.5s var(--ease-default) both",
+          backgroundImage: "radial-gradient(circle, var(--color-neutral-mid) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      >
+        {/* Mascot */}
+        <div
+          className="w-20 h-20 overflow-hidden mb-4"
+          style={{
+            borderRadius: "8px",
+            border: "2px solid var(--color-primary)",
+            boxShadow: "4px 4px 0px var(--color-accent)",
+          }}
+        >
+          {mascotSrc ? (
+            <img src={mascotSrc} alt="Sage" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: "var(--color-primary)" }}>
+              <Brain size={36} color="white" weight="regular" />
+            </div>
+          )}
+        </div>
+        {/* Greeting */}
+        <h2
+          className="text-base font-bold mb-1 uppercase tracking-wider"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--color-neutral-dark)",
+          }}
+        >
+          Hey, Sarah
+        </h2>
+        <p
+          className="text-xs text-center mb-5 opacity-50"
+          style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+        >
+          What are we solving today?
+        </p>
+        {/* Suggestion chips */}
+        <div className="flex flex-wrap gap-2 justify-center">
+          {SUGGESTIONS.map((s, i) => (
+            <div
+              key={s}
+              className="px-3 py-1.5 text-xs font-medium uppercase tracking-wide"
+              style={{
+                fontFamily: "var(--font-body)",
+                color: tappedChip && i === 0 ? "white" : "var(--color-primary)",
+                background: tappedChip && i === 0 ? "var(--color-primary)" : "var(--color-surface)",
+                borderRadius: "4px",
+                border: "1.5px solid var(--color-primary)",
+                ...(tappedChip && i === 0 ? { animation: "chipTap 0.4s var(--ease-default) both" } : {}),
+              }}
+            >
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (themeId === "grounded") {
+    return (
+      <div
+        className="flex-1 flex flex-col items-center justify-center px-6"
+        style={{ animation: "fadeInUp 0.5s var(--ease-default) both" }}
+      >
+        {/* Mascot */}
+        <div
+          className="w-22 h-22 overflow-hidden mb-4"
+          style={{
+            width: "88px",
+            height: "88px",
+            borderRadius: "16px",
+            boxShadow: "0 4px 16px rgba(28, 32, 36, 0.1)",
+            border: "2px solid #E5E5E3",
+          }}
+        >
+          {mascotSrc ? (
+            <img src={mascotSrc} alt="Sage" className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: "#004f3b" }}>
+              <Tree size={36} color="white" weight="regular" />
+            </div>
+          )}
+        </div>
+        {/* Greeting */}
+        <h2
+          className="text-lg font-semibold mb-1"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "#1E3540",
+          }}
+        >
+          Hi Sarah, welcome back
+        </h2>
+        <p
+          className="text-xs text-center mb-5 opacity-50"
+          style={{ fontFamily: "var(--font-body)", color: "#1E3540" }}
+        >
+          How can I help tonight?
+        </p>
+        {/* Suggestion chips */}
+        <div className="flex flex-wrap gap-2 justify-center">
+          {SUGGESTIONS.map((s, i) => (
+            <div
+              key={s}
+              className="px-3 py-1.5 text-xs font-medium"
+              style={{
+                fontFamily: "var(--font-body)",
+                color: tappedChip && i === 0 ? "white" : "#004f3b",
+                background: tappedChip && i === 0 ? "#004f3b" : "#F5F0EB",
+                borderRadius: "10px",
+                border: tappedChip && i === 0 ? "1px solid #004f3b" : "1px solid #E5E5E3",
+                ...(tappedChip && i === 0 ? { animation: "chipTap 0.4s var(--ease-default) both" } : {}),
+              }}
+            >
+              {s}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Morning Light
+  return (
+    <div
+      className="flex-1 flex flex-col items-center justify-center px-6"
+      style={{ animation: "fadeInUp 0.5s var(--ease-default) both" }}
+    >
+      {/* Mascot */}
+      <div
+        className="w-24 h-24 rounded-full overflow-hidden mb-4"
+        style={{
+          boxShadow: "var(--shadow-card)",
+          border: "3px solid var(--color-neutral-mid)",
+        }}
+      >
+        {mascotSrc ? (
+          <img src={mascotSrc} alt="Sage" className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center" style={{ background: "var(--color-primary)" }}>
+            <Leaf size={40} color="white" weight="fill" />
+          </div>
+        )}
+      </div>
+      {/* Greeting */}
+      <h2
+        className="text-lg font-semibold mb-1"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--color-neutral-dark)",
+        }}
+      >
+        Good evening, Sarah
+      </h2>
+      <p
+        className="text-xs text-center mb-5 opacity-50"
+        style={{ fontFamily: "var(--font-body)", color: "var(--color-neutral-dark)" }}
+      >
+        I&apos;m here whenever you need me.
+      </p>
+      {/* Suggestion chips */}
+      <div className="flex flex-wrap gap-2 justify-center">
+        {SUGGESTIONS.map((s, i) => (
+          <div
+            key={s}
+            className="px-3 py-1.5 text-xs"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: tappedChip && i === 0 ? "white" : "var(--color-neutral-dark)",
+              background: tappedChip && i === 0 ? "var(--color-primary)" : "var(--color-surface)",
+              borderRadius: "12px",
+              border: tappedChip && i === 0 ? "1px solid var(--color-primary)" : "1px solid var(--color-neutral-mid)",
+              boxShadow: "var(--shadow-card)",
+              ...(tappedChip && i === 0 ? { animation: "chipTap 0.4s var(--ease-default) both" } : {}),
+            }}
+          >
+            {s}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -275,7 +614,7 @@ function UserBubble({ themeId }: { themeId: string }) {
       <div
         className="max-w-[80%] px-4 py-3 text-sm"
         style={{
-          background: "#2D5A3D",
+          background: "var(--color-primary)",
           color: "#FFFFFF",
           fontFamily: "var(--font-body)",
           borderRadius: "14px 14px 4px 14px",
@@ -341,17 +680,15 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
     // Grounded: editorial serif opener, clean body, subtle left border
     return (
       <div
-        className="px-4 py-3 text-sm leading-relaxed"
+        className="text-sm mb-2 leading-relaxed"
         style={{
-          background: "#EFF5F1",
-          color: "#1C2024",
+          color: "#1E3540",
           fontFamily: "var(--font-body)",
           borderRadius: "14px 14px 14px 4px",
-          borderLeft: "3px solid #C0714B",
           minHeight: "2.5rem",
         }}
       >
-        <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 500 }}>
+        <span style={{ fontFamily: "var(--font-display)", fontStyle: "italic", fontWeight: 500, }}>
           {FULL_TEXT.slice(0, Math.min(visibleChars, ITALIC_SPLIT))}
         </span>
         {visibleChars > ITALIC_SPLIT && FULL_TEXT.slice(ITALIC_SPLIT, visibleChars)}
@@ -449,14 +786,14 @@ function ChatInput({ themeId }: { themeId: string }) {
             className="flex-1 bg-transparent outline-none text-sm placeholder:opacity-40"
             style={{
               fontFamily: "var(--font-body)",
-              color: "#1C2024",
+              color: "#1E3540",
             }}
             readOnly
           />
           <button
             className="w-9 h-9 flex items-center justify-center shrink-0"
             style={{
-              background: "#2D5A3D",
+              background: "#004f3b",
               borderRadius: "8px",
             }}
           >
@@ -607,7 +944,6 @@ function ResourceCard({ themeId }: { themeId: string }) {
         style={{
           background: "#FFFFFF",
           borderRadius: "12px",
-          borderLeft: "3px solid #C0714B",
           boxShadow: "0 1px 8px rgba(28, 32, 36, 0.06)",
         }}
       >
@@ -619,19 +955,19 @@ function ResourceCard({ themeId }: { themeId: string }) {
         <div className="p-3">
           <p
             className="text-[10px] font-medium uppercase tracking-widest mb-1"
-            style={{ fontFamily: "var(--font-body)", color: "#C0714B" }}
+            style={{ fontFamily: "var(--font-body)", color: "#B5531E" }}
           >
             Sleep Guide
           </p>
           <p
             className="text-sm font-semibold leading-tight"
-            style={{ fontFamily: "var(--font-display)", color: "#1C2024" }}
+            style={{ fontFamily: "var(--font-display)", color: "#1E3540" }}
           >
             Dinosaur Bedtime Routine Chart
           </p>
           <p
             className="text-xs mt-0.5 opacity-50"
-            style={{ fontFamily: "var(--font-body)", color: "#1C2024" }}
+            style={{ fontFamily: "var(--font-body)", color: "#1E3540" }}
           >
             Custom activity chart for Ollie
           </p>
@@ -807,20 +1143,30 @@ function ResourceCard({ themeId }: { themeId: string }) {
 
 /* ============ HELPER COMPONENTS ============ */
 
-function MascotAvatar({ themeId }: { themeId: string }) {
-  const mascotSrc = useGeneratedImage(`/generated/${themeId}-mascot`);
+const MASCOT_IMAGES: Record<string, string> = {
+  "dusk-bloom": "/generated/dusk-bloom-mascot.jpg",
+  "soft-blueprint": "/generated/soft-blueprint-mascot.jpg",
+  "grounded": "/generated/grounded-mascot.jpg",
+};
 
-  if (mascotSrc) {
+function MascotAvatar({ themeId, size = "sm" }: { themeId: string; size?: "sm" | "lg" }) {
+  const src = MASCOT_IMAGES[themeId];
+  const isLg = size === "lg";
+  const sizeClass = isLg ? "" : "w-8 h-8";
+  const sizeStyle = isLg ? { width: "60%", aspectRatio: "1" } : {};
+
+  if (src) {
     return (
       <div
-        className="w-8 h-8 shrink-0 mt-1 overflow-hidden"
+        className={`${sizeClass} shrink-0 ${isLg ? "" : "mt-1"} overflow-hidden`}
         style={{
-          borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
-          boxShadow: "0 1px 4px rgba(0,0,0,0.1)",
+          ...sizeStyle,
+          borderRadius: themeId === "soft-blueprint" ? (isLg ? "12px" : "4px") : themeId === "grounded" ? (isLg ? "20px" : "8px") : "50%",
+          boxShadow: isLg ? "0 8px 32px rgba(0,0,0,0.15)" : "0 1px 4px rgba(0,0,0,0.1)",
         }}
       >
         <img
-          src={mascotSrc}
+          src={src}
           alt="Sage"
           className="w-full h-full object-cover"
         />
@@ -828,13 +1174,13 @@ function MascotAvatar({ themeId }: { themeId: string }) {
     );
   }
 
-  // Fallback: original icon avatar
   return (
     <div
-      className="w-8 h-8 flex items-center justify-center shrink-0 mt-1"
+      className={`${sizeClass} flex items-center justify-center shrink-0 ${isLg ? "" : "mt-1"}`}
       style={{
+        ...sizeStyle,
         background: themeId === "dusk-bloom" ? "var(--color-accent)" : "var(--color-primary)",
-        borderRadius: themeId === "soft-blueprint" ? "4px" : themeId === "grounded" ? "8px" : "50%",
+        borderRadius: themeId === "soft-blueprint" ? (isLg ? "12px" : "4px") : themeId === "grounded" ? (isLg ? "20px" : "8px") : "50%",
       }}
     >
       <SageIconSmall themeId={themeId} />

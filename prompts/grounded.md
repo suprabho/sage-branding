@@ -7,10 +7,10 @@
 ## Logo Concepts
 
 **Primary Wordmark:**
-"Sage" set in Lora, weight 600, mixed case (not all-caps). Natural letterspacing. The capitalized "S" has slightly more weight — editorial, authoritative. Color: Deep Forest (#2D5A3D) on white. Clean, no embellishments. The serif carries the personality — it doesn't need decoration.
+"Sage" set in Lora, weight 600, mixed case (not all-caps). Natural letterspacing. The capitalized "S" has slightly more weight — editorial, authoritative. Color: Forest (#004f3b) on white. Clean, no embellishments. The serif carries the personality — it doesn't need decoration.
 
 **Icon Mark:**
-A stylized tree — trunk as a single vertical line, canopy as a simple rounded triangle or organic dome shape. Clean, reduced, geometric but not rigid. 2px stroke weight, Deep Forest (#2D5A3D). Feels like a quality mark — could be stamped on paper. Works as a favicon, app icon, and watermark.
+A stylized tree — trunk as a single vertical line, canopy as a simple rounded triangle or organic dome shape. Clean, reduced, geometric but not rigid. 2px stroke weight, Forest (#004f3b). Feels like a quality mark — could be stamped on paper. Works as a favicon, app icon, and watermark.
 
 **Logo Animation:**
 The tree icon draws from bottom to top — trunk line extends upward over 300ms, then the canopy shape draws in a single stroke over 400ms, both with ease-out timing. The wordmark fades in simultaneously from 0 opacity over 500ms with a subtle 4px upward translate. Total: ~700ms. Feels like quiet confidence — steady, unhurried, grounded. No bounce, no overshoot.
@@ -20,16 +20,16 @@ The tree icon draws from bottom to top — trunk line extends upward over 300ms,
 ## Social Media Posts
 
 **Instagram Grid Post — Parenting Tip:**
-Clean white (#FFFFFF) background. Generous margins (80px+). Lora serif headline in Charcoal (#1C2024): "Your instincts are data too." Thin terracotta (#C0714B) horizontal rule (2px, 40px wide) below the headline. Body text in Plus Jakarta Sans, Charcoal at 70% opacity. Small Deep Forest tree icon bottom-right. Feels like a page from an editorial magazine. 1080×1080px.
+Clean white (#FFFFFF) background. Generous margins (80px+). Lora serif headline in Slate (#1E3540): "Your instincts are data too." Thin terracotta (#B5531E) horizontal rule (2px, 40px wide) below the headline. Body text in Plus Jakarta Sans, Slate at 70% opacity. Small Forest tree icon bottom-right. Feels like a page from an editorial magazine. 1080×1080px.
 
 **Instagram Story — Quick Tip:**
-White background. Top third: Lora italic pull-quote in Charcoal, large (36px). Middle: thin terracotta divider. Lower third: Plus Jakarta Sans body tip in Charcoal at 80%. Bottom: Deep Forest CTA button with rounded corners (10px): "Read more on Sage." Generous whitespace throughout. No decorative elements — typography and space do the work. 1080×1920px.
+White background. Top third: Lora italic pull-quote in Slate, large (36px). Middle: thin terracotta divider. Lower third: Plus Jakarta Sans body tip in Slate at 80%. Bottom: Forest CTA button with rounded corners (10px): "Read more on Sage." Generous whitespace throughout. No decorative elements — typography and space do the work. 1080×1920px.
 
 **Twitter/X Header:**
-White background. Left-aligned: Lora wordmark "Sage" in Deep Forest. Below: "A smarter way to parent." in Plus Jakarta Sans, Charcoal at 50% opacity. Right side: a single, high-quality photograph of a parent and child — real, unposed, cropped to a rounded rectangle (12px). Terracotta accent line between text and image. 1500×500px.
+White background. Left-aligned: Lora wordmark "Sage" in Forest. Below: "A smarter way to parent." in Plus Jakarta Sans, Slate at 50% opacity. Right side: a single, high-quality photograph of a parent and child — real, unposed, cropped to a rounded rectangle (12px). Terracotta accent line between text and image. 1500×500px.
 
 **Facebook Cover:**
-White background with a subtle Sage Mist (#EFF5F1) wash in the center. Centered Sage wordmark in Lora. Tagline below in Plus Jakarta Sans. No icons, no patterns — the typography breathes. 820×312px.
+White background with a subtle Bone (#f6ede2) wash in the center. Centered Sage wordmark in Lora. Tagline below in Plus Jakarta Sans. No icons, no patterns — the typography breathes. 820×312px.
 
 ---
 
@@ -37,24 +37,24 @@ White background with a subtle Sage Mist (#EFF5F1) wash in the center. Centered 
 
 **Hero Section:**
 Full-width. Clean white background. Asymmetric layout — text left, image right. Generous padding (120px top, 140px bottom).
-- Eyebrow: "MEET SAGE" in Plus Jakarta Sans, 12px uppercase, tracking 0.1em, Terracotta (#C0714B)
-- Headline: "Parent with confidence, every day." in Lora, 52px/700, Charcoal. Line break after "confidence," — deliberate pacing
-- Subhead: Plus Jakarta Sans, 18px/400, Charcoal at 60%. Two sentences max.
-- CTA: "Chat with Sage — It's Free" in Plus Jakarta Sans 16px/600, white on Deep Forest (#2D5A3D), 10px radius, subtle shadow (0 2px 8px rgba(45,90,61,0.2))
+- Eyebrow: "MEET SAGE" in Plus Jakarta Sans, 12px uppercase, tracking 0.1em, Terracotta (#B5531E)
+- Headline: "Parent with confidence, every day." in Lora, 52px/700, Slate. Line break after "confidence," — deliberate pacing
+- Subhead: Plus Jakarta Sans, 18px/400, Slate at 60%. Two sentences max.
+- CTA: "Chat with Sage — It's Free" in Plus Jakarta Sans 16px/600, white on Forest (#004f3b), 10px radius, subtle shadow (0 2px 8px rgba(45,90,61,0.2))
 - Right side: real photograph of a parent in a quiet moment — warm, natural light, cropped to a tall rectangle with 12px radius. Subtle shadow. No phone mockup in hero — the human is the focus.
 
 **Trust Bar:**
-Thin strip. Sage Mist (#EFF5F1) background. "Trusted by 10,000+ parents" or press logos. Plus Jakarta Sans, 14px, centered. Terracotta top border (1px).
+Thin strip. Bone (#f6ede2) background. "Trusted by 10,000+ parents" or press logos. Plus Jakarta Sans, 14px, centered. Terracotta top border (1px).
 
 **Feature Section:**
 White background. Asymmetric 2-column layout (not a grid of 3). Each feature:
-- Left: Phosphor regular icon, 28px, Deep Forest
+- Left: Phosphor regular icon, 28px, Forest
 - Right: Lora heading (22px/600) + Plus Jakarta Sans body (16px/400)
 - Thin Cool Gray divider between features
 - No cards, no shadows — open, editorial layout. Content breathes.
 
 **Testimonial Section:**
-White background, generous padding. Single large quote in Lora italic, 28px, Charcoal. Left-aligned, not centered. A 3px terracotta vertical bar on the left edge of the quote (like a pull-quote in a magazine). Attribution in Plus Jakarta Sans, 14px, Charcoal at 50%.
+White background, generous padding. Single large quote in Lora italic, 28px, Slate. Left-aligned, not centered. A 3px terracotta vertical bar on the left edge of the quote (like a pull-quote in a magazine). Attribution in Plus Jakarta Sans, 14px, Slate at 50%.
 
 **Photography Section:**
 Full-bleed image — a real, unposed moment. No text overlay. Just the image, edge to edge. 60px vertical margin above and below. This section says "we trust our imagery to speak for itself."
@@ -70,17 +70,17 @@ The Grounded direction deliberately avoids decorative patterns. White space IS t
 Thin Cool Gray (#E5E5E3) lines at 1px, used as section dividers. Never decorative — always functional. Like the rules in a well-typeset book.
 
 **Terracotta Accent Line:**
-A thin horizontal or vertical line in Terracotta (#C0714B), 2–3px wide, 30–60px long. Used sparingly as a visual signature — below headlines, beside pull-quotes, above footer. This IS the pattern language: one confident stroke.
+A thin horizontal or vertical line in Terracotta (#B5531E), 2–3px wide, 30–60px long. Used sparingly as a visual signature — below headlines, beside pull-quotes, above footer. This IS the pattern language: one confident stroke.
 
-**Sage Mist Wash:**
-Subtle Sage Mist (#EFF5F1) gradient wash — a soft, barely-visible green tint that warms the white background in hero or feature sections. Radial, centered, 10–15% opacity. Not a pattern — an atmosphere.
+**Bone Wash:**
+Subtle Bone (#f6ede2) gradient wash — a soft, barely-visible green tint that warms the white background in hero or feature sections. Radial, centered, 10–15% opacity. Not a pattern — an atmosphere.
 
 ---
 
 ## Icons
 
 **Style Direction:**
-Phosphor Icons, regular variant. Deep Forest (#2D5A3D) default color. Clean 2px stroke weight. Slightly weighted feel — not hairline, not heavy. Never duotone, never filled by default. Fill only on explicit active/selected states. The icons feel like they were drawn with a quality pen.
+Phosphor Icons, regular variant. Forest (#004f3b) default color. Clean 2px stroke weight. Slightly weighted feel — not hairline, not heavy. Never duotone, never filled by default. Fill only on explicit active/selected states. The icons feel like they were drawn with a quality pen.
 
 **Custom Icon Set (if extending beyond Phosphor):**
 24px grid, 2px stroke, rounded caps and joins. Not perfectly geometric — slight humanist curves (think: Lora's influence on icon drawing). Suggested custom icons: Tree (brand mark), Compass (guidance), Milestone stone, Open book, Conversation. Each icon should feel like it could appear in an editorial illustration.
@@ -117,7 +117,7 @@ This is the most critical element of the Grounded brand. Real, unposed photograp
 
 **Illustration Direction (if used):**
 Bold, reduced forms with intentional imperfection. Think linocut, woodblock, or risograph printing aesthetic. NOT soft watercolor, NOT rounded cartoon characters.
-- Palette: Deep Forest, Terracotta, Golden Amber, Charcoal
+- Palette: Forest, Terracotta, Golden Amber, Slate
 - Subjects: parent-child silhouettes, simple objects (trees, houses, hands), abstract geometric forms
 - Lines: slightly rough, hand-pressed quality. Visible texture.
 - Use sparingly: illustration supports photography, never replaces it
