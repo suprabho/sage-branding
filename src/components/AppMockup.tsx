@@ -46,6 +46,7 @@ export default function AppMockup() {
   const [replayKey, setReplayKey] = useState(0);
   const [showCard, setShowCard] = useState(false);
   const lifestyleSrc = useGeneratedImage(`/generated/${themeId}-phone-lifestyle`);
+  const [showAvatar, setShowAvatar] = useState(false);
 
   // Reset to home screen on theme change
   useEffect(() => {
@@ -81,6 +82,12 @@ export default function AppMockup() {
     if (screen !== "chat") return;
     setVisibleChars(0);
     setShowCard(false);
+    setShowAvatar(false);
+
+    // Show avatar first (after AI section fades in)
+    const avatarTimeoutId = setTimeout(() => {
+      setShowAvatar(true);
+    }, 1000);
 
     let intervalId: ReturnType<typeof setInterval> | null = null;
     const timeoutId = setTimeout(() => {
@@ -90,12 +97,14 @@ export default function AppMockup() {
         setVisibleChars(i);
         if (i >= FULL_TEXT.length) {
           clearInterval(intervalId!);
+          setShowAvatar(false); // Hide avatar when text finishes
           setTimeout(() => setShowCard(true), 350);
         }
       }, 18);
     }, 3000);
 
     return () => {
+      clearTimeout(avatarTimeoutId);
       clearTimeout(timeoutId);
       if (intervalId) clearInterval(intervalId);
     };
@@ -725,8 +734,8 @@ function AiBubble({ themeId, visibleChars }: { themeId: string; visibleChars: nu
       <div
         className="px-5 py-3.5 text-sm leading-relaxed"
         style={{
-          background: "radial-gradient(ellipse at 0% 0%, #C4ADDE 0%, #F2EDF8 50%)",
-          color: "#2A1F33",
+          background: "radial-gradient(ellipse at 0% 0%, #c4adde03 0%, #f2edf80f 50%)",
+          color: "#ffffffff",
           fontFamily: "var(--font-body)",
           borderRadius: "8px 30px 30px 30px",
           boxShadow: "inset 0 2px 8px rgba(107, 79, 140, 0.1), 0 4px 20px rgba(107, 79, 140, 0.1)",
@@ -1050,7 +1059,7 @@ function ResourceCard({ themeId }: { themeId: string }) {
       <div
         className="overflow-hidden"
         style={{
-          background: "#FEFCFA",
+          background: "#fefcfa1e",
           borderRadius: "28px",
           boxShadow: "0 8px 32px rgba(107, 79, 140, 0.18)",
         }}
@@ -1065,20 +1074,20 @@ function ResourceCard({ themeId }: { themeId: string }) {
           <div
             className="absolute inset-x-0 bottom-0 h-20"
             style={{
-              background: "linear-gradient(to top, #F2EDF8 0%, transparent 100%)",
+              background: "linear-gradient(to top, #f2edf818 0%, transparent 100%)",
             }}
           />
         </div>
         <div className="px-4 pt-1 pb-2">
           <p
             className="text-sm font-semibold leading-tight"
-            style={{ fontFamily: "var(--font-display)", color: "#2A1F33", fontStretch: "110%" }}
+            style={{ fontFamily: "var(--font-display)", color: "#F6F2EF", fontStretch: "110%" }}
           >
             Dinosaur Bedtime Routine Chart
           </p>
           <p
             className="text-xs mt-0.5 opacity-50"
-            style={{ fontFamily: "var(--font-display)", color: "#2A1F33", fontStretch: "85%" }}
+            style={{ fontFamily: "var(--font-display)", color: "#F6F2EF", fontStretch: "85%" }}
           >
             Custom activity chart for Ollie
           </p>
@@ -1086,7 +1095,7 @@ function ResourceCard({ themeId }: { themeId: string }) {
         <div
           className="flex px-3 py-2.5 gap-2 mx-2 mb-2"
           style={{
-            background: "rgba(242, 237, 248, 0.7)",
+            background: "#2a1f333f",
             backdropFilter: "blur(8px)",
             borderRadius: "99px",
           }}
@@ -1223,7 +1232,7 @@ function ActionButtonIcon({ icon }: { icon: React.ReactNode }) {
   return (
     <button
       className="flex-1 flex items-center justify-center py-1.5 hover:opacity-80 transition-opacity cursor-pointer"
-      style={{ color: "#6B4F8C" }}
+      style={{ color: "#C4ADDE" }}
     >
       {icon}
     </button>
