@@ -247,7 +247,6 @@ function BlueprintEmail() {
           style={{ background: "#FFD93D" }}
         >
           <div className="flex items-center gap-2">
-            <Brain size={20} color="#2563EB" weight="regular" />
             <span
               className="text-sm font-bold uppercase tracking-widest"
               style={{ fontFamily: "var(--font-display)", color: "#0F172A", letterSpacing: "0.1em" }}

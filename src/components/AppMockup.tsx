@@ -1155,7 +1155,7 @@ function ResourceCard({ themeId }: { themeId: string }) {
 const MASCOT_IMAGES: Record<string, string> = {
   "dusk-bloom": "/generated/dusk-bloom-mascot.jpg",
   "soft-blueprint": "/generated/soft-blueprint-mascot.jpg",
-  "grounded": "/generated/grounded-mascot.jpg",
+  "grounded": "/generated/grounded-mascot.png",
 };
 
 function MascotAvatar({ themeId, size = "sm" }: { themeId: string; size?: "sm" | "lg" }) {
@@ -1171,7 +1171,6 @@ function MascotAvatar({ themeId, size = "sm" }: { themeId: string; size?: "sm" |
         style={{
           ...sizeStyle,
           borderRadius: themeId === "soft-blueprint" ? (isLg ? "12px" : "4px") : themeId === "grounded" ? (isLg ? "20px" : "8px") : "50%",
-          boxShadow: isLg ? "0 8px 32px rgba(0,0,0,0.15)" : "0 1px 4px rgba(0,0,0,0.1)",
         }}
       >
         <img
