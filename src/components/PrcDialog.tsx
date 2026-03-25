@@ -2,56 +2,48 @@
 
 import { useState } from "react";
 import { useTheme } from "@/lib/ThemeContext";
-import { X, CaretDown, Book, Users, MathOperations, Palette, Eye, EyeSlash } from "@phosphor-icons/react";
+import { X } from "@phosphor-icons/react";
 
-const AGE_OPTIONS = ["2-3 years", "4-5 years", "6-7 years", "8-10 years"];
+const AGES = [2, 3, 4, 5];
 
-const FOCUS_AREAS = [
-  { id: "reading", label: "Reading", emoji: "\uD83D\uDCDA", icon: Book },
-  { id: "emotions", label: "Big Emotions", emoji: "\uD83E\uDDD1\u200D\uD83E\uDDD1\u200D\uD83E\uDDD2", icon: Users },
-  { id: "math", label: "Math", emoji: "\uD83D\uDD22", icon: MathOperations },
-  { id: "creativity", label: "Creativity", emoji: "\uD83C\uDFA8", icon: Palette },
-];
+/* Shared leaf SVG path */
+const LeafPath = ({ fill = "#FFFFFF" }: { fill?: string }) => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-3s4.71-4.44 10.29-5c0 0-3 4-7 6l1 1c4.5-2.5 8-7 8-7s3-5 0-10c-1-2-2.82-2-2.82-2S19 4 17 8z" fill={fill} />
+  </svg>
+);
 
 export default function PrcDialog() {
   const { themeId } = useTheme();
-  const [selectedAge, setSelectedAge] = useState("");
-  const [ageOpen, setAgeOpen] = useState(false);
-  const [selectedFocus, setSelectedFocus] = useState("");
-  const [email, setEmail] = useState("");
-  const [emailVisible, setEmailVisible] = useState(false);
+  const [screen, setScreen] = useState<"assessment" | "coming-soon">("assessment");
+  const handleAgeClick = () => setScreen("coming-soon");
+  const handleReset = () => setScreen("assessment");
 
-  if (themeId === "grounded") return <GroundedDialog {...{ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }} />;
-  if (themeId === "soft-blueprint") return <BlueprintDialog {...{ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }} />;
-  if (themeId === "dusk-bloom") return <DuskBloomDialog {...{ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }} />;
+  if (themeId === "grounded") return <GroundedDialog screen={screen} onAgeClick={handleAgeClick} onClose={handleReset} />;
+  if (themeId === "soft-blueprint") return <BlueprintDialog screen={screen} onAgeClick={handleAgeClick} onClose={handleReset} />;
+  if (themeId === "dusk-bloom") return <DuskBloomDialog screen={screen} onAgeClick={handleAgeClick} onClose={handleReset} />;
 
-  return <GroundedDialog {...{ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }} />;
+  return <GroundedDialog screen={screen} onAgeClick={handleAgeClick} onClose={handleReset} />;
 }
 
 interface DialogProps {
-  selectedAge: string;
-  setSelectedAge: (v: string) => void;
-  ageOpen: boolean;
-  setAgeOpen: (v: boolean) => void;
-  selectedFocus: string;
-  setSelectedFocus: (v: string) => void;
-  email: string;
-  setEmail: (v: string) => void;
-  emailVisible: boolean;
-  setEmailVisible: (v: boolean) => void;
+  screen: "assessment" | "coming-soon";
+  onAgeClick: () => void;
+  onClose: () => void;
 }
 
 /* ================================================================
    GROUNDED — Editorial, warm, serif-driven
    ================================================================ */
-function GroundedDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }: DialogProps) {
+function GroundedDialog({ screen, onAgeClick, onClose }: DialogProps) {
+  const [hoveredAge, setHoveredAge] = useState<number | null>(null);
   return (
     <div className="flex justify-center">
       <div
         style={{
-          width: "460px",
+          width: "520px",
           maxWidth: "100%",
-          background: "#FFFFFF",
+          background: "#f6ede2",
           borderRadius: "12px",
           boxShadow: "0 8px 32px rgba(28, 32, 36, 0.1)",
           position: "relative",
@@ -60,10 +52,11 @@ function GroundedDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sele
       >
         {/* Close button */}
         <button
+          onClick={onClose}
           style={{
             position: "absolute",
-            top: "16px",
-            right: "16px",
+            top: "4px",
+            right: "4px",
             width: "32px",
             height: "32px",
             display: "flex",
@@ -71,252 +64,187 @@ function GroundedDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sele
             justifyContent: "center",
             borderRadius: "8px",
             border: "none",
-            background: "transparent",
+            background: "#ffffff",
             cursor: "pointer",
             color: "#1E3540",
             opacity: 0.4,
+            zIndex: 2,
           }}
         >
           <X size={20} weight="bold" />
         </button>
 
-        <div style={{ padding: "40px 36px 36px" }}>
-          {/* Sage leaf icon */}
-          <div className="flex justify-center mb-5">
-            <div
-              style={{
-                width: "48px",
-                height: "48px",
-                background: "#004f3b",
-                borderRadius: "10px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-3s4.71-4.44 10.29-5c0 0-3 4-7 6l1 1c4.5-2.5 8-7 8-7s3-5 0-10c-1-2-2.82-2-2.82-2S19 4 17 8z" fill="#FFFFFF" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Title */}
-          <h2
-            className="text-center mb-3"
+        <div>
+          {/* Lifestyle image */}
+          <div
             style={{
-              fontFamily: '"Lora", Georgia, serif',
-              fontSize: "28px",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              color: "#1E3540",
+              width: "100%",
+              aspectRatio: "21 / 9",
+              borderRadius: "2px",
+              overflow: "hidden",
+              marginBottom: "24px",
             }}
           >
-            What activity does your child need right now?
-          </h2>
-
-          {/* Divider */}
-          <div className="flex justify-center mb-5">
-            <div style={{ width: "200px", height: "1px", background: "#E5E5E3" }} />
+            <img
+              src="/generated/grounded-email-header.jpg"
+              alt="Lifestyle"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 33%",
+              }}
+            />
           </div>
 
-          {/* Subtitle */}
-          <p
-            className="text-center mb-6"
-            style={{
-              fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-              fontSize: "15px",
-              color: "#1E3540",
-              opacity: 0.7,
-            }}
-          >
-            Tell us a little. Get the right activity{" "}
-            <strong style={{ fontWeight: 700 }}>in seconds</strong>.
-          </p>
-
-          {/* Age Dropdown */}
-          <div className="relative mb-5">
-            <button
-              onClick={() => setAgeOpen(!ageOpen)}
-              className="w-full flex items-center justify-between"
-              style={{
-                padding: "14px 16px",
-                borderRadius: "10px",
-                border: "1px solid #E5E5E3",
-                background: "#FFFFFF",
-                fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-                fontSize: "15px",
-                color: selectedAge ? "#1E3540" : "#1E354080",
-                cursor: "pointer",
-              }}
-            >
-              <span>{selectedAge || "Your child's age"}</span>
-              <CaretDown size={18} style={{ opacity: 0.4, transform: ageOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
-            </button>
-            {ageOpen && (
-              <div
+          {screen === "assessment" ? (
+            <>
+              {/* Title */}
+              <h2
+                className="text-center mb-4"
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  right: 0,
-                  background: "#FFFFFF",
-                  border: "1px solid #E5E5E3",
-                  borderRadius: "10px",
-                  marginTop: "4px",
-                  zIndex: 10,
-                  boxShadow: "0 4px 16px rgba(0,0,0,0.08)",
+                  fontFamily: '"Lora", Georgia, serif',
+                  fontSize: "32px",
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: "#004f3b",
                 }}
               >
-                {AGE_OPTIONS.map((age) => (
+                Get a clearer picture of your child&rsquo;s progress.
+              </h2>
+
+              {/* Divider */}
+              <div className="flex justify-center mb-6">
+                <div style={{ width: "220px", height: "1px", background: "#E5E5E3" }} />
+              </div>
+
+              {/* Subtitle */}
+              <p
+                className="text-center mb-8"
+                style={{
+                  fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
+                  fontSize: "17px",
+                  color: "#1E3540",
+                  opacity: 0.65,
+                  letterSpacing: "0.01em",
+                }}
+              >
+                2 minutes. Real insight. Zero guesswork.
+              </p>
+
+              {/* Start label */}
+              <p
+                className="text-center mb-5"
+                style={{
+                  fontFamily: '"Lora", Georgia, serif',
+                  fontSize: "20px",
+                  fontWeight: 700,
+                  color: "#B5531E",
+                }}
+              >
+                Start the assessment:
+              </p>
+
+              {/* Age buttons */}
+              <div className="flex gap-3 justify-center mb-9">
+                {AGES.map((age) => (
                   <button
                     key={age}
-                    className="w-full text-left"
-                    onClick={() => { setSelectedAge(age); setAgeOpen(false); }}
+                    onClick={onAgeClick}
+                    onMouseEnter={() => setHoveredAge(age)}
+                    onMouseLeave={() => setHoveredAge(null)}
                     style={{
-                      padding: "12px 16px",
+                      padding: "18px 28px",
+                      color: hoveredAge === age ? "#FFFFFF" : "#B5531E",
+                      backgroundColor: hoveredAge === age ? "#B5531E" : "transparent",
+                      borderRadius: "10px",
+                      border: "solid",
+                      borderColor: "#B5531E",
                       fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-                      fontSize: "14px",
-                      color: "#1E3540",
-                      background: selectedAge === age ? "#f6ede2" : "transparent",
-                      border: "none",
+                      fontSize: "16px",
+                      fontWeight: 700,
                       cursor: "pointer",
+                      minWidth: "90px",
+                      transition: "all 0.2s ease",
                     }}
                   >
-                    {age}
+                     Age {age}
                   </button>
                 ))}
               </div>
-            )}
-          </div>
-
-          {/* Focus Area */}
-          <p
-            style={{
-              fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-              fontSize: "15px",
-              color: "#1E3540",
-              marginBottom: "12px",
-            }}
-          >
-            What are you working on?
-          </p>
-          <div className="flex flex-col gap-2 mb-6">
-            {FOCUS_AREAS.map((area) => (
-              <label
-                key={area.id}
-                className="flex items-center gap-3 cursor-pointer"
+            </>
+          ) : (
+            <>
+              {/* Coming Soon Title */}
+              <h2
+                className="text-center mb-3"
                 style={{
-                  padding: "10px 14px",
-                  borderRadius: "10px",
-                  background: selectedFocus === area.id ? "#f6ede2" : "transparent",
-                  transition: "background 0.15s",
+                  fontFamily: '"Lora", Georgia, serif',
+                  fontSize: "34px",
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: "#004f3b",
                 }}
               >
-                <div
+                Coming Soon
+              </h2>
+
+              {/* Divider */}
+              <div className="flex justify-center mb-6">
+                <div style={{ width: "220px", height: "1px", background: "#E5E5E3" }} />
+              </div>
+
+              {/* Description */}
+              <p
+                className="text-center mb-6"
+                style={{
+                  fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
+                  fontSize: "17px",
+                  lineHeight: 1.6,
+                  color: "#1E3540",
+                  opacity: 0.75,
+                }}
+              >
+                In the meantime, check out <strong style={{ fontWeight: 700, opacity: 1, color: "#004f3b" }}>Sage</strong>, your AI parenting partner
+                for personalized resources and advice.
+              </p>
+
+              {/* Value props */}
+              <p
+                className="text-center mb-8"
+                style={{
+                  fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
+                  fontSize: "16px",
+                  fontWeight: 500,
+                  color: "#B5531E",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Personalized. &nbsp; Safe. &nbsp; Expert-Backed. &nbsp; Free.
+              </p>
+
+              {/* CTA */}
+              <div className="flex justify-center mb-9">
+                <button
                   style={{
-                    width: "20px",
-                    height: "20px",
-                    borderRadius: "50%",
-                    border: `2px solid ${selectedFocus === area.id ? "#004f3b" : "#E5E5E3"}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                    transition: "border-color 0.15s",
-                  }}
-                >
-                  {selectedFocus === area.id && (
-                    <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#004f3b" }} />
-                  )}
-                </div>
-                <input
-                  type="radio"
-                  name="focus-grounded"
-                  value={area.id}
-                  checked={selectedFocus === area.id}
-                  onChange={() => setSelectedFocus(area.id)}
-                  className="sr-only"
-                />
-                <span style={{ fontSize: "16px" }}>{area.emoji}</span>
-                <span
-                  style={{
+                    padding: "18px 48px",
+                    background: "#B5531E",
+                    color: "#FFFFFF",
+                    borderRadius: "10px",
+                    border: "none",
                     fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-                    fontSize: "15px",
-                    fontWeight: 600,
-                    color: "#1E3540",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                    cursor: "pointer",
                   }}
                 >
-                  {area.label}
-                </span>
-              </label>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <button
-            className="w-full"
-            style={{
-              padding: "16px 24px",
-              background: "#004f3b",
-              color: "#FFFFFF",
-              borderRadius: "10px",
-              border: "none",
-              fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-              fontSize: "13px",
-              fontWeight: 700,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase" as const,
-              cursor: "pointer",
-            }}
-          >
-            Get My Personalized Activity &rarr;
-          </button>
-
-          {/* Email input */}
-          <div className="relative mt-4">
-            <input
-              type={emailVisible ? "text" : "email"}
-              placeholder="test@test.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "14px 16px",
-                paddingRight: "100px",
-                borderRadius: "10px",
-                border: "1px solid #E5E5E3",
-                fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-                fontSize: "14px",
-                color: "#1E3540",
-                background: "#FFFFFF",
-                boxSizing: "border-box",
-              }}
-            />
-            <button
-              onClick={() => setEmailVisible(!emailVisible)}
-              style={{
-                position: "absolute",
-                right: "8px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                padding: "6px 12px",
-                borderRadius: "6px",
-                border: "none",
-                background: "#B5531E",
-                color: "#FFFFFF",
-                fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
-                fontSize: "12px",
-                fontWeight: 600,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-              }}
-            >
-              {emailVisible ? <Eye size={14} /> : <EyeSlash size={14} />}
-              {emailVisible ? "Visible" : "Hidden"}
-            </button>
-          </div>
+                  Visit Sage
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
@@ -326,12 +254,13 @@ function GroundedDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sele
 /* ================================================================
    SOFT BLUEPRINT — Technical, sharp, monospace, bold borders
    ================================================================ */
-function BlueprintDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }: DialogProps) {
+function BlueprintDialog({ screen, onAgeClick, onClose }: DialogProps) {
+  const [hoveredAge, setHoveredAge] = useState<number | null>(null);
   return (
     <div className="flex justify-center">
       <div
         style={{
-          width: "460px",
+          width: "520px",
           maxWidth: "100%",
           background: "#FFFFFF",
           borderRadius: "8px",
@@ -346,6 +275,7 @@ function BlueprintDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
 
         {/* Close button */}
         <button
+          onClick={onClose}
           style={{
             position: "absolute",
             top: "16px",
@@ -360,270 +290,193 @@ function BlueprintDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
             background: "#FFFFFF",
             cursor: "pointer",
             color: "#0F172A",
+            zIndex: 2,
           }}
         >
           <X size={14} weight="bold" />
         </button>
 
-        <div style={{ padding: "36px 32px 32px" }}>
-          {/* Icon */}
-          <div className="flex justify-center mb-4">
-            <div
-              style={{
-                width: "44px",
-                height: "44px",
-                background: "#2563EB",
-                borderRadius: "4px",
-                border: "2px solid #0F172A",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-3s4.71-4.44 10.29-5c0 0-3 4-7 6l1 1c4.5-2.5 8-7 8-7s3-5 0-10c-1-2-2.82-2-2.82-2S19 4 17 8z" fill="#FFFFFF" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Title */}
-          <h2
-            className="text-center mb-2"
+        <div>
+          {/* Lifestyle image */}
+          <div
             style={{
-              fontFamily: '"Space Mono", "Courier New", monospace',
-              fontSize: "22px",
-              fontWeight: 700,
-              lineHeight: 1.3,
-              color: "#0F172A",
-              textTransform: "uppercase" as const,
-              letterSpacing: "0.02em",
+              width: "100%",
+              aspectRatio: "21 / 9",
+              overflow: "hidden",
             }}
           >
-            What activity does your child need right now?
-          </h2>
-
-          {/* Divider */}
-          <div className="flex justify-center mb-4">
-            <div style={{ width: "100%", height: "2px", background: "#0F172A" }} />
+            <img
+              src="/generated/soft-blueprint-email-header.jpg"
+              alt="Lifestyle"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 33%",
+              }}
+            />
           </div>
 
-          {/* Subtitle */}
-          <p
-            className="text-center mb-6"
-            style={{
-              fontFamily: '"Inter Tight", system-ui, sans-serif',
-              fontSize: "14px",
-              color: "#0F172A",
-              opacity: 0.6,
-            }}
-          >
-            Tell us a little. Get the right activity{" "}
-            <strong style={{ fontWeight: 700 }}>in seconds</strong>.
-          </p>
-
-          {/* Age Dropdown */}
-          <div className="relative mb-5">
-            <button
-              onClick={() => setAgeOpen(!ageOpen)}
-              className="w-full flex items-center justify-between"
-              style={{
-                padding: "12px 14px",
-                borderRadius: "4px",
-                border: "2px solid #CBD5E8",
-                background: "#F0F4FF",
-                fontFamily: '"Inter Tight", system-ui, sans-serif',
-                fontSize: "14px",
-                color: selectedAge ? "#0F172A" : "#0F172A80",
-                cursor: "pointer",
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.04em",
-              }}
-            >
-              <span>{selectedAge || "Your child's age"}</span>
-              <CaretDown size={16} style={{ opacity: 0.5, transform: ageOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s" }} />
-            </button>
-            {ageOpen && (
-              <div
+        <div style={{ padding: "0 36px 36px" }}>
+          {screen === "assessment" ? (
+            <>
+              {/* Title */}
+              <h2
+                className="text-center my-3"
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  right: 0,
-                  background: "#FFFFFF",
-                  border: "2px solid #0F172A",
-                  borderRadius: "4px",
-                  marginTop: "4px",
-                  zIndex: 10,
-                  boxShadow: "4px 4px 0px #FFD93D",
+                  fontFamily: '"Space Mono", "Courier New", monospace',
+                  fontSize: "24px",
+                  fontWeight: 700,
+                  lineHeight: 1.3,
+                  color: "#0F172A",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.02em",
                 }}
               >
-                {AGE_OPTIONS.map((age) => (
+                Get a clearer picture of your child&rsquo;s progress.
+              </h2>
+
+              {/* Divider */}
+              <div className="flex justify-center mb-5">
+                <div style={{ width: "100%", height: "2px", background: "#0F172A" }} />
+              </div>
+
+              {/* Subtitle */}
+              <p
+                className="text-center mb-7"
+                style={{
+                  fontFamily: '"Inter Tight", system-ui, sans-serif',
+                  fontSize: "15px",
+                  color: "#0F172A",
+                  opacity: 0.6,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                2 minutes. Real insight. Zero guesswork.
+              </p>
+
+              {/* Start label */}
+              <p
+                className="text-center mb-4"
+                style={{
+                  fontFamily: '"Space Mono", "Courier New", monospace',
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  color: "#0F172A",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.1em",
+                }}
+              >
+                Start the assessment:
+              </p>
+
+              {/* Age buttons */}
+              <div className="flex gap-2 justify-center">
+                {AGES.map((age) => (
                   <button
                     key={age}
-                    className="w-full text-left"
-                    onClick={() => { setSelectedAge(age); setAgeOpen(false); }}
+                    onClick={onAgeClick}
+                    onMouseEnter={() => setHoveredAge(age)}
+                    onMouseLeave={() => setHoveredAge(null)}
                     style={{
-                      padding: "10px 14px",
-                      fontFamily: '"Inter Tight", system-ui, sans-serif',
+                      padding: "14px 20px",
+                      background: hoveredAge === age ? "#1D4ED8" : "#2563EB",
+                      color: "#FFFFFF",
+                      borderRadius: "4px",
+                      border: "2px solid #0F172A",
+                      boxShadow: hoveredAge === age ? "1px 1px 0px #0F172A" : "3px 3px 0px #0F172A",
+                      fontFamily: '"Space Mono", "Courier New", monospace',
                       fontSize: "13px",
-                      color: "#0F172A",
-                      background: selectedAge === age ? "#E8EEFF" : "transparent",
-                      border: "none",
-                      borderBottom: "1px solid #CBD5E8",
+                      fontWeight: 700,
                       cursor: "pointer",
                       textTransform: "uppercase" as const,
                       letterSpacing: "0.04em",
+                      transform: hoveredAge === age ? "translate(2px, 2px)" : "none",
+                      transition: "all 0.15s ease",
                     }}
                   >
-                    {age}
+                     Age {age}
                   </button>
                 ))}
               </div>
-            )}
-          </div>
+            </>
+          ) : (
+            <>
+              {/* Coming Soon Title */}
+              <h2
+                className="text-center my-3"
+                style={{
+                  fontFamily: '"Space Mono", "Courier New", monospace',
+                  fontSize: "28px",
+                  fontWeight: 700,
+                  lineHeight: 1.3,
+                  color: "#0F172A",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Coming Soon
+              </h2>
 
-          {/* Focus Area */}
-          <p
-            style={{
-              fontFamily: '"Space Mono", "Courier New", monospace',
-              fontSize: "12px",
-              fontWeight: 700,
-              color: "#0F172A",
-              textTransform: "uppercase" as const,
-              letterSpacing: "0.08em",
-              marginBottom: "10px",
-            }}
-          >
-            What are you working on?
-          </p>
-          <div className="flex flex-col gap-1 mb-6">
-            {FOCUS_AREAS.map((area) => {
-              const isSelected = selectedFocus === area.id;
-              return (
-                <label
-                  key={area.id}
-                  className="flex items-center gap-3 cursor-pointer"
+              {/* Divider */}
+              <div className="flex justify-center mb-5">
+                <div style={{ width: "100%", height: "2px", background: "#0F172A" }} />
+              </div>
+
+              {/* Description */}
+              <p
+                className="text-center mb-5"
+                style={{
+                  fontFamily: '"Inter Tight", system-ui, sans-serif',
+                  fontSize: "15px",
+                  lineHeight: 1.6,
+                  color: "#0F172A",
+                  opacity: 0.7,
+                }}
+              >
+                In the meantime, check out <strong style={{ fontWeight: 700 }}>Sage</strong>, your AI parenting partner
+                for personalized resources and advice.
+              </p>
+
+              {/* Value props */}
+              <p
+                className="text-center mb-7"
+                style={{
+                  fontFamily: '"Space Mono", "Courier New", monospace',
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  color: "#0F172A",
+                  textTransform: "uppercase" as const,
+                  letterSpacing: "0.1em",
+                }}
+              >
+                Personalized. &nbsp; Safe. &nbsp; Expert-Backed. &nbsp; Free.
+              </p>
+
+              {/* CTA */}
+              <div className="flex justify-center">
+                <button
                   style={{
-                    padding: "10px 12px",
+                    padding: "14px 40px",
+                    background: "#2563EB",
+                    color: "#FFFFFF",
                     borderRadius: "4px",
-                    border: `2px solid ${isSelected ? "#2563EB" : "transparent"}`,
-                    background: isSelected ? "#E8EEFF" : "transparent",
-                    transition: "all 0.12s",
+                    border: "2px solid #0F172A",
+                    boxShadow: "4px 4px 0px #0F172A",
+                    fontFamily: '"Space Mono", "Courier New", monospace',
+                    fontSize: "12px",
+                    fontWeight: 700,
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase" as const,
+                    cursor: "pointer",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "18px",
-                      height: "18px",
-                      borderRadius: "3px",
-                      border: `2px solid ${isSelected ? "#2563EB" : "#CBD5E8"}`,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      background: isSelected ? "#2563EB" : "transparent",
-                    }}
-                  >
-                    {isSelected && (
-                      <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="focus-blueprint"
-                    value={area.id}
-                    checked={isSelected}
-                    onChange={() => setSelectedFocus(area.id)}
-                    className="sr-only"
-                  />
-                  <area.icon size={18} weight="bold" color="#2563EB" />
-                  <span
-                    style={{
-                      fontFamily: '"Inter Tight", system-ui, sans-serif',
-                      fontSize: "14px",
-                      fontWeight: 600,
-                      color: "#0F172A",
-                    }}
-                  >
-                    {area.label}
-                  </span>
-                </label>
-              );
-            })}
-          </div>
-
-          {/* CTA Button */}
-          <button
-            className="w-full"
-            style={{
-              padding: "14px 24px",
-              background: "#2563EB",
-              color: "#FFFFFF",
-              borderRadius: "4px",
-              border: "2px solid #0F172A",
-              boxShadow: "4px 4px 0px #0F172A",
-              fontFamily: '"Space Mono", "Courier New", monospace',
-              fontSize: "12px",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase" as const,
-              cursor: "pointer",
-            }}
-          >
-            Get My Personalized Activity &rarr;
-          </button>
-
-          {/* Email input */}
-          <div className="relative mt-4">
-            <input
-              type={emailVisible ? "text" : "email"}
-              placeholder="test@test.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "12px 14px",
-                paddingRight: "110px",
-                borderRadius: "4px",
-                border: "2px solid #CBD5E8",
-                fontFamily: '"Inter Tight", system-ui, sans-serif',
-                fontSize: "13px",
-                color: "#0F172A",
-                background: "#F0F4FF",
-                boxSizing: "border-box",
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.02em",
-              }}
-            />
-            <button
-              onClick={() => setEmailVisible(!emailVisible)}
-              style={{
-                position: "absolute",
-                right: "6px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                padding: "5px 10px",
-                borderRadius: "4px",
-                border: "2px solid #0F172A",
-                background: "#FF6B6B",
-                color: "#FFFFFF",
-                fontFamily: '"Space Mono", "Courier New", monospace',
-                fontSize: "10px",
-                fontWeight: 700,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-                textTransform: "uppercase" as const,
-                letterSpacing: "0.06em",
-              }}
-            >
-              {emailVisible ? <Eye size={12} weight="bold" /> : <EyeSlash size={12} weight="bold" />}
-              {emailVisible ? "Visible" : "Hidden"}
-            </button>
-          </div>
+                  Visit Sage
+                </button>
+              </div>
+            </>
+          )}
+        </div>
         </div>
       </div>
     </div>
@@ -633,12 +486,13 @@ function BlueprintDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
 /* ================================================================
    DUSK & BLOOM — Premium, dark, rounded, frosted glass
    ================================================================ */
-function DuskBloomDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, selectedFocus, setSelectedFocus, email, setEmail, emailVisible, setEmailVisible }: DialogProps) {
+function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
+  const [hoveredAge, setHoveredAge] = useState<number | null>(null);
   return (
     <div className="flex justify-center">
       <div
         style={{
-          width: "460px",
+          width: "520px",
           maxWidth: "100%",
           background: "linear-gradient(180deg, #3A2850 0%, #2A1F33 100%)",
           borderRadius: "28px",
@@ -647,15 +501,15 @@ function DuskBloomDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
           overflow: "hidden",
         }}
       >
-        {/* Subtle glow accent */}
+        {/* Subtle glow */}
         <div
           style={{
             position: "absolute",
             top: "-60px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "200px",
-            height: "120px",
+            width: "240px",
+            height: "140px",
             background: "radial-gradient(ellipse, rgba(168, 137, 204, 0.2), transparent 70%)",
             pointerEvents: "none",
           }}
@@ -663,6 +517,7 @@ function DuskBloomDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
 
         {/* Close button */}
         <button
+          onClick={onClose}
           style={{
             position: "absolute",
             top: "20px",
@@ -679,266 +534,203 @@ function DuskBloomDialog({ selectedAge, setSelectedAge, ageOpen, setAgeOpen, sel
             cursor: "pointer",
             color: "#F6F2EF",
             opacity: 0.6,
+            zIndex: 2,
           }}
         >
           <X size={16} weight="bold" />
         </button>
 
-        <div style={{ padding: "44px 36px 36px", position: "relative" }}>
-          {/* Icon */}
-          <div className="flex justify-center mb-5">
-            <div
-              style={{
-                width: "52px",
-                height: "52px",
-                background: "linear-gradient(135deg, #A889CC, #7B5FA0)",
-                borderRadius: "99px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                boxShadow: "0 4px 20px rgba(168, 137, 204, 0.35)",
-              }}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-3s4.71-4.44 10.29-5c0 0-3 4-7 6l1 1c4.5-2.5 8-7 8-7s3-5 0-10c-1-2-2.82-2-2.82-2S19 4 17 8z" fill="#F6F2EF" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Title */}
-          <h2
-            className="text-center mb-3"
+        <div>
+          {/* Lifestyle image */}
+          <div
             style={{
-              fontFamily: '"Archivo", system-ui, sans-serif',
-              fontSize: "26px",
-              fontWeight: 700,
-              lineHeight: 1.2,
-              color: "#F6F2EF",
-              fontStretch: "110%",
+              width: "100%",
+              aspectRatio: "21 / 9",
+              overflow: "hidden",
             }}
           >
-            What activity does your child need right now?
-          </h2>
-
-          {/* Divider */}
-          <div className="flex justify-center mb-5">
-            <div
+            <img
+              src="/generated/dusk-bloom-email-header.jpg"
+              alt="Lifestyle"
               style={{
-                width: "160px",
-                height: "1px",
-                background: "linear-gradient(90deg, transparent, rgba(168, 137, 204, 0.4), transparent)",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 33%",
               }}
             />
           </div>
 
-          {/* Subtitle */}
-          <p
-            className="text-center mb-7"
-            style={{
-              fontFamily: '"Lexend Deca", system-ui, sans-serif',
-              fontSize: "15px",
-              color: "#F6F2EF",
-              opacity: 0.55,
-            }}
-          >
-            Tell us a little. Get the right activity{" "}
-            <strong style={{ fontWeight: 600, opacity: 1, color: "#E8A838" }}>in seconds</strong>.
-          </p>
-
-          {/* Age Dropdown */}
-          <div className="relative mb-5">
-            <button
-              onClick={() => setAgeOpen(!ageOpen)}
-              className="w-full flex items-center justify-between"
-              style={{
-                padding: "14px 18px",
-                borderRadius: "99px",
-                border: "1px solid rgba(168, 137, 204, 0.25)",
-                background: "rgba(255, 255, 255, 0.06)",
-                backdropFilter: "blur(8px)",
-                fontFamily: '"Lexend Deca", system-ui, sans-serif',
-                fontSize: "14px",
-                color: selectedAge ? "#F6F2EF" : "rgba(246, 242, 239, 0.4)",
-                cursor: "pointer",
-              }}
-            >
-              <span>{selectedAge || "Your child's age"}</span>
-              <CaretDown size={16} style={{ color: "#A889CC", transform: ageOpen ? "rotate(180deg)" : "none", transition: "transform 0.3s cubic-bezier(0.22, 1, 0.36, 1)" }} />
-            </button>
-            {ageOpen && (
-              <div
+        <div style={{ padding: "0 40px 44px", position: "relative" }}>
+          {screen === "assessment" ? (
+            <>
+              {/* Title */}
+              <h2
+                className="text-center my-4"
                 style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  right: 0,
-                  background: "#3A2850",
-                  border: "1px solid rgba(168, 137, 204, 0.2)",
-                  borderRadius: "20px",
-                  marginTop: "6px",
-                  zIndex: 10,
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-                  overflow: "hidden",
+                  fontFamily: '"Archivo", system-ui, sans-serif',
+                  fontSize: "28px",
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: "#F6F2EF",
+                  fontStretch: "110%",
                 }}
               >
-                {AGE_OPTIONS.map((age) => (
+                Get a clearer picture of your child&rsquo;s progress.
+              </h2>
+
+              {/* Divider */}
+              <div className="flex justify-center mb-6">
+                <div
+                  style={{
+                    width: "180px",
+                    height: "1px",
+                    background: "linear-gradient(90deg, transparent, rgba(168, 137, 204, 0.4), transparent)",
+                  }}
+                />
+              </div>
+
+              {/* Subtitle */}
+              <p
+                className="text-center mb-8"
+                style={{
+                  fontFamily: '"Lexend Deca", system-ui, sans-serif',
+                  fontSize: "16px",
+                  color: "#F6F2EF",
+                  opacity: 0.5,
+                }}
+              >
+                2 minutes. Real insight. Zero guesswork.
+              </p>
+
+              {/* Start label */}
+              <p
+                className="text-center mb-5"
+                style={{
+                  fontFamily: '"Archivo", system-ui, sans-serif',
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "#E8A838",
+                  fontStretch: "105%",
+                }}
+              >
+                Start the assessment:
+              </p>
+
+              {/* Age buttons */}
+              <div className="flex gap-3 justify-center">
+                {AGES.map((age) => (
                   <button
                     key={age}
-                    className="w-full text-left"
-                    onClick={() => { setSelectedAge(age); setAgeOpen(false); }}
+                    onClick={onAgeClick}
+                    onMouseEnter={() => setHoveredAge(age)}
+                    onMouseLeave={() => setHoveredAge(null)}
                     style={{
-                      padding: "12px 18px",
-                      fontFamily: '"Lexend Deca", system-ui, sans-serif',
-                      fontSize: "13px",
-                      color: "#F6F2EF",
-                      background: selectedAge === age ? "rgba(168, 137, 204, 0.15)" : "transparent",
+                      padding: "16px 24px",
+                      background: hoveredAge === age
+                        ? "linear-gradient(135deg, #F0B848, #E8A838)"
+                        : "linear-gradient(135deg, #E8A838, #D4943A)",
+                      color: "#2A1F33",
+                      borderRadius: "99px",
                       border: "none",
+                      fontFamily: '"Lexend Deca", system-ui, sans-serif',
+                      fontSize: "14px",
+                      fontWeight: 700,
                       cursor: "pointer",
+                      boxShadow: hoveredAge === age
+                        ? "0 6px 24px rgba(232, 168, 56, 0.5)"
+                        : "0 4px 16px rgba(232, 168, 56, 0.3)",
+                      transform: hoveredAge === age ? "translateY(-2px)" : "none",
+                      transition: "all 0.2s ease",
                     }}
                   >
-                    {age}
+                     Age {age}
                   </button>
                 ))}
               </div>
-            )}
-          </div>
+            </>
+          ) : (
+            <>
+              {/* Coming Soon Title */}
+              <h2
+                className="text-center my-3"
+                style={{
+                  fontFamily: '"Archivo", system-ui, sans-serif',
+                  fontSize: "32px",
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: "#C4ADDE",
+                  fontStretch: "110%",
+                }}
+              >
+                Coming Soon
+              </h2>
 
-          {/* Focus Area */}
-          <p
-            style={{
-              fontFamily: '"Lexend Deca", system-ui, sans-serif',
-              fontSize: "14px",
-              color: "#F6F2EF",
-              opacity: 0.5,
-              marginBottom: "12px",
-            }}
-          >
-            What are you working on?
-          </p>
-          <div className="flex flex-col gap-2 mb-7">
-            {FOCUS_AREAS.map((area) => {
-              const isSelected = selectedFocus === area.id;
-              return (
-                <label
-                  key={area.id}
-                  className="flex items-center gap-3 cursor-pointer"
+              {/* Divider */}
+              <div className="flex justify-center mb-6">
+                <div
                   style={{
-                    padding: "12px 16px",
-                    borderRadius: "16px",
-                    border: `1px solid ${isSelected ? "rgba(232, 168, 56, 0.4)" : "rgba(168, 137, 204, 0.1)"}`,
-                    background: isSelected ? "rgba(232, 168, 56, 0.08)" : "rgba(255, 255, 255, 0.03)",
-                    transition: "all 0.25s cubic-bezier(0.22, 1, 0.36, 1)",
+                    width: "180px",
+                    height: "1px",
+                    background: "linear-gradient(90deg, transparent, rgba(168, 137, 204, 0.4), transparent)",
+                  }}
+                />
+              </div>
+
+              {/* Description */}
+              <p
+                className="text-center mb-6"
+                style={{
+                  fontFamily: '"Lexend Deca", system-ui, sans-serif',
+                  fontSize: "16px",
+                  lineHeight: 1.7,
+                  color: "#C4ADDE",
+                  opacity: 1,
+                }}
+              >
+                In the meantime, check out <strong style={{ fontWeight: 600, color: "#D98B8B", opacity: 1 }}>Sage</strong>, your AI parenting partner
+                for personalized resources and advice.
+              </p>
+
+              {/* Value props */}
+              <p
+                className="text-center mb-8"
+                style={{
+                  fontFamily: '"Lexend Deca", system-ui, sans-serif',
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  color: "#C4ADDE",
+                  opacity: 0.6,
+                  letterSpacing: "0.06em",
+                }}
+              >
+                Personalized. &nbsp; Safe. &nbsp; Expert-Backed. &nbsp; Free.
+              </p>
+
+              {/* CTA */}
+              <div className="flex justify-center">
+                <button
+                  style={{
+                    padding: "16px 48px",
+                    background: "linear-gradient(135deg, #E8A838, #D4943A)",
+                    color: "#2A1F33",
+                    borderRadius: "99px",
+                    border: "none",
+                    fontFamily: '"Lexend Deca", system-ui, sans-serif',
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase" as const,
+                    cursor: "pointer",
+                    boxShadow: "0 4px 20px rgba(232, 168, 56, 0.35)",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      border: `2px solid ${isSelected ? "#E8A838" : "rgba(168, 137, 204, 0.3)"}`,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0,
-                      transition: "border-color 0.2s",
-                    }}
-                  >
-                    {isSelected && (
-                      <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#E8A838", boxShadow: "0 0 8px rgba(232, 168, 56, 0.5)" }} />
-                    )}
-                  </div>
-                  <input
-                    type="radio"
-                    name="focus-dusk"
-                    value={area.id}
-                    checked={isSelected}
-                    onChange={() => setSelectedFocus(area.id)}
-                    className="sr-only"
-                  />
-                  <span style={{ fontSize: "16px" }}>{area.emoji}</span>
-                  <span
-                    style={{
-                      fontFamily: '"Lexend Deca", system-ui, sans-serif',
-                      fontSize: "15px",
-                      fontWeight: 500,
-                      color: isSelected ? "#E8A838" : "#F6F2EF",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {area.label}
-                  </span>
-                </label>
-              );
-            })}
-          </div>
-
-          {/* CTA Button */}
-          <button
-            className="w-full"
-            style={{
-              padding: "16px 24px",
-              background: "linear-gradient(135deg, #E8A838, #D4943A)",
-              color: "#2A1F33",
-              borderRadius: "99px",
-              border: "none",
-              fontFamily: '"Lexend Deca", system-ui, sans-serif',
-              fontSize: "13px",
-              fontWeight: 700,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase" as const,
-              cursor: "pointer",
-              boxShadow: "0 4px 20px rgba(232, 168, 56, 0.35)",
-            }}
-          >
-            Get My Personalized Activity &rarr;
-          </button>
-
-          {/* Email input */}
-          <div className="relative mt-4">
-            <input
-              type={emailVisible ? "text" : "email"}
-              placeholder="test@test.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "14px 18px",
-                paddingRight: "110px",
-                borderRadius: "99px",
-                border: "1px solid rgba(168, 137, 204, 0.2)",
-                fontFamily: '"Lexend Deca", system-ui, sans-serif',
-                fontSize: "14px",
-                color: "#F6F2EF",
-                background: "rgba(255, 255, 255, 0.06)",
-                backdropFilter: "blur(8px)",
-                boxSizing: "border-box",
-              }}
-            />
-            <button
-              onClick={() => setEmailVisible(!emailVisible)}
-              style={{
-                position: "absolute",
-                right: "8px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                padding: "6px 14px",
-                borderRadius: "99px",
-                border: "none",
-                background: "#D98B8B",
-                color: "#FFFFFF",
-                fontFamily: '"Lexend Deca", system-ui, sans-serif',
-                fontSize: "11px",
-                fontWeight: 600,
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                gap: "4px",
-              }}
-            >
-              {emailVisible ? <Eye size={12} /> : <EyeSlash size={12} />}
-              {emailVisible ? "Visible" : "Hidden"}
-            </button>
-          </div>
+                  Visit Sage
+                </button>
+              </div>
+            </>
+          )}
+        </div>
         </div>
       </div>
     </div>

@@ -28,11 +28,11 @@ export default function Rationale() {
           </h2>
           <p
             className="text-base italic opacity-70 max-w-sm mx-auto"
-            style={{ fontFamily: "var(--font-body)", color: "var(--color-secondary)" }}
+            style={{ fontFamily: "var(--font-body)", color: "var(--color-text)" }}
           >
             {theme.tagline}
           </p>
-          <div className="flex items-center justify-center gap-4 mt-4 text-sm opacity-50" style={{ color: "var(--color-secondary)"}}>
+          <div className="flex items-center justify-center gap-4 mt-4 text-sm opacity-50" style={{ color: "var(--color-text)"}}>
             <span style={{ fontFamily: "var(--font-body)" }}>{theme.emotionalRegister}</span>
             <span>·</span>
             <span style={{ fontFamily: "var(--font-body)" }}>{theme.brandAnalogy}</span>
