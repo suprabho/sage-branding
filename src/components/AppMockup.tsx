@@ -373,7 +373,7 @@ function HomePage({ themeId, tappedChip }: { themeId: string; tappedChip: boolea
           Good evening, Sarah
         </h2>
         <p
-          className="text-xs text-center mb-6 opacity-60"
+          className="text-xs text-center m-6 opacity-60"
           style={{ fontFamily: "var(--font-body)", color: "#D9D0DC" }}
         >
           What&apos;s on your mind tonight?

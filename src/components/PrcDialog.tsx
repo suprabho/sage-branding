@@ -120,7 +120,7 @@ function GroundedDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Subtitle */}
               <p
-                className="text-center mb-8"
+                className="text-center m-8"
                 style={{
                   fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
                   fontSize: "17px",
@@ -146,7 +146,7 @@ function GroundedDialog({ screen, onAgeClick, onClose }: DialogProps) {
               </p>
 
               {/* Age buttons */}
-              <div className="flex gap-3 justify-center mb-9">
+              <div className="flex flex-wrap gap-3 justify-center mb-9">
                 {AGES.map((age) => (
                   <button
                     key={age}
@@ -196,7 +196,7 @@ function GroundedDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Description */}
               <p
-                className="text-center mb-6"
+                className="text-center m-6"
                 style={{
                   fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
                   fontSize: "17px",
@@ -211,7 +211,7 @@ function GroundedDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Value props */}
               <p
-                className="text-center mb-8"
+                className="text-center m-8"
                 style={{
                   fontFamily: '"Plus Jakarta Sans", system-ui, sans-serif',
                   fontSize: "16px",
@@ -431,10 +431,11 @@ function BlueprintDialog({ screen, onAgeClick, onClose }: DialogProps) {
                   fontSize: "15px",
                   lineHeight: 1.6,
                   color: "#0F172A",
-                  opacity: 0.7,
+                  opacity: 1,
                 }}
               >
-                In the meantime, check out <strong style={{ fontWeight: 700 }}>Sage</strong>, your AI parenting partner
+                In the meantime, check out <strong style={{ fontWeight: 700, 
+                  background: "#FFD93D",}}>Sage</strong>, your AI parenting partner
                 for personalized resources and advice.
               </p>
 
@@ -592,7 +593,7 @@ function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Subtitle */}
               <p
-                className="text-center mb-8"
+                className="text-center m-8"
                 style={{
                   fontFamily: '"Lexend Deca", system-ui, sans-serif',
                   fontSize: "16px",
@@ -618,7 +619,7 @@ function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
               </p>
 
               {/* Age buttons */}
-              <div className="flex gap-3 justify-center">
+              <div className="flex flex-wrap gap-3 justify-center">
                 {AGES.map((age) => (
                   <button
                     key={age}
@@ -628,8 +629,8 @@ function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
                     style={{
                       padding: "16px 24px",
                       background: hoveredAge === age
-                        ? "linear-gradient(135deg, #F0B848, #E8A838)"
-                        : "linear-gradient(135deg, #E8A838, #D4943A)",
+                        ? "linear-gradient(135deg, #C8A2D8, #9B6BA8)"
+                        : "linear-gradient(135deg, #9B6BA8, #7B4F8A)",
                       color: "#2A1F33",
                       borderRadius: "99px",
                       border: "none",
@@ -679,7 +680,7 @@ function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Description */}
               <p
-                className="text-center mb-6"
+                className="text-center m-6"
                 style={{
                   fontFamily: '"Lexend Deca", system-ui, sans-serif',
                   fontSize: "16px",
@@ -694,7 +695,7 @@ function DuskBloomDialog({ screen, onAgeClick, onClose }: DialogProps) {
 
               {/* Value props */}
               <p
-                className="text-center mb-8"
+                className="text-center m-8"
                 style={{
                   fontFamily: '"Lexend Deca", system-ui, sans-serif',
                   fontSize: "14px",
