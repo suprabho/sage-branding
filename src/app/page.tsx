@@ -6,11 +6,13 @@ import ThemeSwitcher from "@/components/ThemeSwitcher";
 import AppMockup from "@/components/AppMockup";
 import EmailMockup from "@/components/EmailMockup";
 import Rationale from "@/components/Rationale";
+import PrcDialog from "@/components/PrcDialog";
 
 const sections = [
   { id: "app-preview", label: "01", subtitle: "Product Experience" },
   { id: "email-preview", label: "02", subtitle: "Email Campaign" },
-  { id: "rationale", label: "03", subtitle: "Rationale" },
+  { id: "prc-dialog", label: "03", subtitle: "PRC Dialog" },
+  { id: "rationale", label: "04", subtitle: "Rationale" },
 ];
 
 export default function Home() {
@@ -191,10 +193,22 @@ export default function Home() {
             <EmailMockup />
           </section>
 
-          {/* Section 03 — Rationale */}
-          <section id="rationale">
+          {/* Section 03 — PRC Dialog */}
+          <section id="prc-dialog">
             <SectionHeader
               number="03"
+              title="Personalized Activity"
+              subtitle="PRC Dialog"
+              themeId={themeId}
+              isDusk={isDusk}
+            />
+            <PrcDialog />
+          </section>
+
+          {/* Section 04 — Rationale */}
+          <section id="rationale">
+            <SectionHeader
+              number="04"
               title="Rationale"
               subtitle="Design Decisions"
               themeId={themeId}
