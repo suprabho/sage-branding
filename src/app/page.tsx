@@ -7,12 +7,14 @@ import AppMockup from "@/components/AppMockup";
 import EmailMockup from "@/components/EmailMockup";
 import Rationale from "@/components/Rationale";
 import PrcDialog from "@/components/PrcDialog";
+import LogoShowcase from "@/components/LogoShowcase";
 
 const sections = [
-  { id: "app-preview", label: "01", subtitle: "Product Experience" },
-  { id: "email-preview", label: "02", subtitle: "Email Campaign" },
-  { id: "prc-dialog", label: "03", subtitle: "PRC Dialog" },
-  { id: "rationale", label: "04", subtitle: "Rationale" },
+  { id: "logo-showcase", label: "01", subtitle: "Logo Showcase" },
+  { id: "app-preview", label: "02", subtitle: "Product Experience" },
+  { id: "email-preview", label: "03", subtitle: "Email Campaign" },
+  { id: "prc-dialog", label: "04", subtitle: "PRC Dialog" },
+  { id: "rationale", label: "05", subtitle: "Rationale" },
 ];
 
 export default function Home() {
@@ -169,10 +171,22 @@ export default function Home() {
 
         {/* Content Sections */}
         <main className="flex-1 flex flex-col gap-24 md:gap-32 min-w-0">
-          {/* Section 01 — App Preview */}
-          <section id="app-preview">
+          {/* Section 01 — Logo Showcase */}
+          <section id="logo-showcase">
             <SectionHeader
               number="01"
+              title="Brand Identity"
+              subtitle="Logo Showcase"
+              themeId={themeId}
+              isDusk={isDusk}
+            />
+            <LogoShowcase />
+          </section>
+
+          {/* Section 02 — App Preview */}
+          <section id="app-preview">
+            <SectionHeader
+              number="02"
               title="Product Experience"
               subtitle="Mobile UI Screen"
               themeId={themeId}
@@ -181,10 +195,10 @@ export default function Home() {
             <AppMockup />
           </section>
 
-          {/* Section 02 — Email Preview */}
+          {/* Section 03 — Email Preview */}
           <section id="email-preview">
             <SectionHeader
-              number="02"
+              number="03"
               title="Marketing Asset"
               subtitle="Email Campaign"
               themeId={themeId}
@@ -193,10 +207,10 @@ export default function Home() {
             <EmailMockup />
           </section>
 
-          {/* Section 03 — PRC Dialog */}
+          {/* Section 04 — PRC Dialog */}
           <section id="prc-dialog">
             <SectionHeader
-              number="03"
+              number="04"
               title="Personalized Activity"
               subtitle="PRC Dialog"
               themeId={themeId}
@@ -205,10 +219,10 @@ export default function Home() {
             <PrcDialog />
           </section>
 
-          {/* Section 04 — Rationale */}
+          {/* Section 05 — Rationale */}
           <section id="rationale">
             <SectionHeader
-              number="04"
+              number="05"
               title="Rationale"
               subtitle="Design Decisions"
               themeId={themeId}
